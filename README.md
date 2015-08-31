@@ -17,8 +17,8 @@ Enter the root password you chose at the time of install.
 
 ###Bug Reports
 All bug reports can be sent to my private email address, 
-<a href="mailto:ChocolateChip@derpymail.org?subject=Debiajn%20Newbie%20Script%Bug>chocolatechip@derpymail.org</a>
-A PGP Key can be found here: https://choco.neocities.org/pgp (though, if you are a n00b, you probably don't know what PGP 
+<a href="mailto:ChocolateChip@derpymail.org?subject=Debiajn%20Newbie%20Script%Bug">chocolatechip@derpymail.org</a>
+A PGP Key can be found <a href="https://choco.neocities.org/pgp">here</a> (though, if you are a n00b, you probably don't know what PGP 
 is...)
 
 
