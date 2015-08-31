@@ -1,4 +1,4 @@
-# DebianNewbieScript
+# Debian Newbie Script
 This is a script designed for the users of 4Chan's daily Friendly Linux Thread (https://boards.4chan.org/g/flt)
 This script is designed to slightly rice a new Debian install, add some privacy features, add some good GNU/Linux programs, remove all desktop enviorments, and add a light-weight one called LXDE. LXDE looks like the classic Windows' interface, so it is better for newbies who are most likley switching to GNU/Linux from Windows.
 
