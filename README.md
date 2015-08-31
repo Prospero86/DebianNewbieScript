@@ -1,5 +1,5 @@
 # DebianNewbieScript
-This is a script designed for the users of 4Chan's daily Friendly Linux Thread (<a href="https://boards.4chan.org/g/flt">https://boards.4chan.org/g/flt</a>)
+This is a script designed for the users of 4Chan's daily Friendly Linux Thread (https://boards.4chan.org/g/flt)
 This script is designed to rice a new Debian install, add some privacy features, remove all desktop enviorments,
 and add a light-weight one called LXDE. LXDE looks like the classic Windows' interface, so it is better for newbies 
 who are most likley switching to GNU/Linux from Windows.
@@ -17,8 +17,7 @@ Enter the root password you chose at the time of install.
 
 ###Bug Reports
 All bug reports can be sent to my private email address, 
-<a href="mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%Bug">chocolatechip@derpymail.org</a>
-A PGP Key can be found <a href="https://choco.neocities.org/pgp">here</a> (though, if you are a n00b, you probably don't know what PGP 
-is...)
+[chocolatechip@derpymail.org] (mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%Bug)
+A PGP Key can be found [here] (https://choco.neocities.org/pgp) (though, if you are a n00b, you probably don't know what PGP is...)
 
 
