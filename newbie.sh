@@ -73,7 +73,7 @@ mkdir Redshift
 echo "Find an example config file at the Redshift website. Also, further instructions will be there as well" > Redshift/README
 mkdir startup
 echo "Add @redshift-gtk and @qtox to the file /home/[your user name]/.config/lxsession/LXDE/autostart"> startup/README
-echo "Make sure to delete these extra files and folders after you are finished with them" > README
+echo "Make sure to delete these extra files and folders after you are finished with them You will need to find documentation for all the things this has installed. If you do not want a package that this script has installed, preform the comamnd sudo apt-get remove --purge [packageName]" > README
 apt-get install -y redshift-gtk
 apt-get install -y hexchat
 apt-get install -y build-essential
