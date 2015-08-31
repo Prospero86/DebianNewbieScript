@@ -15,7 +15,7 @@ Enter the root password you chose at the time of install.
 
 ###Bug Reports
 All bug reports can be sent to my private email address, 
-[chocolatechip@derpymail.org] (mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%Bug)
+[chocolatechip@derpymail.org] (mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%20Bug)
 A PGP Key can be found [here] (https://choco.neocities.org/pgp) (though, if you are a n00b, you probably don't know what PGP is...)
 
 
