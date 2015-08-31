@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.1 alpha
+# Debian Newbie Script v0.0.2 alpha
 # This script is designed to rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. (https://boards.4chan.org/g/flt) 
 # This script adds a number of privacy features. It also removes all other Desktop Enviorments, and installs a light-weight one called
 # LXDE, which is much like the older Windows' Interface, so is good for newbies.
 
-# Debian Newbie Script v0.0.1 Alpha
+# Debian Newbie Script v0.0.2 Alpha
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
