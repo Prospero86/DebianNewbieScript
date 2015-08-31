@@ -13,6 +13,10 @@ then run the script as
 <code>su -c ./newbie.sh</code>
 Enter the root password you chose at the time of install.
 
+If you recieve any errors, such as "Permission Denied", preform 
+<code>chmod 777 newbie.sh</code>
+This will change the permissions and you should be able to run it
+
 ###Bug Reports
 All bug reports can be sent to my private email address, 
 [chocolatechip@derpymail.org] (mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%20Bug)
