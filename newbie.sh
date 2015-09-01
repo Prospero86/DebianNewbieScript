@@ -23,7 +23,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 echo " "
-echo "Please note it is EXTREAMELY IMPORTANT to have this script running from your"
+echo "Please note it is EXTREMELY IMPORTANT to have this script running from your"
 echo "desktop. Do not continue the script if you are running it outside your desktop."
 echo " "
 echo "Would you like to continue? [Y/n]?"
@@ -110,6 +110,10 @@ wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-lat
 apt-get remove --purge -y clipit
 apt-get autoremove --purge -y
 apt-get autoclean
+update-menus
+chmod 777 startup
+chmod 777 iceweasel-plugins
+chmod 777 Redshift
 echo " "
 echo "The script has finished"
 echo " "
