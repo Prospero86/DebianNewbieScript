@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.1.3 beta
+# Debian Newbie Script v0.1.4 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -11,7 +11,7 @@
 
 # YOU MUST RUN THIS SCRIPT FROM YOUR DESKTOP. IT IS IMPERATIVE THAT YOU DO. IF YOU DO NOT, YOU MAY CREATE
 # FILES THAT BLOAT YOUR SYSTEM, AND HAVE NO ACCESS TO THEM. DO NOT RUN THIS SCRIPT OUTSIDE THE DESKTOP!
-# (yes, it would be easy to find and access the files that have beencreated, maybe move them all, but
+# (yes, it would be easy to find and access the files that have been created, maybe move them all, but
 # this script is designed for n00bs. That'd be too hard for a beginer. To make it easier, just trust me
 # and run from the desktop.)
 
@@ -19,8 +19,9 @@
 # CONTACT ME IMEDIETLY. chocolatechip@derpymail.org is my email, and my PGP key is avalible at 
 # https://choco.neocities.org/pgp
 # Please email all bug reports to the same address.
+# You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.1.3 beta
+# Debian Newbie Script v0.1.4 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -62,7 +63,7 @@ echo " "
 echo "The script is starting."
 echo " "
 
-# Check as root. if not root, program will exit
+# Check if root. If not root, program will exit
 echo "Now checking if running as root..."
 if [ "`whoami`" != "root" ]; then
     echo " "
@@ -145,6 +146,9 @@ apt-get install -y nano
 apt-get install -y redshift-gtk
 apt-get install -y screenfetch
 apt-get install -y shutter
+
+# Cursor Packages 
+# THESE ARE A DEPENDENCY FURTHER IN THE SCRIPT
 apt-get install -y --no-install-recommends dmz-cursor-theme
 apt-get install -y --no-install-recommends x-cursor-theme
 
@@ -280,6 +284,10 @@ chocolatechip@derpymail.org
 Please send all bug reports there as well. A PGP key can be found at:
 
 https://choco.neocities.org/pgp
+
+I can also be contacted at the IRC channel #Chocolate_Chip at irc.canternet.org (SSL Port 6697)
+(HINT: Use the hexchat package this script installs)
+(Other Hint: Try copying irc://irc.canternet.org:+6697/Chocolate_Chip into Iceweasel.)
 
 No matter what, avoid skype and facebook:
 https://stallman.org/skype.html https://stallman.org/facebook.html
@@ -548,7 +556,7 @@ apt-get dist-upgrade -y
 apt-get autoremove --purge -y
 apt-get autoclean
 update-menus
-chmod 777 startup*
+chmod 777 startup/*
 chmod 777 iceweasel-plugins/*
 chmod 777 Redshift/*
 chmod 777 README
@@ -577,5 +585,5 @@ echo " "
 echo "Support the FSF by saying Free/Libre instead of Open Source!"
 echo "And always say GNU/Linux when referring to the OS and not the Linux kernel!"
 echo " "
-echo "You may now restart your computer"
+echo "You may now safely restart your computer"
 exit
