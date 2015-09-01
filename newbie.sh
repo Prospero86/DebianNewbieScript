@@ -146,6 +146,7 @@ apt-get install -y nano
 apt-get install -y redshift-gtk
 apt-get install -y screenfetch
 apt-get install -y shutter
+apt-get install -y qbittorrent
 
 # Cursor Packages 
 # THESE ARE A DEPENDENCY FURTHER IN THE SCRIPT
@@ -347,7 +348,7 @@ webbrowser/command=iceweasel
 video_player/command=/usr/bin/vlc
 audio_player/command=/usr/bin/vlc
 image_display/command=gpicview
-bittorent/command=dillo
+bittorent/command=qbittorrent
 tasks/command=lxtask
 document/command=libreoffice
 text_editor/command=leafpad
