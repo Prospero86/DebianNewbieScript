@@ -220,7 +220,7 @@ wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-lat
 wget https://mega.nz/meganz.xpi -O iceweasel-plugins/mega.xpi
 mkdir ~/Music/.startup
 wget http://www.windows93.net/c/sys/boot/boot.ogg -O ../Music/.startup/startup.ogg
-echo "@play -t ogg -v 0.40 ../Music/startup.ogg
+echo "@play -t ogg -v 0.40 ~/Music/startup.ogg
 @redshift-gtk
 @qtox
 @lxpanel --profile LXDE
@@ -238,6 +238,7 @@ chmod 777 startup
 chmod 777 iceweasel-plugins
 chmod 777 Redshift
 chmod 777 README
+chmod 777 ../.config/lxsession/LXDE/auotstart
 echo " "
 echo "The script has finished"
 echo " "
