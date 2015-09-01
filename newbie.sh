@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.4 alpha
+# Debian Newbie Script v0.0.5 alpha
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -9,7 +9,7 @@
 # light-weight one called LXDE, which is much like the older Windows' Interface, 
 # so is good for newbies.
 
-# Debian Newbie Script v0.0.4 Alpha
+# Debian Newbie Script v0.0.5 Alpha
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
     exit 1
 fi
 echo " "
-echo "The script is starting. Please wait as this will take some time"
+echo "The script is starting."
 echo " "
 echo "Now checking if running as root..."
 if [ "`whoami`" != "root" ]; then
@@ -66,7 +66,7 @@ if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
 fi
 echo "This begins the automated portion of this script. If you wish to quit, preform:"
 echo "su -c killall bash"
-echo "In a seprate terminal"
+echo "In a seprate terminal. You will have to manually undo anything past this point."
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
@@ -74,8 +74,19 @@ apt-get install -y firmware-linux
 apt-get remove --purge -y kde.
 apt-get remove --purge -y gnome.
 apt-get remove --purge -y xfce.
-apt-get install -y lxde
+apt-get install -y --no-install-recommends lxde
 apt-get install -y lightdm
+apt-get install -y alsamixergui
+apt-get install -y deluge
+apt-get install -y iceweasel
+apt-get install -y evince-gtk
+apt-get install -y lxpolkit
+apt-get install -y menu-xdg
+apt-get install -y usermode
+apt-get install -y xserver-xorg
+apt-get install -y gimp
+apt-get install -y libreoffice
+apt-get install -y lxtask
 apt-get remove --purge -y dillo
 apt-get remove --purge -y konsole
 apt-get install -y bleachbit
@@ -84,6 +95,7 @@ apt-get install -y networkmanager
 apt-get install -y xul-ext-https-finder
 apt-get install -y xul-ext-https-everywhere
 apt-get remove --purge -y kmail
+apt-get remove --purge -y konqureor
 apt-get install -y Evolution
 apt-get install -y gpg
 echo "deb https://pkg.tox.chat/debian nightly release" > /etc/apt/sources.list.d/tox.list
@@ -100,7 +112,7 @@ mkdir Redshift
 echo "Find an example config file at the Redshift website. Also, further instructions will be there as well" > Redshift/README
 mkdir startup
 echo "Add @redshift-gtk and @qtox to the file /home/[your user name]/.config/lxsession/LXDE/autostart"> startup/README
-echo "Make sure to delete these extra files and folders after you are finished with them You will need to find documentation for all the things this has installed. If you do not want a package that this script has installed, preform the comamnd sudo apt-get remove --purge [packageName]" > README
+echo "Make sure to delete these extra files and folders after you are finished with them. You will need to find documentation for all the things this has installed. If you do not want a package that this script has installed, preform the comamnd sudo apt-get remove --purge [packageName]. Periodically preform the commands sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade" > README
 apt-get install -y redshift-gtk
 apt-get install -y hexchat
 apt-get install -y build-essential
