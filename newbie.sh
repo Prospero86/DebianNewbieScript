@@ -1,16 +1,25 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.9 final alpha (next beta)
+# Debian Newbie Script v0.1.0 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
 # (https://boards.4chan.org/g/flt) 
 
 # This script adds a number of privacy features. It also removes all other Desktop Enviorments, and installs a 
-# light-weight one called LXDE, which is much like the older Windows' Interface, 
-# so is good for newbies.
+# light-weight one called LXDE, which is much like the older Windows' Interface, so is good for newbies.
 
-# Debian Newbie Script v0.0.9 final alpha (next beta)
+# YOU MUST RUN THIS SCRIPT FROM YOUR DESKTOP. IT IS IMPERATIVE THAT YOU DO. IF YOU DO NOT, YOU MAY CREATE
+# FILES THAT BLOAT YOUR SYSTEM, AND HAVE NO ACCESS TO THEM. DO NOT RUN THIS SCRIPT OUTSIDE THE DESKTOP!
+# (yes, it would be easy to find and access the files that have beencreated, maybe move them all, but
+# this script is designed for n00bs. That'd be too hard for a beginer. To make it easier, just trust me
+# and run from the desktop.)
+
+# I have tried my very best to only include Free/Libre software. Ifg you see any package in here that is NOT,
+# CONTACT ME IMEDIETLY. chocolatechip@derpymail.org is my email, and my PGP key is avalible at 
+# https://choco.neocities.org/pgp
+
+# Debian Newbie Script v0.1.0 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -25,9 +34,13 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+# Start echo(s)
 echo " "
 echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
+
+# Confirm Script 1
 echo "Please note it is EXTREMELY IMPORTANT to have this script running from your"
 echo "desktop. Do not continue the script if you are running it outside your desktop."
 echo " "
@@ -47,6 +60,7 @@ fi
 echo " "
 echo "The script is starting."
 echo " "
+# Check as root. if not root, program will exit
 echo "Now checking if running as root..."
 if [ "`whoami`" != "root" ]; then
     echo " "
@@ -60,6 +74,7 @@ echo " "
 echo " "
 echo "You are running as Root! Thanks!"
 echo " "
+# Confirm Script 2
 echo "Are you SURE you want to contine? This will take a long time."
 echo "You will have to MANUALLY UNDO any changes from this point on!"
 echo " "
@@ -76,18 +91,30 @@ if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
     echo "Exiting..."
     exit 1
 fi
+
+# Last begin echo(s)
 echo "This begins the automated portion of this script. If you wish to quit, preform:"
 echo "su -c killall bash"
 echo "In a seprate terminal. You will have to manually undo anything past this point."
+
+# Begin Automation
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install -y firmware-linux-free
+
+# remove other DEs
 apt-get remove --purge -y kde.
 apt-get remove --purge -y gnome.
 apt-get remove --purge -y xfce.
+
+# install needed packages
 apt-get install -y firmware-linux-free
 apt-get install -y sudo
+apt-get install -y wget
+apt-get install -y apt-transport-https
+apt-get install -y build-essential
+
+# install LXDE, remove some bloat, add some other packages
 apt-get install -y --no-install-recommends lxde
 apt-get install -y vlc
 apt-get install -y sox
@@ -107,27 +134,36 @@ apt-get install -y gimp
 apt-get install -y libreoffice
 apt-get install -y lxtask
 apt-get install -y screenfetch
-apt-get remove --purge -y dillo
-apt-get remove --purge -y konsole
-apt-get install -y bleachbit
-apt-get remove --purge -y wicd.
 apt-get install -y network-manager
 apt-get install -y xul-ext-https-finder
 apt-get install -y xul-ext-https-everywhere
-apt-get remove --purge -y kmail
-apt-get remove --purge -y konqureor
 apt-get install -y evolution
 apt-get install -y gpg
+apt-get install -y redshift-gtk
+apt-get install -y hexchat
+apt-get install -y keepass2
+apt-get install -y shutter
+apt-get install -y bleachbit
+
+# remove some other packages that come pre-bundled
+apt-get remove --purge -y kmail
+apt-get remove --purge -y konqureor
+apt-get remove --purge -y dillo
+apt-get remove --purge -y konsole
+apt-get remove --purge -y wicd.
+apt-get remove --purge -y clipit
+
+# qTox, the skype replacment's script
 echo "deb https://pkg.tox.chat/debian nightly release" > /etc/apt/sources.list.d/tox.list
-apt-get install -y wget
 wget https://pkg.tox.chat/debian/pkg.gpg.key -O /tmp/pkg.gpg.key
 apt-key add /tmp/pkg.gpg.key
 rm /tmp/pkg.gpg.key
-apt-get install -y apt-transport-https
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get install -y qtox
+
+# Redshift script
 mkdir Redshift
 echo "Find an example config file at the Redshift website. 
 Also, further instructions will be there as well.
@@ -189,6 +225,8 @@ lon=[omited]
 [randr]
 screen=1
 You don't need to use this exactly as it is here, though." > Redshift/README
+
+# Startup Doc
 mkdir startup
 echo "Make sure to delete these extra files and folders after you are finished with them. 
 You will need to find documentation for all the things this has installed. 
@@ -201,14 +239,13 @@ Periodically preform the commands
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 
 I have added LXDE to this script as I use it myself, it is much like the old Windows' interface, 
-and it is jsut good for beginners, imho. You can pick another one once you know what you're doing, I guess.
+and it is just good for beginners, imho. You can pick another one once you know what you're doing, I guess.
+
+Soon, I will be writing more documentation for all the packages I installed, made for the point of view of n00bs.
 
 Thanks again for using my script!" > README
-apt-get install -y redshift-gtk
-apt-get install -y hexchat
-apt-get install -y build-essential
-apt-get install -y keepass2
-apt-get install -y shutter
+
+# Iceweasel downloads
 mkdir iceweasel-plugins
 echo "These are for your Iceweasel installtion. Please add them using the add-on's menu.
 Please. 
@@ -218,7 +255,9 @@ wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O icewease
 wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O iceweasel-plugins/privacy.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O iceweasel-plugins/uBlock-Origin.xpi
 wget https://mega.nz/meganz.xpi -O iceweasel-plugins/mega.xpi
-mkdir ~/Music/.startup
+
+# LXDE startup modifier
+mkdir ../Music/.startup
 wget http://www.windows93.net/c/sys/boot/boot.ogg -O ../Music/.startup/startup.ogg
 echo "@play -t ogg -v 0.40 ~/Music/.startup/startup.ogg
 @redshift-gtk
@@ -230,7 +269,8 @@ mkdir
 echo "If you don't like my startup sound, delete it using
 sudo rm -r -f ~/Music/.startup
 and remove it from your ~/.config/lxsession/LXDE/auotstart file" > startup/README
-apt-get remove --purge -y clipit
+
+# Final steps
 apt-get autoremove --purge -y
 apt-get autoclean
 update-menus
@@ -239,6 +279,8 @@ chmod 777 iceweasel-plugins
 chmod 777 Redshift
 chmod 777 README
 chmod 777 ../.config/lxsession/LXDE/auotstart
+
+# End
 echo " "
 echo "The script has finished"
 echo " "
