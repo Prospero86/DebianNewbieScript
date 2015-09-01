@@ -95,7 +95,7 @@ apt-get remove --purge -y dillo
 apt-get remove --purge -y konsole
 apt-get install -y bleachbit
 apt-get remove --purge -y wicd.
-apt-get install -y networkmanager
+apt-get install -y network-manager
 apt-get install -y xul-ext-https-finder
 apt-get install -y xul-ext-https-everywhere
 apt-get remove --purge -y kmail
