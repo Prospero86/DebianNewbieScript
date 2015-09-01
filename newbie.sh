@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.8 alpha
+# Debian Newbie Script v0.0.9 final alpha (next beta)
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -10,7 +10,7 @@
 # light-weight one called LXDE, which is much like the older Windows' Interface, 
 # so is good for newbies.
 
-# Debian Newbie Script v0.0.8 Alpha
+# Debian Newbie Script v0.0.9 final alpha (next beta)
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -93,6 +93,7 @@ apt-get install -y vlc
 apt-get install -y sox
 apt-get install -y lame
 apt-get install -y vorbis-tools
+apt-get install -y nano
 apt-get install -y lightdm
 apt-get install -y alsamixergui
 apt-get install -y deluge
@@ -189,13 +190,20 @@ lon=[omited]
 screen=1
 You don't need to use this exactly as it is here, though." > Redshift/README
 mkdir startup
-echo "Please verify that the file /home/[your user name]/.config/lxsession/LXDE/autostart is correct." > startup/README
 echo "Make sure to delete these extra files and folders after you are finished with them. 
 You will need to find documentation for all the things this has installed. 
 If you do not want a package that this script has installed, preform the comamnd 
+
 sudo apt-get remove --purge [packageName]. 
+
 Periodically preform the commands 
-sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade" > README
+
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
+
+I have added LXDE to this script as I use it myself, it is much like the old Windows' interface, 
+and it is jsut good for beginners, imho. You can pick another one once you know what you're doing, I guess.
+
+Thanks again for using my script!" > README
 apt-get install -y redshift-gtk
 apt-get install -y hexchat
 apt-get install -y build-essential
@@ -221,7 +229,7 @@ echo "@play -t ogg -v 0.40 ~/Music/startup.ogg
 mkdir
 echo "If you don't like my startup sound, delete it using
 sudo rm -r -f ~/Music/.startup
-and remove it from your ~/.config/lxsession/LXDE/auotstart file" > startup/README.2
+and remove it from your ~/.config/lxsession/LXDE/auotstart file" > startup/README
 apt-get remove --purge -y clipit
 apt-get autoremove --purge -y
 apt-get autoclean
