@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.1.0 beta
+# Debian Newbie Script v0.1.1 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -15,11 +15,11 @@
 # this script is designed for n00bs. That'd be too hard for a beginer. To make it easier, just trust me
 # and run from the desktop.)
 
-# I have tried my very best to only include Free/Libre software. Ifg you see any package in here that is NOT,
+# I have tried my very best to only include Free/Libre software. If you see any package in here that is NOT,
 # CONTACT ME IMEDIETLY. chocolatechip@derpymail.org is my email, and my PGP key is avalible at 
 # https://choco.neocities.org/pgp
 
-# Debian Newbie Script v0.1.0 beta
+# Debian Newbie Script v0.1.1 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -60,6 +60,7 @@ fi
 echo " "
 echo "The script is starting."
 echo " "
+
 # Check as root. if not root, program will exit
 echo "Now checking if running as root..."
 if [ "`whoami`" != "root" ]; then
@@ -74,6 +75,7 @@ echo " "
 echo " "
 echo "You are running as Root! Thanks!"
 echo " "
+
 # Confirm Script 2
 echo "Are you SURE you want to contine? This will take a long time."
 echo "You will have to MANUALLY UNDO any changes from this point on!"
@@ -114,13 +116,8 @@ apt-get install -y wget
 apt-get install -y apt-transport-https
 apt-get install -y build-essential
 
-# install LXDE, remove some bloat, add some other packages
+# install LXDE, remove some bloat
 apt-get install -y --no-install-recommends lxde
-apt-get install -y vlc
-apt-get install -y sox
-apt-get install -y lame
-apt-get install -y vorbis-tools
-apt-get install -y nano
 apt-get install -y lightdm
 apt-get install -y alsamixergui
 apt-get install -y deluge
@@ -130,27 +127,40 @@ apt-get install -y lxpolkit
 apt-get install -y menu-xdg
 apt-get install -y usermode
 apt-get install -y xserver-xorg
+apt-get install -y lxtask
+apt-get remove --purge -y wicd
+apt-get install -y network-manager
+
+# Add some good, everyday programs
 apt-get install -y gimp
 apt-get install -y libreoffice
-apt-get install -y lxtask
 apt-get install -y screenfetch
-apt-get install -y network-manager
-apt-get install -y xul-ext-https-finder
-apt-get install -y xul-ext-https-everywhere
-apt-get install -y evolution
-apt-get install -y gpg
 apt-get install -y redshift-gtk
-apt-get install -y hexchat
-apt-get install -y keepass2
 apt-get install -y shutter
+apt-get install -y nano
+
+# Some privacy tools
+apt-get install -y gpg
+apt-get install -y keepass2
 apt-get install -y bleachbit
+
+# Communication tools
+apt-get install -y evolution
+apt-get install -y hexchat
+
+# Media tools
+apt-get install -y vlc
+apt-get install -y lame
+# DO NOT REMOVE SOX FROM THIS LIST. IT IS A DEPENDENCY FURTHER IN THE SCRIPT
+apt-get install -y sox
+# DO NOT REMOVE VORBIS-TOOLS FROM THIS LIST. IT IS A DEPENDENCY FURTHER IN THE SCRIPT
+apt-get install -y vorbis-tools
 
 # remove some other packages that come pre-bundled
 apt-get remove --purge -y kmail
 apt-get remove --purge -y konqureor
 apt-get remove --purge -y dillo
 apt-get remove --purge -y konsole
-apt-get remove --purge -y wicd.
 apt-get remove --purge -y clipit
 
 # qTox, the skype replacment's script
@@ -168,6 +178,8 @@ mkdir Redshift
 echo "Find an example config file at the Redshift website. 
 Also, further instructions will be there as well.
 My own redshift config is:
+
+
 ; Global settings for redshift
 [redshift]
 ; Set the day and night screen temperatures
@@ -224,10 +236,12 @@ lon=[omited]
 ; to adjust _all_ screens.
 [randr]
 screen=1
+
+
 You don't need to use this exactly as it is here, though." > Redshift/README
 
-# Startup Doc
-mkdir startup
+
+# Master Readme
 echo "Make sure to delete these extra files and folders after you are finished with them. 
 You will need to find documentation for all the things this has installed. 
 If you do not want a package that this script has installed, preform the comamnd 
@@ -240,6 +254,8 @@ sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 
 I have added LXDE to this script as I use it myself, it is much like the old Windows' interface, 
 and it is just good for beginners, imho. You can pick another one once you know what you're doing, I guess.
+
+To configure your network, use the command nmtui. This is network-manager's terminal interface.
 
 Soon, I will be writing more documentation for all the packages I installed, made for the point of view of n00bs.
 
@@ -255,8 +271,11 @@ wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O icewease
 wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O iceweasel-plugins/privacy.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O iceweasel-plugins/uBlock-Origin.xpi
 wget https://mega.nz/meganz.xpi -O iceweasel-plugins/mega.xpi
+apt-get install -y xul-ext-https-finder
+apt-get install -y xul-ext-https-everywhere
 
 # LXDE startup modifier
+mkdir startup
 mkdir ../Music/.startup
 wget http://www.windows93.net/c/sys/boot/boot.ogg -O ../Music/.startup/startup.ogg
 echo "@play -t ogg -v 0.40 ~/Music/.startup/startup.ogg
