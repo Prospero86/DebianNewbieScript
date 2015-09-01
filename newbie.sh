@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.2 alpha
+# Debian Newbie Script v0.0.3 alpha
 # This script is designed to rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. (https://boards.4chan.org/g/flt) 
 # This script adds a number of privacy features. It also removes all other Desktop Enviorments, and installs a light-weight one called
 # LXDE, which is much like the older Windows' Interface, so is good for newbies.
 
-# Debian Newbie Script v0.0.2 Alpha
+# Debian Newbie Script v0.0.3 Alpha
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -23,9 +23,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 echo " "
-echo "Please note it is EXTREAMLY IMPORTANT to have this script running from your"
+echo "Please note it is EXTREAMELY IMPORTANT to have this script running from your"
 echo "desktop. Do not continue the script if you are running it outside your desktop."
 echo " "
+echo "Would you like to continue? [Y/n]?"
+read ans
+
+if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+echo "Now continuing"
+fi
+
+if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+    echo "Exiting..."
+    exit 1
+fi
 echo " "
 echo "The script is starting. Please wait as this will take some time"
 echo " "
@@ -40,7 +51,20 @@ if [ "`whoami`" != "root" ]; then
 fi
 echo "You are running as Root! Thanks!"
 echo " "
-echo "This begins the automated portion of this script."
+echo "Are you SURE you want to contine? This will take a long time [Y/n]?"
+read ans
+
+if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+echo "Now continuing"
+fi
+
+if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+    echo "Exiting..."
+    exit 1
+fi
+echo "This begins the automated portion of this script. If you wish to quit, preform:"
+echo "sh -c killall bash"
+echo "In a seprate terminal"
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
@@ -79,7 +103,7 @@ apt-get install -y hexchat
 apt-get install -y build-essential
 apt-get install -y keepass2
 mkdir iceweasel-plugins
-echo "These are for your Iceweasel instaltion. Please add them using the add-on's menu. Please. Also, add this: https://github.com/CrisBRM/user.js" > iceweasel-plugins/README
+echo "These are for your Iceweasel installtion. Please add them using the add-on's menu. Please. Also, add this: https://github.com/CrisBRM/user.js" > iceweasel-plugins/README
 wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O iceweasel-plugins/shumway.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O iceweasel-plugins/privacy.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O iceweasel-plugins/uBlock-Origin.xpi
