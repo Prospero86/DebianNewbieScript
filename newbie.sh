@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.3 alpha
-# This script is designed to rice a Debian install, and install new, better components on first run. 
+# Debian Newbie Script v0.0.4 alpha
+# This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
-# This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. (https://boards.4chan.org/g/flt) 
-# This script adds a number of privacy features. It also removes all other Desktop Enviorments, and installs a light-weight one called
-# LXDE, which is much like the older Windows' Interface, so is good for newbies.
+# This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
+# (https://boards.4chan.org/g/flt) 
+# This script adds a number of privacy features. It also removes all other Desktop Enviorments, and installs a 
+# light-weight one called LXDE, which is much like the older Windows' Interface, 
+# so is good for newbies.
 
-# Debian Newbie Script v0.0.3 Alpha
+# Debian Newbie Script v0.0.4 Alpha
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -68,6 +70,7 @@ echo "In a seprate terminal"
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
+apt-get install -y firmware-linux
 apt-get remove --purge -y kde.
 apt-get remove --purge -y gnome.
 apt-get remove --purge -y xfce.
@@ -102,6 +105,7 @@ apt-get install -y redshift-gtk
 apt-get install -y hexchat
 apt-get install -y build-essential
 apt-get install -y keepass2
+apt-get install -y shutter
 mkdir iceweasel-plugins
 echo "These are for your Iceweasel installtion. Please add them using the add-on's menu. Please. Also, add this: https://github.com/CrisBRM/user.js" > iceweasel-plugins/README
 wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O iceweasel-plugins/shumway.xpi
@@ -114,6 +118,7 @@ update-menus
 chmod 777 startup
 chmod 777 iceweasel-plugins
 chmod 777 Redshift
+chmod 777 README
 echo " "
 echo "The script has finished"
 echo " "
