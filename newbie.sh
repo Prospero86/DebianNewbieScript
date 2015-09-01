@@ -1,8 +1,11 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.1.5 beta
+# Debian Newbie Script v0.1.6 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
-# This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
+# This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
+# packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
+# to the system.
+
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
 # (https://boards.4chan.org/g/flt) 
 
@@ -21,7 +24,7 @@
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.1.5 beta
+# Debian Newbie Script v0.1.6 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -158,7 +161,7 @@ apt-get install -y --no-install-recommends x-cursor-theme
 apt-get install -y bleachbit
 apt-get install -y gpg
 apt-get install -y keepass2
-# TOR Anomizer Network script
+# TOR v. 5.0.2 Anomizer Network script
 apt-get install -y tor
 wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O tor.tar.xz
 tar xvfJ tor.tar.xz /opt/tor
@@ -166,9 +169,9 @@ cp /opt/tor/browser/start-tor-browser.desktop tor.desktop
 rm tor.tar.xz
 mkdir anon
 echo "This is the Tor Browser.
-To condfigure it, simpily double click the tor icon, wait a few moments, and it will open.
+To configure it, simpily double click the tor icon, wait a few moments, and it will open.
 If you wish to remove tor, preform the commands:
-apt-get remove tor
+apt-get remove --purge tor
 rm -r -f /opt/tor" > anon/tor
 # I2P Script
 echo "deb http://deb.i2p2.no/ jessie main
@@ -181,7 +184,7 @@ apt-get install i2p-keyring
 echo "The I2P Network is much like tor, only it's a different network and runs on Java. 
 Use this as an alternative to tor if you wish. If you want to remove, preform:
 rm /etc/apt/sources.list.d/i2p.list
-apt-get remove ip2 ip2-keyring" > anon/i2p
+apt-get remove --purge ip2 ip2-keyring" > anon/i2p
 
 # Communication tools
 apt-get install -y evolution
@@ -212,6 +215,10 @@ apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get install -y qtox
+
+# Shutter Docs
+echo "Shutter is a tool much like Snipping Tool for Windows Vista and later.
+Simpily open it, click selection, select, and press enter. You have now taken a screenshot." > tools/Shutter
 
 # Redshift script
 mkdir Redshift
@@ -278,7 +285,7 @@ lon=[omited]
 screen=1
 
 
-You don't need to use this exactly as it is here, though." > Redshift/README
+You don't need to use this exactly as it is here, though." > tools/Redshift
 
 
 # Master Readme
@@ -307,7 +314,7 @@ If you see any non-free/proprietory packages in this script, contact me imedietl
 
 chocolatechip@derpymail.org
 
-Please send all bug reports there as well. A PGP key can be found at:
+Please send all bug reports (and any questions) there as well. A PGP key can be found at:
 
 https://choco.neocities.org/pgp
 
@@ -316,11 +323,81 @@ I can also be contacted at the IRC channel #Chocolate_Chip at irc.canternet.org 
 (Other Hint: Try copying irc://irc.canternet.org:+6697/Chocolate_Chip into Iceweasel.)
 
 No matter what, avoid skype and facebook:
-https://stallman.org/skype.html https://stallman.org/facebook.html
+https://stallman.org/skype.html
+
+https://stallman.org/facebook.html
 
 And always refer to your OS as GNU/Linux unless refering to the kernel itself!
 
 Thanks again for using my script!" > README
+
+# GPG Docs
+echo "This is the documentation for GPG. GPG (full name GNPGP) is a free/Libre version of the PGP encryption
+algorithem. Commonly used for email, it can also be used to encrypt files. 
+
+To use PGP, you must first create a key. To do this, preform the command
+
+gpg --gen-key
+
+This will begin the process. It is reccomended you make your key the maximum amount of characters the program allows.
+It will ask you a few questins that you should answer honestly. There is little to no point not to. An example:
+Expire: 3 Months
+Full name: Dustin M. Shappee
+email: chocolatechip@derpymail.org
+comment: Chocolate D. Chip
+passphrase: [secret passphrase here]
+
+Using this, I have configured a key to be alid for 3 months, to be registered as my real name (and my online alias)
+and have configured a secret password (I reccomend getting one from http://securepasswordgenerator.com).
+
+The signature looks something like this:
+
+Dustin M. Shappee (ChocolateChip@derpymail.org) <chocolatechip@derpymail.org>
+PUB: 246810 SIG: 1357911 created: 09-10-15 NextCheck: 11-10-15
+
+After you enter this information, will generate the key. It might seem odd that it asks you to move the mouse and type random keys, 
+but it is all for the sake of generating random numbers for your key.
+
+Now, after that has finished, to export your key, preform the command
+
+gpg --armor --output pubkey.txt --export [Your Name]
+
+(the --armor part is pretty important because it is what converts your key to text)
+Then give your friends your key so they know it is yours.
+
+Now, open Evolution. Evolution needs little configuring for PGP.  (but you will need to configure it to use
+your email, obviously.) Preform the command:
+
+gpg --list-keys
+
+Find the one you just made, copy the PUB key, and add it to edit > Prefrences > (your account) > edit > Security > 
+Open PGP Key ID. Paste the PUB key there. Select the three options below it. It works better if you add 0x to the key.
+For example, 832111 would become 0x83211.
+
+Then, start composing an email for the account you made an email to. Go to the settings and select "PGP Sign." This will
+make your message signed with your PGP Signaure. Make the recipient one of your friends. Have him preform the same steps to 
+get a PGP key. Sned him a message with your signature signed. Then have him send you a message signed. Then, once you get his 
+signature, import it using 
+
+gpg --import
+[paste pgp key]
+then press ctrl + D
+
+Now, go back to your email, and select PGP Encrypt and PGP Sign. Send another email to your friend. This will arrive to him
+encrypted. Now have him reply to the message with another encrypted message. Congratulations, you have sent a PGP Encrypted
+message. 
+
+Some tips:
+Encrypt whenever possible. If you only encrypt certain things, the survaliance programs will take extra notice to the ones you
+are encrypting.
+
+Don't automatically trust something just because it has been PGP Signed/Encrypted. Anyone can make a PGP key. People can also
+make fradulent keys using your email address. That is why it is important to make your keys expire in a short amount of time, 
+and also post your keys to a site your friends can trust.
+
+Thank you for reading this tutorial." > anon/GPG
+
+# 
 
 # Iceweasel downloads
 mkdir iceweasel-plugins
@@ -585,8 +662,8 @@ apt-get autoclean
 update-menus
 chmod 777 startup/*
 chmod 777 iceweasel-plugins/*
-chmod 777 Redshift/*
 chmod 777 anon/*
+chmod 777 tools/*
 chmod 777 README
 chmod 777 tor.desktop
 chmod 777 ../.config/*
