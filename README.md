@@ -19,7 +19,7 @@ This will change the permissions and you should be able to run it
 
 ###Bug Reports
 All bug reports can be sent to my private email address, 
-[chocolatechip@derpymail.org] (mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%20Bug)
+[chocolatechip@derpymail.org] (mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%20Bugs)
 A PGP Key can be found [here] (https://choco.neocities.org/pgp) (though, if you are a n00b, you probably don't know what PGP is...)
 
 
