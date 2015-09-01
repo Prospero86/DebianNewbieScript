@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.1.4 beta
+# Debian Newbie Script v0.1.5 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -21,7 +21,7 @@
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.1.4 beta
+# Debian Newbie Script v0.1.5 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -115,6 +115,7 @@ apt-get remove --purge -y xfce.
 
 # install needed packages
 apt-get install -y firmware-linux-free
+apt-get install -y tar
 apt-get install -y apt-transport-https
 apt-get install -y build-essential
 apt-get install -y sudo
@@ -157,6 +158,30 @@ apt-get install -y --no-install-recommends x-cursor-theme
 apt-get install -y bleachbit
 apt-get install -y gpg
 apt-get install -y keepass2
+# TOR Anomizer Network script
+apt-get install -y tor
+wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O tor.tar.xz
+tar xvfJ tor.tar.xz /opt/tor
+cp /opt/tor/browser/start-tor-browser.desktop tor.desktop
+rm tor.tar.xz
+mkdir anon
+echo "This is the Tor Browser.
+To condfigure it, simpily double click the tor icon, wait a few moments, and it will open.
+If you wish to remove tor, preform the commands:
+apt-get remove tor
+rm -r -f /opt/tor" > anon/tor
+# I2P Script
+echo "deb http://deb.i2p2.no/ jessie main
+deb-src http://deb.i2p2.no/ jessie main" > /etc/apt/sources.list.d/i2p.list
+apt-get update 
+apt-get upgrade -y
+apt-get dist-upgrade -y
+apt-get install i2p 
+apt-get install i2p-keyring
+echo "The I2P Network is much like tor, only it's a different network and runs on Java. 
+Use this as an alternative to tor if you wish. If you want to remove, preform:
+rm /etc/apt/sources.list.d/i2p.list
+apt-get remove ip2 ip2-keyring" > anon/i2p
 
 # Communication tools
 apt-get install -y evolution
@@ -320,6 +345,7 @@ echo "@play -t ogg -v 0.40 ~/Music/.startup/startup.ogg
 @lxpanel --profile LXDE
 @pcmanfm --desktop --profile LXDE
 @xscreensaver -no-splash" > ../.config/lxsession/LXDE/autostart
+# Startup Readme
 echo "If you don't like the startup sound I added, delete it using
 sudo rm -r -f ~/Music/.startup
 and remove it from your ~/.config/lxsession/LXDE/auotstart file
@@ -560,7 +586,9 @@ update-menus
 chmod 777 startup/*
 chmod 777 iceweasel-plugins/*
 chmod 777 Redshift/*
+chmod 777 anon/*
 chmod 777 README
+chmod 777 tor.desktop
 chmod 777 ../.config/*
 
 
