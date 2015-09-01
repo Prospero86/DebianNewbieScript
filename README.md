@@ -3,9 +3,7 @@ This is a script designed for the users of 4Chan's daily Friendly Linux Thread (
 This script is designed to slightly rice a new Debian install, add some privacy features, add some good GNU/Linux programs, remove all desktop enviorments, and add a light-weight one called LXDE. LXDE looks like the classic Windows' interface, so it is better for newbies who are most likley switching to GNU/Linux from Windows.
 
 ##How to install!
-This is very important. How this script is set up is designed to be in your desktop, or home folder. You must have 
-this running in one of these. It will create a few new folders with instructions. You can easily delete these folders
-after you are done with them.
+**This is very important. How this script is set up is designed to be in your DESKTOP. It will not work if you are running the file outside the desktop or even inside a folder on your desktop. You have a chance of bloating your system, and creating files you have no access to if you run this outside the desktop folder.** It will create a few new folders with instructions. You can easily delete these folders after you are done with them.
 
 Go to the folder by opening up a terminal and preforming 
 <code>cd ~/Desktop</code>
