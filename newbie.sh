@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.1.1 beta
+# Debian Newbie Script v0.1.2 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -15,11 +15,12 @@
 # this script is designed for n00bs. That'd be too hard for a beginer. To make it easier, just trust me
 # and run from the desktop.)
 
-# I have tried my very best to only include Free/Libre software. If you see any package in here that is NOT,
+# I have tried my very best to only include Free/Libre software. If you see any package in here that is not,
 # CONTACT ME IMEDIETLY. chocolatechip@derpymail.org is my email, and my PGP key is avalible at 
 # https://choco.neocities.org/pgp
+# Please email all bug reports to the same address.
 
-# Debian Newbie Script v0.1.1 beta
+# Debian Newbie Script v0.1.2 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -99,53 +100,59 @@ echo "This begins the automated portion of this script. If you wish to quit, pre
 echo "su -c killall bash"
 echo "In a seprate terminal. You will have to manually undo anything past this point."
 
+# All steps are alphabetical unless order is a nesessity
+
 # Begin Automation
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
 
 # remove other DEs
-apt-get remove --purge -y kde.
 apt-get remove --purge -y gnome.
+apt-get remove --purge -y kde.
 apt-get remove --purge -y xfce.
 
 # install needed packages
 apt-get install -y firmware-linux-free
-apt-get install -y sudo
-apt-get install -y wget
 apt-get install -y apt-transport-https
 apt-get install -y build-essential
+apt-get install -y sudo
+apt-get install -y wget
 
 # install LXDE, remove some bloat
 apt-get install -y --no-install-recommends lxde
 apt-get install -y lightdm
 apt-get install -y alsamixergui
 apt-get install -y deluge
-apt-get install -y iceweasel
 apt-get install -y evince-gtk
+apt-get install -y iceweasel
 apt-get install -y lxpolkit
 apt-get install -y menu-xdg
+apt-get install -y lxtask
+apt-get install -y lxterminal
+apt-get install -y pcmanfm
 apt-get install -y usermode
 apt-get install -y xserver-xorg
-apt-get install -y lxtask
 apt-get remove --purge -y wicd
 apt-get install -y network-manager
 
 # Add some good, everyday programs
 apt-get install -y gimp
+apt-get install -y leafpad
 apt-get install -y libreoffice
-apt-get install -y screenfetch
-apt-get install -y redshift-gtk
-apt-get install -y shutter
 apt-get install -y nano
+apt-get install -y redshift-gtk
+apt-get install -y screenfetch
+apt-get install -y shutter
 
 # Some privacy tools
+apt-get install -y bleachbit
 apt-get install -y gpg
 apt-get install -y keepass2
-apt-get install -y bleachbit
 
 # Communication tools
 apt-get install -y evolution
+# Hexchat instead of weechat or irissi or IRCii because a GUI is easiest for a n00b
 apt-get install -y hexchat
 
 # Media tools
@@ -156,12 +163,12 @@ apt-get install -y sox
 # DO NOT REMOVE VORBIS-TOOLS FROM THIS LIST. IT IS A DEPENDENCY FURTHER IN THE SCRIPT
 apt-get install -y vorbis-tools
 
-# remove some other packages that come pre-bundled
-apt-get remove --purge -y kmail
-apt-get remove --purge -y konqureor
-apt-get remove --purge -y dillo
-apt-get remove --purge -y konsole
+# remove some other packages that (may) come pre-bundled
 apt-get remove --purge -y clipit
+apt-get remove --purge -y dillo
+apt-get remove --purge -y konqureor
+apt-get remove --purge -y kmail
+apt-get remove --purge -y konsole
 
 # qTox, the skype replacment's script
 echo "deb https://pkg.tox.chat/debian nightly release" > /etc/apt/sources.list.d/tox.list
@@ -259,6 +266,15 @@ To configure your network, use the command nmtui. This is network-manager's term
 
 Soon, I will be writing more documentation for all the packages I installed, made for the point of view of n00bs.
 
+I have not included non-free/proprietory packages in here for a reason. That reason is that they are evil. Find out why at:
+
+https://gnu.org/philosophy
+
+No matter what, avoid skype and facebook:
+https://stallman.org/skype.html https://stallman.org/facebook.html
+
+And always refer to your OS as GNU/Linux unless refering to the kernel itself!
+
 Thanks again for using my script!" > README
 
 # Iceweasel downloads
@@ -284,20 +300,24 @@ echo "@play -t ogg -v 0.40 ~/Music/.startup/startup.ogg
 @lxpanel --profile LXDE
 @pcmanfm --desktop --profile LXDE
 @xscreensaver -no-splash" > ../.config/lxsession/LXDE/autostart
-mkdir
-echo "If you don't like my startup sound, delete it using
+echo "If you don't like the startup sound I added, delete it using
 sudo rm -r -f ~/Music/.startup
-and remove it from your ~/.config/lxsession/LXDE/auotstart file" > startup/README
+and remove it from your ~/.config/lxsession/LXDE/auotstart file
+
+NOTE: I AM NOT AFFILIATED WITH THE WINDOWS 93 JOKE SITE" > startup/README
 
 # Final steps
+apt-get update
+apt-get upgrade -y
+apt-get dist-upgrade -y
 apt-get autoremove --purge -y
 apt-get autoclean
 update-menus
-chmod 777 startup
-chmod 777 iceweasel-plugins
-chmod 777 Redshift
+chmod 777 startup*
+chmod 777 iceweasel-plugins/*
+chmod 777 Redshift/*
 chmod 777 README
-chmod 777 ../.config/lxsession/LXDE/auotstart
+chmod 777 ../.config/lxsession/LXDE/*
 
 # End
 echo " "
