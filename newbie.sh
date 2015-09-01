@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.7 alpha
+# Debian Newbie Script v0.0.8 alpha
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -10,7 +10,7 @@
 # light-weight one called LXDE, which is much like the older Windows' Interface, 
 # so is good for newbies.
 
-# Debian Newbie Script v0.0.7 Alpha
+# Debian Newbie Script v0.0.8 Alpha
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -89,6 +89,10 @@ apt-get remove --purge -y xfce.
 apt-get install -y firmware-linux-free
 apt-get install -y sudo
 apt-get install -y --no-install-recommends lxde
+apt-get install -y vlc
+apt-get install -y sox
+apt-get install -y lame
+apt-get install -y vorbis-tools
 apt-get install -y lightdm
 apt-get install -y alsamixergui
 apt-get install -y deluge
@@ -124,21 +128,100 @@ apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get install -y qtox
 mkdir Redshift
-echo "Find an example config file at the Redshift website. Also, further instructions will be there as well" > Redshift/README
+echo "Find an example config file at the Redshift website. 
+Also, further instructions will be there as well.
+My own redshift config is:
+; Global settings for redshift
+[redshift]
+; Set the day and night screen temperatures
+temp-day=5700
+temp-night=2900
+
+; Enable/Disable a smooth transition between day and night
+; 0 will cause a direct change from day to night screen temperature.
+; 1 will gradually increase or decrease the screen temperature.
+transition=1
+
+; Set the screen brightness. Default is 1.0.
+;brightness=0.9
+; It is also possible to use different settings for day and night
+; since version 1.8.
+;brightness-day=0.7
+;brightness-night=0.4
+; Set the screen gamma (for all colors, or each color channel
+; individually)
+gamma=0.8
+;gamma=0.8:0.7:0.8
+; This can also be set individually for day and night since
+; version 1.10.
+;gamma-day=0.8:0.7:0.8
+;gamma-night=0.6
+
+; Set the location-provider: 'geoclue', 'geoclue2', 'manual'
+; type 'redshift -l list' to see possible values.
+; The location provider settings are in a different section.
+location-provider=manual
+
+; Set the adjustment-method: 'randr', 'vidmode'
+; type 'redshift -m list' to see all possible values.
+; 'randr' is the preferred method, 'vidmode' is an older API.
+; but works in some cases when 'randr' does not.
+; The adjustment method settings are in a different section.
+adjustment-method=vidmode
+
+; Configuration of the location-provider:
+; type 'redshift -l PROVIDER:help' to see the settings.
+; ex: 'redshift -l manual:help'
+; Keep in mind that longitudes west of Greenwich (e.g. the Americas)
+; are negative numbers.
+[manual]
+lat=[omited]
+lon=[omited]
+
+; Configuration of the adjustment-method
+; type 'redshift -m METHOD:help' to see the settings.
+; ex: 'redshift -m randr:help'
+; In this example, randr is configured to adjust screen 1.
+; Note that the numbering starts from 0, so this is actually the
+; second screen. If this option is not specified, Redshift will try
+; to adjust _all_ screens.
+[randr]
+screen=1
+You don't need to use this exactly as it is here, though." > Redshift/README
 mkdir startup
-echo "Add @redshift-gtk and @qtox to the file /home/[your user name]/.config/lxsession/LXDE/autostart" > startup/README
-echo "Make sure to delete these extra files and folders after you are finished with them. You will need to find documentation for all the things this has installed. If you do not want a package that this script has installed, preform the comamnd sudo apt-get remove --purge [packageName]. Periodically preform the commands sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade" > README
+echo "Please verify that the file /home/[your user name]/.config/lxsession/LXDE/autostart is correct." > startup/README
+echo "Make sure to delete these extra files and folders after you are finished with them. 
+You will need to find documentation for all the things this has installed. 
+If you do not want a package that this script has installed, preform the comamnd 
+sudo apt-get remove --purge [packageName]. 
+Periodically preform the commands 
+sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade" > README
 apt-get install -y redshift-gtk
 apt-get install -y hexchat
 apt-get install -y build-essential
 apt-get install -y keepass2
 apt-get install -y shutter
 mkdir iceweasel-plugins
-echo "These are for your Iceweasel installtion. Please add them using the add-on's menu. Please. Also, add this: https://github.com/CrisBRM/user.js" > iceweasel-plugins/README
+echo "These are for your Iceweasel installtion. Please add them using the add-on's menu.
+Please. 
+Also, add this: 
+https://github.com/CrisBRM/user.js" > iceweasel-plugins/README
 wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O iceweasel-plugins/shumway.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O iceweasel-plugins/privacy.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O iceweasel-plugins/uBlock-Origin.xpi
 wget https://mega.nz/meganz.xpi -O iceweasel-plugins/mega.xpi
+mkdir ~/Music/.startup
+wget http://www.windows93.net/c/sys/boot/boot.ogg -O ~/Music/.startup/startup.ogg
+echo "@play -t mp3 -v 0.40 ~/Music/startup.ogg
+@redshift-gtk
+@qtox
+@lxpanel --profile LXDE
+@pcmanfm --desktop --profile LXDE
+@xscreensaver -no-splash" > ~/.config/lxsession/LXDE/autostart
+mkdir
+echo "If you don't like my startup sound, delete it using
+sudo rm -r -f ~/Music/.startup
+and remove it from your ~/.config/lxsession/LXDE/auotstart file" > startup/README.2
 apt-get remove --purge -y clipit
 apt-get autoremove --purge -y
 apt-get autoclean
