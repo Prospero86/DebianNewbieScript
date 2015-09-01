@@ -5,6 +5,7 @@
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
 # (https://boards.4chan.org/g/flt) 
+
 # This script adds a number of privacy features. It also removes all other Desktop Enviorments, and installs a 
 # light-weight one called LXDE, which is much like the older Windows' Interface, 
 # so is good for newbies.
@@ -25,6 +26,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 echo " "
+echo "Thank you for choosing this script for your new GNU/Linux experience!"
+echo " "
 echo "Please note it is EXTREMELY IMPORTANT to have this script running from your"
 echo "desktop. Do not continue the script if you are running it outside your desktop."
 echo " "
@@ -32,10 +35,12 @@ echo "Would you like to continue? [Y/n]?"
 read ans
 
 if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+echo " "
 echo "Now continuing"
 fi
 
 if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+    echo " "
     echo "Exiting..."
     exit 1
 fi
@@ -51,6 +56,8 @@ if [ "`whoami`" != "root" ]; then
     echo "you chose at install."
     exit 1
 fi
+echo " "
+echo " "
 echo "You are running as Root! Thanks!"
 echo " "
 echo "Are you SURE you want to contine? This will take a long time."
@@ -60,10 +67,12 @@ echo "Continue? [Y/n]?"
 read ans
 
 if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+echo " "
 echo "Now continuing"
 fi
 
 if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+    echo " "
     echo "Exiting..."
     exit 1
 fi
