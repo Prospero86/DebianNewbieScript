@@ -9,6 +9,7 @@ Also, this is not a necessity but a recommendation: run it in a virtual console 
 
 Go to the folder by opening up a terminal and preforming 
 <code>cd ~/Desktop</code>
+get the script from this link (https://raw.githubusercontent.com/Chocolate-Chip-Computing/DebianNewbieScript/master/newbie.sh) 
 then run the script as
 <code>su -c ./newbie.sh</code>
 Enter the root password you chose at the time of install.
