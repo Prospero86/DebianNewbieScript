@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.6 alpha
+# Debian Newbie Script v0.0.7 alpha
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -9,7 +9,7 @@
 # light-weight one called LXDE, which is much like the older Windows' Interface, 
 # so is good for newbies.
 
-# Debian Newbie Script v0.0.6 Alpha
+# Debian Newbie Script v0.0.7 Alpha
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -77,6 +77,8 @@ apt-get install -y firmware-linux-free
 apt-get remove --purge -y kde.
 apt-get remove --purge -y gnome.
 apt-get remove --purge -y xfce.
+apt-get install -y firmware-linux-free
+apt-get install -y sudo
 apt-get install -y --no-install-recommends lxde
 apt-get install -y lightdm
 apt-get install -y alsamixergui
@@ -111,11 +113,11 @@ apt-get install -y apt-transport-https
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install -y qTox
+apt-get install -y qtox
 mkdir Redshift
 echo "Find an example config file at the Redshift website. Also, further instructions will be there as well" > Redshift/README
 mkdir startup
-echo "Add @redshift-gtk and @qtox to the file /home/[your user name]/.config/lxsession/LXDE/autostart"> startup/README
+echo "Add @redshift-gtk and @qtox to the file /home/[your user name]/.config/lxsession/LXDE/autostart" > startup/README
 echo "Make sure to delete these extra files and folders after you are finished with them. You will need to find documentation for all the things this has installed. If you do not want a package that this script has installed, preform the comamnd sudo apt-get remove --purge [packageName]. Periodically preform the commands sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade" > README
 apt-get install -y redshift-gtk
 apt-get install -y hexchat
