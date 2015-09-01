@@ -219,13 +219,13 @@ wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O iceweasel-plugins/uBlock-Origin.xpi
 wget https://mega.nz/meganz.xpi -O iceweasel-plugins/mega.xpi
 mkdir ~/Music/.startup
-wget http://www.windows93.net/c/sys/boot/boot.ogg -O ~/Music/.startup/startup.ogg
-echo "@play -t ogg -v 0.40 ~/Music/startup.ogg
+wget http://www.windows93.net/c/sys/boot/boot.ogg -O ../Music/.startup/startup.ogg
+echo "@play -t ogg -v 0.40 ../Music/startup.ogg
 @redshift-gtk
 @qtox
 @lxpanel --profile LXDE
 @pcmanfm --desktop --profile LXDE
-@xscreensaver -no-splash" > ~/.config/lxsession/LXDE/autostart
+@xscreensaver -no-splash" > ../.config/lxsession/LXDE/autostart
 mkdir
 echo "If you don't like my startup sound, delete it using
 sudo rm -r -f ~/Music/.startup
