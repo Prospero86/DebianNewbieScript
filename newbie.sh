@@ -70,7 +70,7 @@ echo "In a seprate terminal. You will have to manually undo anything past this p
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install -y firmware-linux
+apt-get install -y firmware-linux-free
 apt-get remove --purge -y kde.
 apt-get remove --purge -y gnome.
 apt-get remove --purge -y xfce.
@@ -96,7 +96,7 @@ apt-get install -y xul-ext-https-finder
 apt-get install -y xul-ext-https-everywhere
 apt-get remove --purge -y kmail
 apt-get remove --purge -y konqureor
-apt-get install -y Evolution
+apt-get install -y evolution
 apt-get install -y gpg
 echo "deb https://pkg.tox.chat/debian nightly release" > /etc/apt/sources.list.d/tox.list
 apt-get install -y wget
