@@ -127,6 +127,7 @@ echo "These are for your Iceweasel installtion. Please add them using the add-on
 wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O iceweasel-plugins/shumway.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O iceweasel-plugins/privacy.xpi
 wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O iceweasel-plugins/uBlock-Origin.xpi
+wget https://mega.nz/meganz.xpi -O iceweasel-plugins/mega.xpi
 apt-get remove --purge -y clipit
 apt-get autoremove --purge -y
 apt-get autoclean
