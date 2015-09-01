@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.0.5 alpha
+# Debian Newbie Script v0.0.6 alpha
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
@@ -9,7 +9,7 @@
 # light-weight one called LXDE, which is much like the older Windows' Interface, 
 # so is good for newbies.
 
-# Debian Newbie Script v0.0.5 Alpha
+# Debian Newbie Script v0.0.6 Alpha
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -53,7 +53,10 @@ if [ "`whoami`" != "root" ]; then
 fi
 echo "You are running as Root! Thanks!"
 echo " "
-echo "Are you SURE you want to contine? This will take a long time [Y/n]?"
+echo "Are you SURE you want to contine? This will take a long time."
+echo "You will have to MANUALLY UNDO any changes from this point on!"
+echo " "
+echo "Continue? [Y/n]?"
 read ans
 
 if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
@@ -87,6 +90,7 @@ apt-get install -y xserver-xorg
 apt-get install -y gimp
 apt-get install -y libreoffice
 apt-get install -y lxtask
+apt-get install -y screenfetch
 apt-get remove --purge -y dillo
 apt-get remove --purge -y konsole
 apt-get install -y bleachbit
@@ -145,7 +149,7 @@ echo "Thanks"
 echo " "
 echo "This script has been created by Chocolate Chip"
 echo "http://choco.neocities.org"
-echo "On GNU Social under the name @DuChocolatePony"
+echo "On GNU Social under the name @duchocolatepony@quitter.se"
 echo " "
 echo "Please see the script itself for licence information"
 echo " "
