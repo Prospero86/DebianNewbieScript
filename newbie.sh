@@ -374,7 +374,7 @@ Find the one you just made, copy the PUB key, and add it to edit > Prefrences > 
 Open PGP Key ID. Paste the PUB key there. Select the three options below it. It works better if you add 0x to the key.
 For example, 832111 would become 0x83211.
 
-Then, start composing an email for the account you made an email to. Go to the settings and select "PGP Sign." This will
+Then, start composing an email for the account you made an email to. Go to the settings and select PGP Sign. This will
 make your message signed with your PGP Signaure. Make the recipient one of your friends. Have him preform the same steps to 
 get a PGP key. Sned him a message with your signature signed. Then have him send you a message signed. Then, once you get his 
 signature, import it using 
