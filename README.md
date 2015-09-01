@@ -5,7 +5,7 @@ This script is designed to slightly rice a new Debian install, add some privacy 
 ##How to install!
 **This is very important. How this script is set up is designed to be in your DESKTOP. It will not work if you are running the file outside the desktop or even inside a folder on your desktop. You have a chance of bloating your system, and creating files you have no access to if you run this outside the desktop folder.** It will create a few new folders with instructions. You can easily delete these folders after you are done with them.
 
-Also, this is not a necessity but a recommendation: run it in a virtual console by pressing <code>ctrl</code> + <code>alt</code> + <code>F1</code>. You don't have to do this, but I recomend it as the DEs are being movedaround, you may lose the output. It will still be runing as a background process if you lose access to your DE , but you can't see anything.
+Also, this is not a necessity but a recommendation: run it in a virtual console by pressing <code>ctrl</code> + <code>alt</code> + <code>F1</code>. You don't have to do this, but I recomend it as the DEs are being moved around and what not, you may lose the output. It will still be runing as a background process if you lose access to your DE , but you can't see anything.
 
 Go to the folder by opening up a terminal and preforming 
 <code>cd ~/Desktop</code>
