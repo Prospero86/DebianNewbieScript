@@ -63,7 +63,7 @@ if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
     exit 1
 fi
 echo "This begins the automated portion of this script. If you wish to quit, preform:"
-echo "sh -c killall bash"
+echo "su -c killall bash"
 echo "In a seprate terminal"
 apt-get update
 apt-get upgrade -y
