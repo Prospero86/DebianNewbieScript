@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.1.9 beta
+# Debian Newbie Script v0.2.0 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -38,7 +38,7 @@
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.1.9 beta
+# Debian Newbie Script v0.2.0 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ Copyright (c) 2015
  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ 
 " 
 echo " 
-
+Scripts for
    ▄██████▄  ███▄▄▄▄   ███    █▄  
   ███    ███ ███▀▀▀██▄ ███    ███ 
   ███    █▀  ███   ███ ███    ███ 
@@ -86,7 +86,6 @@ echo "
   ███    ███ ███   ███ ███    ███ 
   ███    ███ ███   ███ ███    ███ 
   ████████▀   ▀█   █▀  ████████  
-                                 
                                     .________.___    .______  .________.___.__  
                                     |    ___/|   |   :      \ |    ___/:   |  \ 
                                     |___    \|   |   |   .   ||___    \|   :   |
@@ -97,29 +96,50 @@ echo "
 (  )  (_  _)( \( )(  )(  )( \/ )
  )(__  _)(_  )  (  )(__)(  )  ( 
 (____)(____)(_)\_)(______)(_/\_)
-
-(and that is the RIGHT WAY)
+(and that is the RIGHT WAY of saying it!)
 "
+echo "To continue, type c. To quit, type q"
+read ans
+
+if [ $ans = c -o $ans = C -o $ans = continue -o $ans = Continue -o $ans = CONTINUE ]; then
+echo " "
+echo "Continuing..."
+fi
+
+if [ $ans = q -o $ans = Q -o $ans = quit -o $ans = Quit -o $ans = QUIT ]; then
+clear
+echo " "
+echo "Ok then."
+echo " "
+echo " "
+echo " "
+echo "Thank you for choosing Chocolate Chip Computing  for your new GNU/Linux Experience!"
+exit 1
+fi
+
+clear
 echo " "
 echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
-echo "You are using version 0.1.9 beta. Please confirm you are using the latest version."
+echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
+echo " "
+echo "You are using version 0.2.0 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v.0.1.9 beta  Copyright (C) 2015  Chocolate Chip Computing
-This program comes with ABSOLUTELY NO WARRANTY; for details type y.
+Debian Newbie Script v0.2.0 beta  Copyright (C) 2015  Chocolate Chip Computing
+This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
-under certain conditions; type y for details, or n to continue.
+under certain conditions; type d for details, or c to continue.
 "
 read ans
 
-if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+if [ $ans = d -o $ans = D -o $ans = details -o $ans = Details -o $ans = DETAILS ]; then
 echo "
-    Debian Newbie Script v0.1.9 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.0 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -139,7 +159,7 @@ echo " "
 echo "Now continuing..."
 fi
 
-if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+if [ $ans = c -o $ans = C -o $ans = continue -o $ans = Continue -o $ans = CONTINUE ]; then
     echo "
 Very well. The licence terms can be viewed at
 https://gnu.org/licences
@@ -157,11 +177,13 @@ read ans
 if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
 echo " "
 echo "Now continuing"
+clear
 fi
 
 if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
     echo " "
     echo "Exiting..."
+    clear
     exit 1
 fi
 echo " "
@@ -181,11 +203,14 @@ fi
 echo " "
 echo " "
 echo "You are running as Root! Thanks!"
-echo " "
+clear
 
 # Confirm Script 2
 echo "Are you SURE you want to contine? This will take a long time."
 echo "You will have to MANUALLY UNDO any changes from this point on!"
+echo " "
+echo "YOU MUST HAVE A CONSTANT, DECENT ENOUGH INTERNET CONNECTION FOR THIS SCRIPT"
+echo "IF NOT, APT-GET WILL TIME OUT AND PORTIONS OF THIS SCRIPT WILL FAIL!"
 echo " "
 echo "Continue? [Y/n]?"
 read ans
@@ -193,11 +218,13 @@ read ans
 if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
 echo " "
 echo "Now continuing"
+clear
 fi
 
 if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
     echo " "
     echo "Exiting..."
+    clear
     exit 1
 fi
 
@@ -205,11 +232,27 @@ fi
 echo "This begins the automated portion of this script. If you wish to quit, preform:"
 echo "su -c killall newbie.sh"
 echo "In a seprate terminal. You will have to manually undo anything past this point."
+echo " "
 echo "Some packages may require aditional verification. Please don't go to far away"
 echo "From your terminal"
+echo " "
 
 # All steps are alphabetical unless order is a nesessity
 
+# Pre-requisities
+echo "# These are your debian source files. Whenever changing them, preform apt-get update
+# or aptitude update. To use non-free packages, add the words contrib non-free to the
+# ends of these lines. It is highly reccomended that you DO NOT USE NON-FREE PACKAGES.
+# These non-free packages contradict the entire GNU Philosophy and are only included for 
+# the sake of users who wish to use them. Please don't.
+
+# The MAIN Debian Repo
+deb ftp://ftp.us.debian.org/debian/ jessie main
+deb-src ftp://ftp.us.debian.org/debian/ jessie main
+
+" > /etc/apt/sources.list
+
+# Debian 
 # Begin Automation
 apt-get update
 apt-get upgrade -y
@@ -224,21 +267,68 @@ apt-get remove --purge -y cinnamon.
 # install needed packages
 apt-get install -y firmware-linux-free
 apt-get install -y tar
-apt-get install -y gunzip
+apt-get install -y zip
+apt-get install -y apt-transport-http
 apt-get install -y apt-transport-https
 apt-get install -y aptitude
 apt-get install -y build-essential
 apt-get install -y sudo
 apt-get install -y wget
 
-# install LXDE, remove some bloat
+# Change ftp to Http now that apt-transport-http(s) is installed
+echo "# These are your debian source files. Whenever changing them, preform apt-get update
+# or aptitude update. To use non-free packages, add the words contrib non-free to the
+# ends of these lines. It is highly reccomended that you DO NOT USE NON-FREE PACKAGES.
+# These non-free packages contradict the entire GNU Philosophy and are only included for 
+# the sake of users who wish to use them. Please don't.
+
+# The MAIN Debian Repo
+deb http://http.us.debian.org/debian/ jessie main
+deb-src http://http.us.debian.org/debian/ jessie main
+
+# Debian security updates
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+# Debian updates (previosuly known as Volitile)
+deb http://http.us.debian.org/debian/ jessie-updates main
+deb-src http://http.us.debian.org/debian/ jessie-updates main
+
+
+" > /etc/apt/sources.list
+apt-get update
+
+# install LXDE, remove some bloat, personalization
 apt-get install -y --no-install-recommends lxde-core
 apt-get install -y --no-install-recommends lxde
+apt-get install -y --no-install-recommends lxde-common
 apt-get install -y --no-install-recommends task-lxde-desktop 
+apt-get install -y lxde-settings-daemon 
+apt-get install -y lxde-icon-theme
 apt-get install -y lightdm
 apt-get install -y alsamixergui
 apt-get install -y evince-gtk
 apt-get install -y gpicview
+apt-get install -y gtk-chtheme
+apt-get install -y gtk-qt-engine
+apt-get install -y gtk-smooth-themes
+apt-get install -y gtk-theme-config
+apt-get install -y gtk-theme-switch
+apt-get install -y gtk2-engines
+apt-get install -y gtk2-engines-aurora
+apt-get install -y gtk2-engines-cleanice
+apt-get install -y gtk2-engines-magicchicken
+apt-get install -y gtk2-engines-moblin
+apt-get install -y gtk2-engines-murrine
+apt-get install -y gtk2-engines-nodoka
+apt-get install -y gtk2-engines-oxygen
+apt-get install -y gtk2-engines-pixbuf
+apt-get install -y gtk2-engines-qtcurve
+apt-get install -y gtk2-engines-udeb
+apt-get install -y gtk2-engines-ubuntulooks
+apt-get install -y gtk2-engines-wonderland
+apt-get install -y gtk3-engines-oxygen
+apt-get install -y clearlooks-phenix-theme
 apt-get install -y hunspell-en-us
 apt-get install -y hyphen-en-us
 apt-get install -y iceweasel
@@ -252,9 +342,10 @@ apt-get install -y lxappearance
 apt-get install -y pcmanfm
 apt-get install -y usermode
 apt-get install -y xserver-xorg
+apt-get install -y xscreensaver
 apt-get remove --purge -y wicd
 apt-get install -y network-manager
-apt-get install -y --no-install-reccomends xarchiver
+apt-get install -y --no-install-recommends xarchiver
 
 # Add some good, everyday programs
 apt-get install -y --no-install-recommends aspell
@@ -269,6 +360,7 @@ apt-get install -y redshift
 apt-get install -y screenfetch
 apt-get install -y shutter
 apt-get install -y qbittorrent
+apt-get install -y synaptic
 
 # Cursor Packages 
 # THESE ARE A DEPENDENCY FURTHER IN THE SCRIPT
@@ -297,8 +389,8 @@ deb-src http://deb.i2p2.no/ jessie main" > /etc/apt/sources.list.d/i2p.list
 apt-get update 
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install -y i2p 
-apt-get install -y i2p-keyring
+apt-get install -y --force-yes i2p 
+apt-get install -y --force-yes i2p-keyring
 echo "The I2P Network is much like tor, only it's a different network and runs on Java. 
 Use this as an alternative to tor if you wish. If you want to remove, preform:
 rm /etc/apt/sources.list.d/i2p.list
@@ -768,6 +860,310 @@ Plugin {
   }
 }
  " > ../.config/lxpanel/LXDE/panels/panel
+# Desktop Files
+
+# Iceweasel
+echo "
+[Desktop Entry]
+Encoding=UTF-8
+Name=Iceweasel
+Name[bg]=Iceweasel
+Name[ca]=Iceweasel
+Name[cs]=Iceweasel
+Name[el]=Iceweasel
+Name[es]=Iceweasel
+Name[fa]=Iceweasel
+Name[fi]=Iceweasel
+Name[fr]=Iceweasel
+Name[hu]=Iceweasel
+Name[it]=Iceweasel
+Name[ja]=Iceweasel
+Name[ko]=Iceweasel
+Name[nb]=Iceweasel
+Name[nl]=Iceweasel
+Name[nn]=Iceweasel
+Name[no]=Iceweasel
+Name[pl]=Iceweasel
+Name[pt]=Iceweasel
+Name[pt_BR]=Iceweasel
+Name[ru]=Iceweasel
+Name[sk]=Iceweasel
+Name[sv]=Iceweasel
+Comment=Browse the World Wide Web
+Comment[bg]=Сърфиране в Мрежата
+Comment[ca]=Navegueu per el web
+Comment[cs]=Prohlížení stránek World Wide Webu
+Comment[de]=Im Internet surfen
+Comment[el]=Περιηγηθείτε στον παγκόσμιο ιστό
+Comment[es]=Navegue por la web
+Comment[fa]=صفحات شبکه جهانی اینترنت را مرور نمایید
+Comment[fi]=Selaa Internetin WWW-sivuja
+Comment[fr]=Navigue sur Internet
+Comment[hu]=A világháló böngészése
+Comment[it]=Esplora il web
+Comment[ja]=ウェブを閲覧します
+Comment[ko]=웹을 돌아 다닙니다
+Comment[nb]=Surf på nettet
+Comment[nl]=Verken het internet
+Comment[nn]=Surf på nettet
+Comment[no]=Surf på nettet
+Comment[pl]=Przeglądanie stron WWW 
+Comment[pt]=Navegue na Internet
+Comment[pt_BR]=Navegue na Internet
+Comment[ru]=Обозреватель Всемирной Паутины
+Comment[sk]=Prehliadanie internetu
+Comment[sv]=Surfa på webben
+GenericName=Web Browser
+GenericName[bg]=Интернет браузър
+GenericName[ca]=Navegador web
+GenericName[cs]=Webový prohlížeč
+GenericName[de]=Webbrowser
+GenericName[el]=Περιηγητής ιστού
+GenericName[es]=Navegador web
+GenericName[fa]=مرورگر اینترنتی
+GenericName[fi]=WWW-selain
+GenericName[fr]=Navigateur Web
+GenericName[hu]=Webböngésző
+GenericName[it]=Browser Web
+GenericName[ja]=ウェブ・ブラウザ
+GenericName[ko]=웹 브라우저
+GenericName[nb]=Nettleser
+GenericName[nl]=Webbrowser
+GenericName[nn]=Nettlesar
+GenericName[no]=Nettleser
+GenericName[pl]=Przeglądarka WWW
+GenericName[pt]=Navegador Web
+GenericName[pt_BR]=Navegador Web
+GenericName[ru]=Интернет-браузер
+GenericName[sk]=Internetový prehliadač
+GenericName[sv]=Webbläsare
+X-GNOME-FullName=Iceweasel Web Browser
+X-GNOME-FullName[bg]=Интернет браузър (Iceweasel)
+X-GNOME-FullName[ca]=Navegador web Iceweasel
+X-GNOME-FullName[cs]=Iceweasel Webový prohlížeč
+X-GNOME-FullName[el]=Περιηγήτης Ιστού Iceweasel
+X-GNOME-FullName[es]=Navegador web Iceweasel
+X-GNOME-FullName[fa]=مرورگر اینترنتی Iceweasel
+X-GNOME-FullName[fi]=Iceweasel-selain
+X-GNOME-FullName[fr]=Navigateur Web Iceweasel
+X-GNOME-FullName[hu]=Iceweasel webböngésző
+X-GNOME-FullName[it]=Iceweasel Browser Web
+X-GNOME-FullName[ja]=Iceweasel ウェブ・ブラウザ
+X-GNOME-FullName[ko]=Iceweasel 웹 브라우저
+X-GNOME-FullName[nb]=Iceweasel Nettleser
+X-GNOME-FullName[nl]=Iceweasel webbrowser
+X-GNOME-FullName[nn]=Iceweasel Nettlesar
+X-GNOME-FullName[no]=Iceweasel Nettleser
+X-GNOME-FullName[pl]=Przeglądarka WWW Iceweasel
+X-GNOME-FullName[pt]=Iceweasel Navegador Web
+X-GNOME-FullName[pt_BR]=Navegador Web Iceweasel
+X-GNOME-FullName[ru]=Интернет-браузер Iceweasel
+X-GNOME-FullName[sk]=Internetový prehliadač Iceweasel
+X-GNOME-FullName[sv]=Webbläsaren Iceweasel
+Exec=iceweasel %u
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=iceweasel
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=Iceweasel
+StartupNotify=true
+" > Iceweasel.desktop
+
+# hexchat
+echo "
+[Desktop Entry]
+Name=HexChat
+Name[de]=HexChat
+Name[en_GB]=HexChat
+Name[es]=HexChat
+Name[fr]=HexChat
+Name[it]=HexChat
+Name[ja_JP]=HexChat
+Name[ko]=헥스채트
+Name[pl]=HexChat
+Name[sq]=HexChat
+Name[zh_CN]=HexChat
+GenericName=IRC Client
+GenericName[de]=IRC-Client
+GenericName[en_GB]=IRC Client
+GenericName[es]=Cliente de IRC
+GenericName[fi]=IRC Client
+GenericName[fr]=Client IRC
+GenericName[it]=Client IRC
+GenericName[ja_JP]=IRCクライアント
+GenericName[ko]=IRC 클라이언트
+GenericName[pl]=Klient IRC
+GenericName[sq]=Klient IRC
+GenericName[zh_CN]=IRC 客户端
+Comment=Chat with other people online
+Comment[de]=Chatte online mit anderen Leuten
+Comment[en_GB]=Chat with other people online
+Comment[es]=Chatea con otras personas en línea
+Comment[fr]=Parlez avec d'autres personnes en ligne
+Comment[it]=Chiacchiera con altri utenti online
+Comment[ja_JP]=他の人とオンラインチャットをします
+Comment[ko]=온라인에 있는 사람들과 대화합니다
+Comment[pl]=Rozmawiaj z innymi ludźmi przez internet
+Comment[sq]=Bisedoni në linjë me persona të tjerë
+Comment[zh_CN]=与其他人在线聊天
+Keywords=IM;Chat;
+Keywords[de]=IM;Chat;
+Keywords[en_GB]=IM;Chat;
+Keywords[es]=IM;Chat;
+Keywords[fr]=IM;Chat;
+Keywords[it]=IM;Chat;Messaggistica Istantanea;IRC;
+Keywords[ko]=IM;인스턴트 메신저;Chat;대화;
+Keywords[pl]=IM;Chat;
+Keywords[sq]=IM;Fjalosje;
+Keywords[zh_CN]=IM;聊天;
+Exec=hexchat %U
+Icon=hexchat
+Terminal=false
+Type=Application
+Categories=GTK;Network;IRCClient;
+StartupNotify=true
+X-GNOME-UsesNotifications=true
+MimeType=x-scheme-handler/irc;x-scheme-handler/ircs;
+Actions=SafeMode;
+
+[Desktop Action SafeMode]
+Name=Open Safe Mode
+Name[de]=Im sicheren Modus öffnen
+Name[en_GB]=Open Safe Mode
+Name[es]=Abrir en modo seguro
+Name[fr]=Ouvrir le mode sans échec
+Name[it]=Apri modalità sicura
+Name[ja_JP]=セーフモードで開く
+Name[ko]=공개 안전 모드
+Name[pl]=Otwórz tryb bezpieczny
+Name[sq]=Hap Mënyrën e Sigurt
+Name[zh_CN]=打开安全模式
+Exec=hexchat --no-auto --no-plugins
+" > Hexchat.desktop
+
+echo "
+[Desktop Entry]
+Name=KeePass2
+GenericName=Password manager
+Exec=keepass2
+Icon=keepass2
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Utility;
+MimeType=application/x-keepass2;
+" > KeePass2.desktop
+
+echo "
+[Desktop Entry]
+Version=1.0
+Name=VLC media player
+GenericName=Media player
+Comment=Read, capture, broadcast your multimedia streams
+Name[bn]=VLC মিডিয়া প্লেয়ার
+Comment[bn]=আপনার মাল্টিমিডিয়া স্ট্রীম পড়ুন, ধরে রাখুন এবং ছড়িয়ে দিন
+Name[br]=VLC lenner mediaoù
+GenericName[br]=Lenner mediaoù
+Comment[br]=Lenn, enrollañ, skignañ ho lanvioù liesvedia
+Name[ca]=Reproductor multimèdia VLC
+GenericName[ca]=Reproductor multimèdia
+Comment[ca]=Reproduïu, captureu i difoneu fluxos multimèdia
+Name[de]=VLC Media Player
+GenericName[de]=Medienwiedergabe
+Comment[de]=Wiedergabe, Aufnahme und Verbreitung Ihrer Multimedia-Streams
+Name[es]=Reproductor multimedia VLC
+GenericName[es]=Reproductor multimedia
+Comment[es]=Lea, capture y emita sus contenidos multimedia
+Name[et]=VLC meediaesitaja
+GenericName[et]=Meediaesitaja
+Comment[et]=Multimeediafailide taasesitamine, lindistamine ja edastamine
+Name[eu]=VLC multimedia irakurgailua
+GenericName[eu]=Multimedia irakurgailua
+Comment[eu]=Irakurri, hartu, igorri zure multimedia jarioak
+Name[fi]=VLC-mediasoitin
+GenericName[fi]=Mediasoitin
+Comment[fi]=Toista, tallenna ja lähetä multimediaa
+Name[fr]=Lecteur multimédia VLC
+GenericName[fr]=Lecteur multimédia
+Comment[fr]=Lire, capturer, diffuser vos flux multimedia
+Name[gl]=Reprodutor multimedia VLC
+GenericName[gl]=Reprodutor multimedia
+Comment[gl]=Lea, capture e emita os seus fluxos multimedia
+Name[he]=נגן המדיה VLC
+GenericName[he]=נגן מדיה
+Comment[he]=קריאה, לכידה ושידור של תזרימי מולטימדיה
+Name[hu]=VLC médialejátszó
+GenericName[hu]=Médialejátszó
+Comment[hu]=Multimédiás adatfolyamok olvasása, mentése, szórása
+Name[is]=VLC margmiðlunarspilarinn
+GenericName[is]=Margmiðlunarspilari
+Comment[is]=Spilar margmiðlunarefni ásamt því að taka upp og útvarpa straumum
+Name[it]=Lettore multimediale VLC
+GenericName[it]=Lettore multimediale
+Comment[it]=Legge, acquisisce e trasmette i tuoi flussi multimediali
+Name[ja]=VLCメディアプレイヤー
+Comment[ja]=マルチメディアストリームの読み込み、キャプチャー、ブロードキャスト
+Name[km]=កម្មវិធី​ចាក់​មេឌៀ VLC
+Comment[km]=អាន ចាប់យក ប្រកាស​ស្ទ្រីម​ពហុមេឌៀ​របស់​អ្នក
+Name[lt]=VLC leistuvė 
+GenericName[lt]=Leistuvė
+Comment[lt]=Groti, įrašyti, siųsti įvairialypės terpės kūrinius
+Name[nl]=VLC Media Player
+GenericName[nl]=Mediaspeler
+Comment[nl]=Uw multimediastreams afspelen, opnemen en uitzenden
+Name[nn]=VLC mediespelar
+GenericName[nn]=Mediespelar
+Comment[nn]=Spel av, ta opp og send ut multimedia
+Name[pa]=VLC ਮੀਡਿਆ ਪਲੇਅਰ
+Comment[pa]=ਆਪਣੀ ਮਲਟੀਮੀਡਿਆ ਸਟਰੀਮ ਪੜ੍ਹੋ, ਕੈਪਚਰ ਤੇ ਬਰਾਡਕਾਸਟ ਕਰੋ 
+Name[pl]=VLC media player
+GenericName[pl]=Odtwarzacz multimedialny
+Comment[pl]=Odczytywanie, przechwytywanie i nadawanie strumieni multimedialnych
+Name[pt_BR]=Reprodutor de Mídias VLC
+GenericName[pt_BR]=Reprodutor de Mídias
+Comment[pt_BR]=Reproduza, capture e transmita os seus fluxos multimídia
+Name[ru]=Медиаплеер VLC
+GenericName[ru]=Медиаплеер
+Comment[ru]=Универсальный проигрыватель видео и аудио
+Name[sk]=VLC media player
+Comment[sk]=Naèítavajte, zaznamenávajte, vysielajte svoje multimediálne streamy
+Name[sv]=Mediaspelaren VLC
+GenericName[sv]=Mediaspelaren
+Comment[sv]=Allmän uppspelare av film och musik
+Name[te]=VLC మాధ్యమ ప్రదర్శకం
+GenericName[te]=మాధ్యమ ప్రదర్శకం
+Comment[te]=మీ బహుళమాధ్యమ ప్రవాహాలను చదువు, బంధించు మరియు ప్రసారం చేయి
+Name[wa]=Djouweu d' media VLC
+GenericName[wa]=Djouweu d' media
+Comment[wa]=Lét, egaloye, evoye vos floûs multimedia
+Name[zh_CN]=VLC media player
+GenericName[zh_CN]=媒体播放器
+Comment[zh_CN]=为您读取、捕获或发送多媒体流
+Exec=/usr/bin/vlc --started-from-file %U
+TryExec=/usr/bin/vlc
+Icon=vlc
+Terminal=false
+Type=Application
+Categories=AudioVideo;Player;Recorder;
+MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;video/x-anim;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;video/x-nsv;video/x-flc;video/x-fli;video/x-flv;video/vnd.rn-realvideo;video/mp4;video/mp4v-es;video/mp2t;application/ogg;application/x-ogg;video/x-ogm+ogg;audio/x-vorbis+ogg;audio/ogg;video/ogg;application/x-matroska;audio/x-matroska;video/x-matroska;video/webm;audio/webm;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-m4a;audio/x-ms-asf;audio/x-ms-asx;audio/x-ms-wax;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;application/x-flac;audio/x-flac;application/x-shockwave-flash;misc/ultravox;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;audio/x-pn-realaudio-plugin;application/x-extension-mp4;audio/mp4;audio/amr;audio/amr-wb;x-content/video-vcd;x-content/video-svcd;x-content/video-dvd;x-content/audio-cdda;x-content/audio-player;application/xspf+xml;x-scheme-handler/mms;x-scheme-handler/rtmp;x-scheme-handler/rtsp;
+X-KDE-Protocols=ftp,http,https,mms,rtmp,rtsp,sftp,smb
+Keywords=Player;Capture;DVD;Audio;Video;Server;Broadcast;
+" > VLC.desktop
+
+echo "
+[Desktop Entry]
+Name=qTox
+GenericName=Tox
+Exec=qtox
+Icon=qtox
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Internet;
+MimeType=application/qtox;
+" > qTox.desktop
 
 # Final steps
 apt-get update
@@ -783,8 +1179,9 @@ chmod 777 tools/*
 chmod 777 README
 chmod 777 tor.desktop
 chmod 777 ../.config/*
+chmod 777 *.desktop
 mv ../.Xauthority ../.Xauthority.old
-
+clear
 
 # End
 echo " "
@@ -802,8 +1199,6 @@ echo " "
 echo "This script has been created by Chocolate Chip"
 echo "http://choco.neocities.org"
 echo "On GNU Social under the name @duchocolatepony@quitter.se"
-echo " "
-echo "Please see the script itself for licence information"
 echo " "
 echo "Support the FSF by saying Free/Libre instead of Open Source!"
 echo "And always say GNU/Linux when referring to the OS and not the Linux kernel!"
