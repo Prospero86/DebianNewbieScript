@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.1.8 beta
+# Debian Newbie Script v0.1.9 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -38,7 +38,7 @@
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.1.8 beta
+# Debian Newbie Script v0.1.9 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -93,23 +93,24 @@ echo "
                                     |       /|   |/\ |   :   ||       /|   .   |
                                     |__:___/ |   /  \|___|   ||__:___/ |___|   |
                                        :     |______/    |___|   :         |___| 
- _     _  _      _    ___  _
-/ \   / \/ \  /|/ \ /\\  \//
-| |   | || |\ ||| | || \  / 
-| |_/\| || | \||| \_/| /  \ 
-\____/\_/\_/  \|\____//__/\\
+ __    ____  _  _  __  __  _  _ 
+(  )  (_  _)( \( )(  )(  )( \/ )
+ )(__  _)(_  )  (  )(__)(  )  ( 
+(____)(____)(_)\_)(______)(_/\_)
+
+(and that is the RIGHT WAY)
 "
 echo " "
 echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
-echo "You are using version 0.1.8 beta. Please confirm you are using the latest version."
+echo "You are using version 0.1.9 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v.0.1.8 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v.0.1.9 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type y.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type y for details, or n to continue.
@@ -118,7 +119,7 @@ read ans
 
 if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
 echo "
-    Debian Newbie Script v0.1.7 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.1.9 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -202,7 +203,7 @@ fi
 
 # Last begin echo(s)
 echo "This begins the automated portion of this script. If you wish to quit, preform:"
-echo "su -c killall bash"
+echo "su -c killall newbie.sh"
 echo "In a seprate terminal. You will have to manually undo anything past this point."
 echo "Some packages may require aditional verification. Please don't go to far away"
 echo "From your terminal"
@@ -243,13 +244,19 @@ apt-get install -y hyphen-en-us
 apt-get install -y iceweasel
 apt-get install -y lxpolkit
 apt-get install -y menu-xdg
+apt-get install -y lxsession
+apt-get install -y libgtk*
+apt-get install -y libglib*
 apt-get install -y lxtask
 apt-get install -y lxterminal
+apt-get install -y lxpanel
+apt-get install -y lxappearance
 apt-get install -y pcmanfm
 apt-get install -y usermode
 apt-get install -y xserver-xorg
 apt-get remove --purge -y wicd
 apt-get install -y network-manager
+apt-get install -y --no-install-reccomends xarchiver
 
 # Add some good, everyday programs
 apt-get install -y --no-install-recommends aspell
@@ -259,7 +266,8 @@ apt-get install -y leafpad
 apt-get install -y libreoffice
 apt-get install -y libreoffice-gtk
 apt-get install -y nano
-apt-get install -y redshift-gtk
+apt-get install -y gtk-redshift
+apt-get install -y redshift
 apt-get install -y screenfetch
 apt-get install -y shutter
 apt-get install -y qbittorrent
