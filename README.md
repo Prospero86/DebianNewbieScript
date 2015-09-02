@@ -40,6 +40,7 @@ Sometimes when LightDM is installed, that file becomes corrupted. After you log 
 ####Bug Reports
 All bug reports can be sent to my private email address, 
 [chocolatechip@derpymail.org] (mailto:ChocolateChip@derpymail.org?subject=Debian%20Newbie%20Script%20Bugs)
+
 A PGP Key can be found [here] (https://choco.neocities.org/pgp) (though, if you are a n00b, you probably don't know what PGP is...)
 
 I can also be contacted via IRC: (irc://irc.canternet.org:+6697/Chocolate_Chip)
