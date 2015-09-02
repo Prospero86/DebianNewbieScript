@@ -25,7 +25,17 @@ If you recieve any errors, such as "Permission Denied", preform
 This will change the permissions and you should be able to run it
 
 ###After installing
-Reboot your computer. If you are unable to get your login screen after rebooting (or you get the login screen but are unable to login), open a virtual terminal (see above) and login. Go to your home folder by doing <code>cd ~</code> then preform <code>mv .Xauthority .Xauthority.old</code>. Sometimes when LightDM is installed, that file becomes corrupted. After you log in, you can delete the .Xauthority.old file.
+Reboot your computer. It's that simple.
+
+If you are unable to get your login screen after rebooting (or you get the login screen but are unable to login), open a virtual terminal (see above) and login. Go to your home folder by doing 
+
+<code>cd ~</code> 
+
+then preform 
+
+<code>mv .Xauthority .Xauthority.old</code>. 
+
+Sometimes when LightDM is installed, that file becomes corrupted. After you log in, you can delete the .Xauthority.old file.
 
 ####Bug Reports
 All bug reports can be sent to my private email address, 
