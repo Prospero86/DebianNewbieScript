@@ -115,21 +115,27 @@ apt-get dist-upgrade -y
 apt-get remove --purge -y gnome.
 apt-get remove --purge -y kde.
 apt-get remove --purge -y xfce.
+apt-get remove --purge -y cinnamon.
 
 # install needed packages
 apt-get install -y firmware-linux-free
 apt-get install -y tar
 apt-get install -y apt-transport-https
+apt-get install -y aptitude
 apt-get install -y build-essential
 apt-get install -y sudo
 apt-get install -y wget
 
 # install LXDE, remove some bloat
+apt-get install -y --no-install-recommends lxde-core
 apt-get install -y --no-install-recommends lxde
+apt-get install -y --no-install-recommends task-lxde-desktop 
 apt-get install -y lightdm
 apt-get install -y alsamixergui
 apt-get install -y evince-gtk
 apt-get install -y gpicview
+apt-get install -y hunspell-en-us
+apt-get install -y hyphen-en-us
 apt-get install -y iceweasel
 apt-get install -y lxpolkit
 apt-get install -y menu-xdg
@@ -396,8 +402,6 @@ make fradulent keys using your email address. That is why it is important to mak
 and also post your keys to a site your friends can trust.
 
 Thank you for reading this tutorial." > anon/GPG
-
-# 
 
 # Iceweasel downloads
 mkdir iceweasel-plugins
