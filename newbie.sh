@@ -245,8 +245,6 @@ apt-get install -y iceweasel
 apt-get install -y lxpolkit
 apt-get install -y menu-xdg
 apt-get install -y lxsession
-apt-get install -y libgtk*
-apt-get install -y libglib*
 apt-get install -y lxtask
 apt-get install -y lxterminal
 apt-get install -y lxpanel
