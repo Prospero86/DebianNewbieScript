@@ -1,10 +1,24 @@
 #!/bin/bash
 
-# Debian Newbie Script v0.1.6 beta
+#     ________                     __      __          ________    _          
+#    / ____/ /_  ____  _________  / /___ _/ /____     / ____/ /_  (_)___      
+#   / /   / __ \/ __ \/ ___/ __ \/ / __ `/ __/ _ \   / /   / __ \/ / __ \     
+#  / /___/ / / / /_/ / /__/ /_/ / / /_/ / /_/  __/  / /___/ / / / / /_/ /     
+#  \____/_/ /_/\____/\___/\____/_/\__,_/\__/\___/   \____/_/ /_/_/ .___/      
+#     ______                            __  _                   /_/           
+#    / ____/___  ____ ___  ____  __  __/ /_(_)___  ____ _                     
+#   / /   / __ \/ __ `__ \/ __ \/ / / / __/ / __ \/ __ `/                     
+#  / /___/ /_/ / / / / / / /_/ / /_/ / /_/ / / / / /_/ /                      
+#  \____/\____/_/ /_/ /_/ .___/\__,_/\__/_/_/ /_/\__, /                       
+#                      /_/                      /____/  
+
+
+# Debian Newbie Script v0.1.7 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
-# to the system.
+# to the system. I am currently trying to figure out how to make an auto-update script to insure that the user is
+# using the latest version.
 
 # This script is designed for users of the Daily "Friendly Linux Thread" on 4chan's technology board, /g/. 
 # (https://boards.4chan.org/g/flt) 
@@ -24,7 +38,7 @@
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.1.6 beta
+# Debian Newbie Script v0.1.7 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -41,9 +55,96 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Start echo(s)
+echo "
+Copyright (c) 2015
+ ██████╗██╗  ██╗ ██████╗  ██████╗ ██████╗ ██╗      █████╗ ████████╗███████╗    
+██╔════╝██║  ██║██╔═══██╗██╔════╝██╔═══██╗██║     ██╔══██╗╚══██╔══╝██╔════╝    
+██║     ███████║██║   ██║██║     ██║   ██║██║     ███████║   ██║   █████╗      
+██║     ██╔══██║██║   ██║██║     ██║   ██║██║     ██╔══██║   ██║   ██╔══╝      
+╚██████╗██║  ██║╚██████╔╝╚██████╗╚██████╔╝███████╗██║  ██║   ██║   ███████╗    
+ ╚═════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝   ╚═╝   ╚══════╝    
+ ██████╗██╗  ██╗██╗██████╗                                                     
+██╔════╝██║  ██║██║██╔══██╗                                                    
+██║     ███████║██║██████╔╝                                                    
+██║     ██╔══██║██║██╔═══╝                                                     
+╚██████╗██║  ██║██║██║                                                         
+ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝                                                         
+ ██████╗ ██████╗ ███╗   ███╗██████╗ ██╗   ██╗████████╗██╗███╗   ██╗ ██████╗    
+██╔════╝██╔═══██╗████╗ ████║██╔══██╗██║   ██║╚══██╔══╝██║████╗  ██║██╔════╝    
+██║     ██║   ██║██╔████╔██║██████╔╝██║   ██║   ██║   ██║██╔██╗ ██║██║  ███╗   
+██║     ██║   ██║██║╚██╔╝██║██╔═══╝ ██║   ██║   ██║   ██║██║╚██╗██║██║   ██║   
+╚██████╗╚██████╔╝██║ ╚═╝ ██║██║     ╚██████╔╝   ██║   ██║██║ ╚████║╚██████╔╝   
+ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+" 
+echo " 
+
+   ▄██████▄  ███▄▄▄▄   ███    █▄  
+  ███    ███ ███▀▀▀██▄ ███    ███ 
+  ███    █▀  ███   ███ ███    ███ 
+ ▄███        ███   ███ ███    ███ 
+▀▀███ ████▄  ███   ███ ███    ███ 
+  ███    ███ ███   ███ ███    ███ 
+  ███    ███ ███   ███ ███    ███ 
+  ████████▀   ▀█   █▀  ████████  
+                                 
+                                    .________.___    .______  .________.___.__  
+                                    |    ___/|   |   :      \ |    ___/:   |  \ 
+                                    |___    \|   |   |   .   ||___    \|   :   |
+                                    |       /|   |/\ |   :   ||       /|   .   |
+                                    |__:___/ |   /  \|___|   ||__:___/ |___|   |
+                                       :     |______/    |___|   :         |___| 
+ _     _  _      _    ___  _
+/ \   / \/ \  /|/ \ /\\  \//
+| |   | || |\ ||| | || \  / 
+| |_/\| || | \||| \_/| /  \ 
+\____/\_/\_/  \|\____//__/\\
+"
 echo " "
 echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
+echo "You are using version 0.1.7 beta. Please confirm you are using the latest version."
+echo "You will find the latest version at"
+echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
+echo " "
+
+# Licence Script
+echo "
+    Debian Newbie Script v.0.1.7 beta  Copyright (C) 2015  Chocolate Chip Computing
+This program comes with ABSOLUTELY NO WARRANTY; for details type y.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type y for details, or n to continues
+"
+read ans
+
+if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+echo "
+    Debian Newbie Script v0.1.7 beta: A script to optimize a fresh install for Debian Newbies
+    Copyright (C) 2015 Chocolate Chip Computing
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+"
+echo " "
+echo "Now continuing..."
+fi
+
+if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+    echo "
+Very well. The licence terms can be viewed at
+https://gnu.org/licences
+"
+    echo "Now Continuing..."
+fi
 
 # Confirm Script 1
 echo "Please note it is EXTREMELY IMPORTANT to have this script running from your"
@@ -148,10 +249,13 @@ apt-get remove --purge -y wicd
 apt-get install -y network-manager
 
 # Add some good, everyday programs
+apt-get install -y --no-install-recommends aspell
+apt-get install -y aspell-en
 apt-get install -y deluge
 apt-get install -y gimp
 apt-get install -y leafpad
 apt-get install -y libreoffice
+apt-get install -y libreoffice-gtk
 apt-get install -y nano
 apt-get install -y redshift-gtk
 apt-get install -y screenfetch
@@ -169,10 +273,10 @@ apt-get install -y gpg
 apt-get install -y keepass2
 # TOR v. 5.0.2 Anomizer Network script
 apt-get install -y tor
-wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O tor.tar.xz
-tar xvfJ tor.tar.xz /opt/tor
+wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O /tmp/tor.tar.xz
+tar xvfJ /tmp/tor.tar.xz /opt/tor
 cp /opt/tor/browser/start-tor-browser.desktop tor.desktop
-rm tor.tar.xz
+rm /tmp/tor.tar.xz
 mkdir anon
 echo "This is the Tor Browser.
 To configure it, simpily double click the tor icon, wait a few moments, and it will open.
