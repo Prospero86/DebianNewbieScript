@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.0 beta
+# Debian Newbie Script v0.2.1 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -38,7 +38,7 @@
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.2.0 beta
+# Debian Newbie Script v0.2.1 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -122,14 +122,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.0 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.1 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v0.2.0 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.1 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type d for details, or c to continue.
@@ -138,7 +138,7 @@ read ans
 
 if [ $ans = d -o $ans = D -o $ans = details -o $ans = Details -o $ans = DETAILS ]; then
 echo "
-    Debian Newbie Script v0.2.0 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.1 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
