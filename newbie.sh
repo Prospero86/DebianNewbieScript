@@ -77,7 +77,7 @@ Copyright (c) 2015
  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝      ╚═════╝    ╚═╝   ╚═╝╚═╝  ╚═══╝ ╚═════╝ 
 " 
 echo " 
-Scripts for
+                                 Scripts for
    ▄██████▄  ███▄▄▄▄   ███    █▄  
   ███    ███ ███▀▀▀██▄ ███    ███ 
   ███    █▀  ███   ███ ███    ███ 
@@ -104,16 +104,15 @@ read ans
 if [ $ans = c -o $ans = C -o $ans = continue -o $ans = Continue -o $ans = CONTINUE ]; then
 echo " "
 echo "Continuing..."
+clear
 fi
 
 if [ $ans = q -o $ans = Q -o $ans = quit -o $ans = Quit -o $ans = QUIT ]; then
 clear
 echo " "
-echo "Ok then."
+echo "Ok then..."
 echo " "
-echo " "
-echo " "
-echo "Thank you for choosing Chocolate Chip Computing  for your new GNU/Linux Experience!"
+echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
 exit 1
 fi
 
@@ -154,12 +153,17 @@ echo "
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+    
+    The programmer is avalible to contact via the IRC channel #Chocolate_Chip
+    on the network irc.canternet.org. The programmer can also be contacted
+    via email. The email address is chocolatechip@derpymail.org.
 "
 echo " "
 echo "Now continuing..."
 fi
 
 if [ $ans = c -o $ans = C -o $ans = continue -o $ans = Continue -o $ans = CONTINUE ]; then
+clear
     echo "
 Very well. The licence terms can be viewed at
 https://gnu.org/licences
@@ -168,8 +172,10 @@ https://gnu.org/licences
 fi
 
 # Confirm Script 1
+echo " "
+echo " "
 echo "Please note it is EXTREMELY IMPORTANT to have this script running from your"
-echo "desktop. Do not continue the script if you are running it outside your desktop."
+echo "desktop. Abort the script if you are running it outside your desktop."
 echo " "
 echo "Would you like to continue? [Y/n]?"
 read ans
@@ -209,8 +215,8 @@ clear
 echo "Are you SURE you want to contine? This will take a long time."
 echo "You will have to MANUALLY UNDO any changes from this point on!"
 echo " "
-echo "YOU MUST HAVE A CONSTANT, DECENT ENOUGH INTERNET CONNECTION FOR THIS SCRIPT"
-echo "IF NOT, APT-GET WILL TIME OUT AND PORTIONS OF THIS SCRIPT WILL FAIL!"
+echo "YOU MUST HAVE A CONSTANT, DECENT ENOUGH INTERNET CONNECTION FOR THIS SCRIPT!!!"
+echo "IF NOT, APT-GET WILL TIME OUT AND PORTIONS OF THIS SCRIPT WILL FAIL!!!"
 echo " "
 echo "Continue? [Y/n]?"
 read ans
@@ -240,7 +246,8 @@ echo " "
 # All steps are alphabetical unless order is a nesessity
 
 # Pre-requisities
-echo "# These are your debian source files. Whenever changing them, preform apt-get update
+echo "
+# These are your debian source files. Whenever changing them, preform apt-get update
 # or aptitude update. To use non-free packages, add the words contrib non-free to the
 # ends of these lines. It is highly reccomended that you DO NOT USE NON-FREE PACKAGES.
 # These non-free packages contradict the entire GNU Philosophy and are only included for 
@@ -268,6 +275,7 @@ apt-get remove --purge -y cinnamon.
 apt-get install -y firmware-linux-free
 apt-get install -y tar
 apt-get install -y zip
+apt-get install -y gzip
 apt-get install -y apt-transport-http
 apt-get install -y apt-transport-https
 apt-get install -y aptitude
@@ -276,7 +284,8 @@ apt-get install -y sudo
 apt-get install -y wget
 
 # Change ftp to Http now that apt-transport-http(s) is installed
-echo "# These are your debian source files. Whenever changing them, preform apt-get update
+echo "
+# These are your debian source files. Whenever changing them, preform apt-get update
 # or aptitude update. To use non-free packages, add the words contrib non-free to the
 # ends of these lines. It is highly reccomended that you DO NOT USE NON-FREE PACKAGES.
 # These non-free packages contradict the entire GNU Philosophy and are only included for 
@@ -306,8 +315,10 @@ apt-get install -y --no-install-recommends task-lxde-desktop
 apt-get install -y lxde-settings-daemon 
 apt-get install -y lxde-icon-theme
 apt-get install -y lightdm
+apt-get remove --purge -y wicd
 apt-get install -y alsamixergui
 apt-get install -y evince-gtk
+apt-get install -y evolution
 apt-get install -y gpicview
 apt-get install -y gtk-chtheme
 apt-get install -y gtk-qt-engine
@@ -343,7 +354,6 @@ apt-get install -y pcmanfm
 apt-get install -y usermode
 apt-get install -y xserver-xorg
 apt-get install -y xscreensaver
-apt-get remove --purge -y wicd
 apt-get install -y network-manager
 apt-get install -y --no-install-recommends xarchiver
 
@@ -374,8 +384,19 @@ apt-get install -y keepass2
 # TOR v. 5.0.2 Anomizer Network script
 apt-get install -y tor
 wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O /tmp/tor.tar.xz
-tar xvfJ /tmp/tor.tar.xz -c /opt/tor
-cp /opt/tor/browser/start-tor-browser.desktop tor.desktop
+tar -xvC /tmp/tor.tar.xz -f /opt/tor
+echo "
+[Desktop Entry]
+Name=Tor
+GenericName=Tor, the Onion Browser
+Exec=/opt/tor/browser/tor.desktop
+Icon=
+Terminal=false
+Type=Application
+StartupNotify=false
+Categories=Internet;
+MimeType=application/qtox;
+" > tor.desktop
 rm /tmp/tor.tar.xz
 mkdir anon
 echo "This is the Tor Browser.
@@ -386,6 +407,9 @@ rm -r -f /opt/tor" > anon/tor
 # I2P Script
 echo "deb http://deb.i2p2.no/ jessie main
 deb-src http://deb.i2p2.no/ jessie main" > /etc/apt/sources.list.d/i2p.list
+wget https://geti2p.net/_static/i2p-debian-repo.key.asc -O /tmp/i2p.key.asc
+apt-key add /tmp/12p.key.asc
+rm /tmp/i2p.key.asc 
 apt-get update 
 apt-get upgrade -y
 apt-get dist-upgrade -y
@@ -394,7 +418,9 @@ apt-get install -y --force-yes i2p-keyring
 echo "The I2P Network is much like tor, only it's a different network and runs on Java. 
 Use this as an alternative to tor if you wish. If you want to remove, preform:
 rm /etc/apt/sources.list.d/i2p.list
-apt-get remove --purge ip2 ip2-keyring" > anon/i2p
+apt-get remove --purge ip2 ip2-keyring
+
+" > anon/i2p
 
 # Communication tools
 apt-get install -y evolution
@@ -578,7 +604,7 @@ Then give your friends your key so they know it is yours.
 Now, open Evolution. Evolution needs little configuring for PGP.  (but you will need to configure it to use
 your email, obviously.) Preform the command:
 
-gpg --list-keys
+gpg --list-sigs
 
 Find the one you just made, copy the PUB key, and add it to edit > Prefrences > (your account) > edit > Security > 
 Open PGP Key ID. Paste the PUB key there. Select the three options below it. It works better if you add 0x to the key.
@@ -1165,6 +1191,366 @@ Categories=Internet;
 MimeType=application/qtox;
 " > qTox.desktop
 
+echo "
+[Desktop Entry]
+Name=Evolution
+Name[af]=Evolution
+Name[an]=Evolution
+Name[ar]=افلوشن
+Name[as]=Evolution
+Name[ast]=Evolution
+Name[az]=Evolution
+Name[be]=Evolution
+Name[be@latin]=Evolution
+Name[bg]=Evolution
+Name[bn]=Evolution
+Name[bn_IN]=Evolution
+Name[br]=Evolution
+Name[ca]=Evolution
+Name[ca@valencia]=Evolution
+Name[cs]=Evolution
+Name[cy]=Evolution
+Name[da]=Evolution
+Name[de]=Evolution
+Name[dz]=ཨི་བོ་ལུ་ཤཱན།
+Name[el]=Evolution
+Name[en@shaw]=·𐑧𐑝𐑩𐑤𐑵𐑖𐑩𐑯
+Name[en_CA]=Evolution
+Name[en_GB]=Evolution
+Name[eo]=Evolucio
+Name[es]=Evolution
+Name[et]=Evolution
+Name[eu]=Evolution
+Name[fa]=اوولوشن
+Name[fi]=Evolution
+Name[fr]=Evolution
+Name[ga]=Evolution
+Name[gl]=Evolution
+Name[gu]=Evolution
+Name[he]=Evolution
+Name[hi]=एवोल्यूशन
+Name[hr]=Evolution
+Name[hu]=Evolution
+Name[id]=Evolution
+Name[it]=Evolution
+Name[ja]=Evolution
+Name[ka]=ევოლუშენი
+Name[kn]=Evolution
+Name[ko]=에볼루션
+Name[lt]=Evolution
+Name[lv]=Evolution
+Name[mai]=Evolution
+Name[mk]=Evolution
+Name[ml]=Evolution
+Name[mn]=Эволюшин
+Name[mr]=एव्हल्युशन
+Name[ms]=Evolution
+Name[nb]=Evolution
+Name[nds]=Evolution
+Name[ne]=इभोल्युसन
+Name[nl]=Evolution
+Name[nn]=Evolution
+Name[oc]=Evolution
+Name[or]=କ୍ରମବିକାଶ 
+Name[pa]=ਈਵੇਲੂਸ਼ਨ
+Name[pl]=Evolution
+Name[pt]=Evolution
+Name[pt_BR]=Evolution
+Name[ro]=Evolution
+Name[ru]=Evolution
+Name[rw]=Impinduka
+Name[si]=ඉවෝලුශන්
+Name[sk]=Evolution
+Name[sl]=Evolution
+Name[sq]=Evolution
+Name[sr]=Еволуција
+Name[sr@latin]=Evolucija
+Name[sv]=Evolution
+Name[ta]=எவல்யூஷன்
+Name[te]=ఎవాల్యూషన్
+Name[th]=Evolution
+Name[tr]=Evolution
+Name[ug]=Evolution
+Name[uk]=Evolution
+Name[vi]=Evolution
+Name[wa]=Evolution
+Name[xh]=I-Evolution
+Name[zh_CN]=Evolution
+Name[zh_HK]=Evolution
+Name[zh_TW]=Evolution
+GenericName=Groupware Suite
+GenericName[an]=Suite de treballo en grupo
+GenericName[ar]=حِزمة Groupware
+GenericName[as]=Groupware চুইট
+GenericName[ast]=Suite de trabayu en grupu
+GenericName[be]=Пакет для групавой працы
+GenericName[be@latin]=Pakiet dla kalektyŭnaj pracy
+GenericName[bg]=Програма за работа в група
+GenericName[bn]=Groupware Suite
+GenericName[bn_IN]=Groupware Suite
+GenericName[ca]=Aplicacions de treball en grup
+GenericName[ca@valencia]=Aplicacions de treball en grup
+GenericName[cs]=Sada groupware
+GenericName[cy]=Cyfres Meddalwedd Grŵp
+GenericName[da]=Samarbejdsprogramsuite
+GenericName[de]=Groupware-Suite
+GenericName[dz]=གུ་རུབ་ཝེར་ སུཊི།
+GenericName[el]=Σουίτα Groupware
+GenericName[en@shaw]=𐑜𐑮𐑵𐑐𐑢𐑧𐑮 𐑕𐑢𐑰𐑑
+GenericName[en_CA]=Groupware Suite
+GenericName[en_GB]=Groupware Suite
+GenericName[eo]=Grupprogramaro
+GenericName[es]=Suite de trabajo en grupo
+GenericName[et]=Grupitöövahend
+GenericName[eu]=Talde-lanerako suitea
+GenericName[fa]=مجموعه‌ی Groupware
+GenericName[fi]=Ryhmätyöohjelmisto
+GenericName[fr]=Suite de travail collaboratif
+GenericName[ga]=Sraith Feidhmchlár Grúpa-Earraí
+GenericName[gl]=Suite de Groupware
+GenericName[gu]=ગ્રુપવેર સ્યુટ
+GenericName[hi]=ग्रूपवेयर सूट
+GenericName[hr]=Groupware Suite
+GenericName[hu]=Csoportmunka-szoftver
+GenericName[id]=Groupware Suite
+GenericName[it]=Suite groupware
+GenericName[ja]=グループウェアスイートです。
+GenericName[kn]=ಗ್ರೂಪ್‌ವೇರ್ ಸೂಟ್
+GenericName[ko]=그룹웨어 모음
+GenericName[lt]=Grupinio darbo įrankis
+GenericName[lv]=Groupware Suite
+GenericName[mk]=Groupware Suite
+GenericName[ml]=Groupware Suite
+GenericName[mr]=ग्रुपवेअर संच
+GenericName[ms]=Sut Groupware
+GenericName[nb]=Gruppevareløsning
+GenericName[ne]=ग्रूपवेयर सुट
+GenericName[nl]=Groupware suite
+GenericName[nn]=Gruppevarepakke
+GenericName[or]=Groupware ସମୂହ
+GenericName[pa]=ਗਰੁੱਪਵੇਅਰ ਸੂਟ
+GenericName[pl]=Pakiet do pracy grupowej
+GenericName[pt]=Groupwise Suite
+GenericName[pt_BR]=Suíte de Groupware
+GenericName[ro]=Suită Groupware
+GenericName[ru]=Пакет для групповой работы
+GenericName[sk]=Program na podporu spolupráce
+GenericName[sl]=Zbirka za skupinsko delo
+GenericName[sq]=Suite Groupware
+GenericName[sr]=Пакет групе
+GenericName[sr@latin]=Paket grupe
+GenericName[sv]=Grupprogramvarusvit
+GenericName[ta]=குழுக்களுக்கான மென்பொருள்
+GenericName[te]=సమూహతరహా సమసమితి
+GenericName[th]=ชุดกรุ๊ปแวร์
+GenericName[tr]=Groupwise Takımı
+GenericName[ug]=Groupware يۈرۈشلۈكى
+GenericName[uk]=Пакет для групової роботи
+GenericName[vi]=Bộ phần mềm nhóm (Groupware)
+GenericName[xh]=I-Groupware Suite
+GenericName[zh_CN]=Groupwise 套件
+GenericName[zh_HK]=Groupware 套裝軟件
+GenericName[zh_TW]=Groupware 套裝軟體
+X-GNOME-FullName=Evolution Mail and Calendar
+X-GNOME-FullName[af]=Evolution pos en kalender
+X-GNOME-FullName[an]=Correu y calandario d'Evolution
+X-GNOME-FullName[ar]=بريد وتقويم إفلوشن
+X-GNOME-FullName[as]=Evolution মেইল কেলেন্ডাৰ
+X-GNOME-FullName[ast]=Corréu y calendariu d'Evolution
+X-GNOME-FullName[be]=Пошта і каляндар Evolution
+X-GNOME-FullName[be@latin]=Pošta j kalandar Evolution
+X-GNOME-FullName[bg]=E-поща и календар (Evolution)
+X-GNOME-FullName[bn]=Evolution মেইল ও ক্যালেন্ডার
+X-GNOME-FullName[bn_IN]=Evolution মেইল ও বর্ষপঞ্জি
+X-GNOME-FullName[ca]=Correu i calendari de l'Evolution
+X-GNOME-FullName[ca@valencia]=Correu i calendari de l'Evolution
+X-GNOME-FullName[cs]=Pošta a kalendář Evolution
+X-GNOME-FullName[cy]=Ebost a Chalendr Evolution
+X-GNOME-FullName[da]=Evolutions E-post og Kalender
+X-GNOME-FullName[de]=Evolution-E-Mail und -Kalender
+X-GNOME-FullName[dz]=ཨི་བོ་ལུ་ཤཱན་ ཡིག་འཕྲིན་དང་ ཟླ་ཐོ་ 
+X-GNOME-FullName[el]=Αλληλογραφία και Ημερολόγιο του Evolution
+X-GNOME-FullName[en@shaw]=·𐑧𐑝𐑩𐑤𐑵𐑖𐑩𐑯 𐑥𐑱𐑤 𐑯 𐑒𐑨𐑤𐑩𐑯𐑛𐑼
+X-GNOME-FullName[en_GB]=Evolution Mail and Calendar
+X-GNOME-FullName[eo]=Evolucio - Retpoŝto kaj Kalendaro
+X-GNOME-FullName[es]=Correo y calendario de Evolution
+X-GNOME-FullName[et]=Evolutioni E-post ja kalender
+X-GNOME-FullName[eu]=Evolution-en posta eta egutegia
+X-GNOME-FullName[fa]=نامه و تقویم اوولوشن
+X-GNOME-FullName[fi]=Evolution-sähköposti ja -kalenteri
+X-GNOME-FullName[fr]=Messagerie et agenda d'Evolution
+X-GNOME-FullName[ga]=Post agus Féilire Evolution
+X-GNOME-FullName[gl]=Correo e calendario do Evolution
+X-GNOME-FullName[gu]=ઈવોલ્યુશન મેઈલ અને કેલેન્ડર
+X-GNOME-FullName[he]=דואר ויומן Evolution
+X-GNOME-FullName[hi]=एवोल्यूशन डाक और पंचांग
+X-GNOME-FullName[hu]=Evolution levelező és naptár
+X-GNOME-FullName[id]=Surat dan Kalender Evolution
+X-GNOME-FullName[it]=Email e calendario Evolution
+X-GNOME-FullName[ja]=Evolution のメールとカレンダー
+X-GNOME-FullName[kn]=Evolution ಅಂಚೆ ಹಾಗು ಕ್ಯಾಲೆಂಡರ್
+X-GNOME-FullName[ko]=에볼루션 메일 및 달력
+X-GNOME-FullName[lt]=Evolution paštas ir kalendorius
+X-GNOME-FullName[lv]=Evolution pasts un kalendārs
+X-GNOME-FullName[mk]=Evolution пошта и календар
+X-GNOME-FullName[ml]=Evolution മെയിലും കാലെണ്ടറും
+X-GNOME-FullName[mr]=एव्हल्युशन मेल आणि दिनदर्शिका
+X-GNOME-FullName[nb]=Evolution e-post og kalender
+X-GNOME-FullName[nl]=Evolution e-mail en agenda
+X-GNOME-FullName[nn]=Evolution e-post og kalender
+X-GNOME-FullName[oc]=Corrièls e calendièr Evolution
+X-GNOME-FullName[or]=Evolution କ୍ଯାଲେଣ୍ଡର ବସ୍ତୁ
+X-GNOME-FullName[pa]=ਈਵੇਲੂਸ਼ਨ ਮੇਲ ਅਤੇ ਕੈਲੰਡਰ
+X-GNOME-FullName[pl]=Poczta i kalendarz Evolution
+X-GNOME-FullName[ps]=اېوليوشن ليک او کليز
+X-GNOME-FullName[pt]=Correio eletrónico e calendário Evolution
+X-GNOME-FullName[pt_BR]=Correio e agenda do Evolution
+X-GNOME-FullName[ro]=Calendar și Email Evolution
+X-GNOME-FullName[ru]=Электронная почта и календарь Evolution
+X-GNOME-FullName[sk]=Evolution - pošta a kalendár
+X-GNOME-FullName[sl]=Evolution koledar in pošta
+X-GNOME-FullName[sq]=Evolution - Posta dhe kalendari
+X-GNOME-FullName[sr]=Еволуција — пошта и календар
+X-GNOME-FullName[sr@latin]=Evolucija — pošta i kalendar
+X-GNOME-FullName[sv]=Evolutions e-post och kalender
+X-GNOME-FullName[ta]=எவல்யூஷன் மின்னஞ்சல் மற்றும் நாள்காட்டி
+X-GNOME-FullName[te]=ఎవల్యూషన్ కాలెండర్ మరియు మెయిల్
+X-GNOME-FullName[th]=เมลและปฏิทินของ Evolution
+X-GNOME-FullName[tr]=Evolution Posta ve Takvimi
+X-GNOME-FullName[ug]=Evolution خەت ۋە يىلنامە
+X-GNOME-FullName[uk]=Електронна пошта та календар Evolutuion
+X-GNOME-FullName[vi]=Thư tín và Lịch Evolution
+X-GNOME-FullName[zh_CN]=Evolution 邮件及日历
+X-GNOME-FullName[zh_HK]=Evolution 郵件與行事曆
+X-GNOME-FullName[zh_TW]=Evolution 郵件與行事曆
+Comment=Manage your email, contacts and schedule
+Comment[af]=Bestuur pos, kontakte en skedule
+Comment[an]=Chestiona lo tuyo correu electronico, contactos y calandario
+Comment[ar]=أدِر بريدك الإلكتروني ومتراسليك وجدولك
+Comment[as]=আপোনাৰ ই-মেইল একাওণ্টসমূহকে ইয়াত বিন্যাস কৰক
+Comment[ast]=Xestiona'l corréu-e, contautos y calendariu
+Comment[be]=Кіраванне поштай, кантактамі і раскладам
+Comment[be@latin]=Pracuj z poštaj, kantaktami j pracoŭnym raskładam
+Comment[bg]=Управление на поща, контакти и разписания
+Comment[bn]=ই-মেইল, পরিচিতি ও কর্মতালিকা এখানে কনফিগার করুন
+Comment[bn_IN]=ই-মেইল, পরিচিতি ও কর্মতালিকা এখানে কনফিগার করুন
+Comment[ca]=Gestioneu els correus electrònics, contactes i horaris
+Comment[ca@valencia]=Gestioneu els correus electrònics, contactes i horaris
+Comment[cs]=Spravujte svůj e-mail, kontakty a rozvrh
+Comment[da]=Håndter din e-post, dine kontaktpersoner og din tidsplan
+Comment[de]=Ihre E-Mails, Kontakte und Kalender verwalten
+Comment[dz]=ཁྱོད་རའི་གློག་འཕྲིན་དང་ འབྲེལ་ས་ དེ་ལས་ འཆར་རིམ་ཚུ་ འཛིན་སྐྱོང་འབད་ 
+Comment[el]=Διαχείριση της ηλ. αλληλογραφίας, των επαφών και του χρόνου σας
+Comment[en@shaw]=𐑥𐑨𐑯𐑦𐑡 𐑿𐑼 𐑰𐑥𐑱𐑤, 𐑒𐑪𐑯𐑑𐑨𐑒𐑑𐑕 𐑯 𐑖𐑧𐑛𐑿𐑤
+Comment[en_GB]=Manage your e-mail, contacts and schedule
+Comment[eo]=Administri viajn retpoŝton, kontaktojn kaj planojn
+Comment[es]=Gestione su correo-e, contactos y calendario
+Comment[et]=Oma e-posti, kontaktide ja kalendri haldamine
+Comment[eu]=Kudeatu zure posta-kontuak, kontaktuak eta antolaketa
+Comment[fa]=رایانامه، آشنایان و برنامه‌ریزی‌تان را مدیریت کنید
+Comment[fi]=Hallitse sähköposteja, yhteystietoja ja ajan käyttöä
+Comment[fr]=Gérer vos courriels, contacts et agendas
+Comment[ga]=Bainstigh do chuid ríomhphoist, do chuid teagmhálacha agus do sceideal
+Comment[gl]=Xestione o seu correo, contactos e programación
+Comment[gu]=તમારું ઈમેઈલ, સંપર્કો અને સમયક્રમની વ્યવસ્થા કરો
+Comment[he]=נהל את הדוא"ל, אנשי הקשר ולוח הזמנים שלך
+Comment[hi]=अपना ईमेल संपर्क व योजना प्रबंधित करें
+Comment[hu]=E-mailek, névjegyek és határidők kezelése
+Comment[id]=Mengelola surel, kontak, dan jadwal Anda
+Comment[it]=Gestisce le proprie email, i contatti e progetti
+Comment[ja]=メールや連絡先、予定などを管理します
+Comment[kn]=ನಿಮ್ಮ ವಿಅಂಚೆ, ಸಂಪರ್ಕ ವಿಳಾಸಗಳನ್ನು ಹಾಗು ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನಿರ್ವಹಿಸು
+Comment[ko]=전자메일, 연락처, 일정을 관리합니다
+Comment[lt]=Tvarkykite savo el. paštą, kontaktus ir kalendorių
+Comment[lv]=Pārvaldiet savu e-pastu, kontaktus un grafiku
+Comment[mk]=Менаџирајте со Вашата е-пошта, контакти и распоред
+Comment[ml]=നിങ്ങളുടെ ഈ മെയില്‍ , കോണ്ടാക്റ്റുകള്‍, ഷെഡ്യൂള്‍ ഇവിടെ ക്രമീകരിക്കുക
+Comment[mr]=तुमचे ईमेल, संपर्क व वेळपत्रकाचे निरीक्षण करा
+Comment[nb]=Håndter e-post, kontakter og kalender
+Comment[nl]=Uw e-mail, adresboek en agenda beheren
+Comment[nn]=Handsama epost, kontaktar og timeplan
+Comment[or]=ଆପଣଙ୍କ ମେଲକୁ ପରିଚାଳନା କରନ୍ତୁ, ଯୋଗାଯୋଗ ଏବଂ କାର୍ଯ୍ୟସୂଚୀ
+Comment[pa]=ਆਪਣਾ ਈ-ਮੇਲ ਅਕਾਊਂਟ, ਸੰਪਰਕ ਅਤੇ ਸ਼ੈਡਿਊਲ ਦਾ ਪਰਬੰਧ ਕਰੋ
+Comment[pl]=Zarządzanie wiadomościami, kontaktami i planami
+Comment[ps]=خپل برېښليکونه، اړيکلوري او مهالوېش سمبال کړﺉ
+Comment[pt]=Para gerir o seu email, contactos e compromissos
+Comment[pt_BR]=Gerencie seus e-mails, contatos e agenda
+Comment[ro]=Administrează email-urile, contactele și întâlnirile
+Comment[ru]=Ваша электронная почта, контакты и расписание
+Comment[sk]=Spravujte váš email, kontakty a časový plán
+Comment[sl]=Upravljajte s pošto, stiki in razporedi
+Comment[sq]=Menazhon postën personale, kontakte dhe projekte
+Comment[sr]=Управљајте вашом поштом, контактима и обавезама
+Comment[sr@latin]=Upravljajte vašom poštom, kontaktima i obavezama
+Comment[sv]=Hantera din e-post, kontakter och schema
+Comment[ta]=உங்கள் மின்னஞ்சல் தொடர்புகள் மற்றும் கால ஒதுக்கீடுகள் ஆகியவற்றை மேலாளவும்
+Comment[te]=మీ ఈమెయిల్ ను నిర్వహించుము, పరిచయాలు మరియు ప్రణాళిక
+Comment[th]=จัดการอีเมล ผู้ติดต่อ และนัดหมายของคุณ
+Comment[tr]=E-postalarını, bağlantılarınızı ve randevularınızı yönetin
+Comment[ug]=ئېلخەت، ئالاقەداشلار ۋە پىلانىڭىزنى باشقۇرىدۇ
+Comment[uk]=Ваша електронна пошта та розклад
+Comment[vi]=Quản lý thư tín, lịch biểu và các liên lạc
+Comment[zh_CN]=配置您的电子邮件，联系人和日程表
+Comment[zh_HK]=管理你的郵件、聯絡人和行程
+Comment[zh_TW]=管理您的郵件、連絡人和行程
+Keywords=email;calendar;contact;addressbook;task;
+Keywords[as]=email;calendar;contact;addressbook;task;
+Keywords[bg]=поща;е-поща;календар;контакт;адресник;задача;mail;email;calendar;contact;addressbook;task;
+Keywords[ca]=correu;calendari;contactes;llibreta d'adreces;tasca;
+Keywords[ca@valencia]=correu;calendari;contactes;llibreta d'adreces;tasca;
+Keywords[cs]=pošta;e-mail;kalendář;kontakt;adresář;úkol;
+Keywords[da]=epost;e-post;kalender;kontakt;kontaktperson;adressebog;opgave;
+Keywords[de]=Mail;E-Mail;Nachricht;Kalender;Kontakt;Adressbuch;Aufgabe;
+Keywords[el]=ηλεκτρονική αλληλογραφία;ημερολόγιο;επαφή;βιβλίο διευθύνσεων;εργασία;email;calendar;contact;addressbook;task;
+Keywords[es]=correo-e;calendario;contacto;libreta;direcciones;tarea;
+Keywords[eu]=posta;egutegia;kontaktua;helbide-liburua;zeregina;
+Keywords[fi]=email;calendar;contact;addressbook;task;sähköposti;kalenteri;yhteystiedot;osoitekirja;tehtävä;
+Keywords[fr]=courriel;agenda;calendrier;contact;carnet d'adresses;tâches;
+Keywords[gl]=correo;calendario;contacto;caderno de enderezos;tarefas;
+Keywords[gu]=ઇમેઇલ;કૅલેન્ડર;સંપર્ક;સરનામાંપુસ્તિકા;કાર્ય;
+Keywords[hi]=ईमेल;कैलेंडर;संपर्क;पता पुस्तिका;कार्य;
+Keywords[hu]=levél;naptár;névjegy;címjegyzék;feladat;
+Keywords[id]=surel;kalender;kontak;buku alamat;tugas;
+Keywords[it]=email;calendario;contatti;rubrica;attività;
+Keywords[ja]=email;calendar;contact;addressbook;task;メール;電子メール;カレンダー;連絡先;アドレス帳;タスク;作業;予定;
+Keywords[kn]=ಅಂಚೆ;ಕ್ಯಾಲೆಂಡರ್;ಸಂಪರ್ಕ;ವಿಳಾಸಪುಸ್ತಕ;ಕಾರ್ಯ;
+Keywords[ko]=email;메일;전자메일;편지;calendar;달력;캘린더;일정;contact;연락처;addressbook;주소록;task;작업;할일;
+Keywords[lt]=paštas;kalendorius;kontaktai;adresų knyga;užduotis;
+Keywords[lv]=e-pasts;pasts;kalendārs;kontakti;adrešu grāmata;uzdevums;vēstule;
+Keywords[mr]=ईमेल;दिनदर्शिका;संपर्क;पत्तापुस्तिका;कार्य;
+Keywords[nb]=e-post;kalender;kontakt;adressebok;oppgave;
+Keywords[nl]=email;e-mail;calendar;agenda;contact;addressbook;adresboek;task;taak;
+Keywords[or]=ଇମେଲ;କ୍ୟାଲେଣ୍ଡର;ସମ୍ପର୍କ;ଠିକଣାପୁସ୍ତକ;କାର୍ଯ୍ୟ;
+Keywords[pl]=email;mail;poczta;kalendarz;kontakt;książka adresowa;zadanie;
+Keywords[pt]=correio;email;mensagem;calendário;contacto;contato;livro;endereços;tarefa;
+Keywords[pt_BR]=correio;email;calendário;agenda;contato;catálogo de endereços;tarefa;
+Keywords[ru]=почта;календарь;контакт;адресная;книга;задача;задание;
+Keywords[sk]=pošta;email;kalendár;kontakt;adresár kontaktov;úloha;
+Keywords[sl]=elektronska pošta;koledar;stik;stiki;imenik;opravila;naloge;
+Keywords[sr]=ел.пошта;пошта;календар;контакт;адресар;задатак;
+Keywords[sr@latin]=el.pošta;pošta;kalendar;kontakt;adresar;zadatak;
+Keywords[sv]=epost;e-post;kalender;kontakt;adressbok;uppgifter;mail;email;todo;
+Keywords[ta]=email;calendar;contact;addressbook;task;
+Keywords[te]=ఈమెయిల్;కాలెండర్;పరిచయం;చిరునామాపుస్తకం;కర్తవ్యం;
+Keywords[uk]=пошта;календар;контакт;адресна;книга;завдання;
+Keywords[zh_CN]=mail;calendar;contact;addressbook;task;邮件;日历;联系人;地址簿;任务;
+Keywords[zh_HK]=email;calendar;contact;addressbook;task;電子郵件;行事曆;聯絡人;通訊錄;工作;
+Keywords[zh_TW]=email;calendar;contact;addressbook;task;電子郵件;行事曆;連絡人;通訊錄;工作;
+Exec=evolution %U
+Icon=evolution
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
+StartupNotify=true
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=Evolution
+X-GNOME-Bugzilla-Component=BugBuddyBugs
+X-GNOME-Bugzilla-Version=3.12.x
+X-GNOME-Bugzilla-OtherBinaries=evolution-addressbook-factory;evolution-calendar-factory;evolution-source-registry;evolution-user-prompter;
+X-GNOME-UsesNotifications=true
+MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;
+" > Evolution.desktop
+
 # Final steps
 apt-get update
 apt-get upgrade -y
@@ -1194,7 +1580,8 @@ echo " "
 echo "After this ends, copy the following into another terminal"
 echo 'su -c usermod -aG sudo `whoami`'
 echo "Copy it exactly! Make sure to enter the root password, and not your own!"
-echo "Thanks"
+echo " "
+echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
 echo " "
 echo "This script has been created by Chocolate Chip"
 echo "http://choco.neocities.org"
