@@ -10,11 +10,13 @@ This script is designed to slightly rice a new Debian install, add some privacy 
 
 Also, *and this has changed*, **you must run it in a virtual console by pressing <code>ctrl</code> + <code>alt</code> + <code>F1</code>.** You need to do this as the DEs are being moved around and what not, you will lose the output. At the end there is stuff you need to see. When in the virtual terminal, Login as yourself.
 
-Go to the folder by opening up a terminal and preforming 
+Go to the folder by opening up the virtual terminal and preforming 
 
 <code>cd ~/Desktop</code>.
 
 Get the script from this link (https://raw.githubusercontent.com/Chocolate-Chip-Computing/DebianNewbieScript/master/newbie.sh) 
+
+(you can download it through your currently installed web browser. Just make sure it downloads to the desktop)
 then run the script as
 
 <code>su -c ./newbie.sh</code>
