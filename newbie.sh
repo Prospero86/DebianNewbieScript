@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.1 beta
+# Debian Newbie Script v0.2.2 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -38,7 +38,7 @@
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
 
-# Debian Newbie Script v0.2.1 beta
+# Debian Newbie Script v0.2.2 beta
 # Copyright (C) 2015  Chocolate Chip Computing
 
 # This program is free software: you can redistribute it and/or modify
@@ -55,6 +55,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Start echo(s)
+clear
 echo "
 Copyright (c) 2015
  ██████╗██╗  ██╗ ██████╗  ██████╗ ██████╗ ██╗      █████╗ ████████╗███████╗    
@@ -122,14 +123,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.1 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.2 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v0.2.1 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.2 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type d for details, or c to continue.
@@ -138,7 +139,7 @@ read ans
 
 if [ $ans = d -o $ans = D -o $ans = details -o $ans = Details -o $ans = DETAILS ]; then
 echo "
-    Debian Newbie Script v0.2.1 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.2 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -152,8 +153,8 @@ echo "
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-    
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
     The programmer is avalible to contact via the IRC channel #Chocolate_Chip
     on the network irc.canternet.org. The programmer can also be contacted
     via email. The email address is chocolatechip@derpymail.org.
@@ -276,6 +277,7 @@ apt-get install -y firmware-linux-free
 apt-get install -y tar
 apt-get install -y zip
 apt-get install -y gzip
+apt-get install -y git
 apt-get install -y apt-transport-http
 apt-get install -y apt-transport-https
 apt-get install -y aptitude
@@ -304,7 +306,7 @@ deb http://http.us.debian.org/debian/ jessie-updates main
 deb-src http://http.us.debian.org/debian/ jessie-updates main
 
 
-" > /etc/apt/sources.list
+ " > /etc/apt/sources.list
 apt-get update
 
 # install LXDE, remove some bloat, personalization
@@ -379,24 +381,13 @@ apt-get install -y --no-install-recommends x-cursor-theme
 
 # Some privacy tools
 apt-get install -y bleachbit
-apt-get install -y gpg
+apt-get install -y gnupg
 apt-get install -y keepass2
+
 # TOR v. 5.0.2 Anomizer Network script
 apt-get install -y tor
 wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O /tmp/tor.tar.xz
-tar -xvC /tmp/tor.tar.xz -f /opt/tor
-echo "
-[Desktop Entry]
-Name=Tor
-GenericName=Tor, the Onion Browser
-Exec=/opt/tor/browser/tor.desktop
-Icon=
-Terminal=false
-Type=Application
-StartupNotify=false
-Categories=Internet;
-MimeType=application/qtox;
-" > tor.desktop
+tar xvf /tmp/tor.tar.xz -C /opt/tor
 rm /tmp/tor.tar.xz
 mkdir anon
 echo "This is the Tor Browser.
@@ -404,23 +395,22 @@ To configure it, simpily double click the tor icon, wait a few moments, and it w
 If you wish to remove tor, preform the commands:
 apt-get remove --purge tor
 rm -r -f /opt/tor" > anon/tor
+
 # I2P Script
 echo "deb http://deb.i2p2.no/ jessie main
 deb-src http://deb.i2p2.no/ jessie main" > /etc/apt/sources.list.d/i2p.list
 wget https://geti2p.net/_static/i2p-debian-repo.key.asc -O /tmp/i2p.key.asc
-apt-key add /tmp/12p.key.asc
-rm /tmp/i2p.key.asc 
-apt-get update 
+apt-key add /tmp/i2p.key.asc
+rm /tmp/i2p.key.asc
+apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install -y --force-yes i2p 
+apt-get install -y --force-yes i2p
 apt-get install -y --force-yes i2p-keyring
-echo "The I2P Network is much like tor, only it's a different network and runs on Java. 
+echo "The I2P Network is much like tor, only it's a different network and runs on Java.
 Use this as an alternative to tor if you wish. If you want to remove, preform:
 rm /etc/apt/sources.list.d/i2p.list
-apt-get remove --purge ip2 ip2-keyring
-
-" > anon/i2p
+apt-get remove --purge ip2 ip2-keyring" > anon/i2p
 
 # Communication tools
 apt-get install -y evolution
@@ -736,7 +726,8 @@ synaptic=synaptic-pkexec
 soffice.bin=libreoffice
 x-terminal-emulator=lxterminal" > ../.config/lxpanel/launchtaskbar.cfg
 
-echo "# lxpanel <profile> config file. Manually editing is not recommended.
+echo "
+# lxpanel <profile> config file. Manually editing is not recommended.
 # Use preference dialog in lxpanel to adjust config when you can.
 
 Global {
@@ -886,164 +877,14 @@ Plugin {
   }
 }
  " > ../.config/lxpanel/LXDE/panels/panel
-# Desktop Files
 
-# Iceweasel
-echo "
-[Desktop Entry]
-Encoding=UTF-8
-Name=Iceweasel
-Name[bg]=Iceweasel
-Name[ca]=Iceweasel
-Name[cs]=Iceweasel
-Name[el]=Iceweasel
-Name[es]=Iceweasel
-Name[fa]=Iceweasel
-Name[fi]=Iceweasel
-Name[fr]=Iceweasel
-Name[hu]=Iceweasel
-Name[it]=Iceweasel
-Name[ja]=Iceweasel
-Name[ko]=Iceweasel
-Name[nb]=Iceweasel
-Name[nl]=Iceweasel
-Name[nn]=Iceweasel
-Name[no]=Iceweasel
-Name[pl]=Iceweasel
-Name[pt]=Iceweasel
-Name[pt_BR]=Iceweasel
-Name[ru]=Iceweasel
-Name[sk]=Iceweasel
-Name[sv]=Iceweasel
-Comment=Browse the World Wide Web
-Comment[bg]=Сърфиране в Мрежата
-Comment[ca]=Navegueu per el web
-Comment[cs]=Prohlížení stránek World Wide Webu
-Comment[de]=Im Internet surfen
-Comment[el]=Περιηγηθείτε στον παγκόσμιο ιστό
-Comment[es]=Navegue por la web
-Comment[fa]=صفحات شبکه جهانی اینترنت را مرور نمایید
-Comment[fi]=Selaa Internetin WWW-sivuja
-Comment[fr]=Navigue sur Internet
-Comment[hu]=A világháló böngészése
-Comment[it]=Esplora il web
-Comment[ja]=ウェブを閲覧します
-Comment[ko]=웹을 돌아 다닙니다
-Comment[nb]=Surf på nettet
-Comment[nl]=Verken het internet
-Comment[nn]=Surf på nettet
-Comment[no]=Surf på nettet
-Comment[pl]=Przeglądanie stron WWW 
-Comment[pt]=Navegue na Internet
-Comment[pt_BR]=Navegue na Internet
-Comment[ru]=Обозреватель Всемирной Паутины
-Comment[sk]=Prehliadanie internetu
-Comment[sv]=Surfa på webben
-GenericName=Web Browser
-GenericName[bg]=Интернет браузър
-GenericName[ca]=Navegador web
-GenericName[cs]=Webový prohlížeč
-GenericName[de]=Webbrowser
-GenericName[el]=Περιηγητής ιστού
-GenericName[es]=Navegador web
-GenericName[fa]=مرورگر اینترنتی
-GenericName[fi]=WWW-selain
-GenericName[fr]=Navigateur Web
-GenericName[hu]=Webböngésző
-GenericName[it]=Browser Web
-GenericName[ja]=ウェブ・ブラウザ
-GenericName[ko]=웹 브라우저
-GenericName[nb]=Nettleser
-GenericName[nl]=Webbrowser
-GenericName[nn]=Nettlesar
-GenericName[no]=Nettleser
-GenericName[pl]=Przeglądarka WWW
-GenericName[pt]=Navegador Web
-GenericName[pt_BR]=Navegador Web
-GenericName[ru]=Интернет-браузер
-GenericName[sk]=Internetový prehliadač
-GenericName[sv]=Webbläsare
-X-GNOME-FullName=Iceweasel Web Browser
-X-GNOME-FullName[bg]=Интернет браузър (Iceweasel)
-X-GNOME-FullName[ca]=Navegador web Iceweasel
-X-GNOME-FullName[cs]=Iceweasel Webový prohlížeč
-X-GNOME-FullName[el]=Περιηγήτης Ιστού Iceweasel
-X-GNOME-FullName[es]=Navegador web Iceweasel
-X-GNOME-FullName[fa]=مرورگر اینترنتی Iceweasel
-X-GNOME-FullName[fi]=Iceweasel-selain
-X-GNOME-FullName[fr]=Navigateur Web Iceweasel
-X-GNOME-FullName[hu]=Iceweasel webböngésző
-X-GNOME-FullName[it]=Iceweasel Browser Web
-X-GNOME-FullName[ja]=Iceweasel ウェブ・ブラウザ
-X-GNOME-FullName[ko]=Iceweasel 웹 브라우저
-X-GNOME-FullName[nb]=Iceweasel Nettleser
-X-GNOME-FullName[nl]=Iceweasel webbrowser
-X-GNOME-FullName[nn]=Iceweasel Nettlesar
-X-GNOME-FullName[no]=Iceweasel Nettleser
-X-GNOME-FullName[pl]=Przeglądarka WWW Iceweasel
-X-GNOME-FullName[pt]=Iceweasel Navegador Web
-X-GNOME-FullName[pt_BR]=Navegador Web Iceweasel
-X-GNOME-FullName[ru]=Интернет-браузер Iceweasel
-X-GNOME-FullName[sk]=Internetový prehliadač Iceweasel
-X-GNOME-FullName[sv]=Webbläsaren Iceweasel
-Exec=iceweasel %u
-Terminal=false
-X-MultipleArgs=false
-Type=Application
-Icon=iceweasel
-Categories=Network;WebBrowser;
-MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
-StartupWMClass=Iceweasel
-StartupNotify=true
-" > Iceweasel.desktop
-
-# hexchat
-echo "
-[Desktop Entry]
+# Desktop Icons
+#Hexchat
+echo "[Desktop Entry]
 Name=HexChat
-Name[de]=HexChat
 Name[en_GB]=HexChat
-Name[es]=HexChat
-Name[fr]=HexChat
-Name[it]=HexChat
-Name[ja_JP]=HexChat
-Name[ko]=헥스채트
-Name[pl]=HexChat
-Name[sq]=HexChat
-Name[zh_CN]=HexChat
 GenericName=IRC Client
-GenericName[de]=IRC-Client
 GenericName[en_GB]=IRC Client
-GenericName[es]=Cliente de IRC
-GenericName[fi]=IRC Client
-GenericName[fr]=Client IRC
-GenericName[it]=Client IRC
-GenericName[ja_JP]=IRCクライアント
-GenericName[ko]=IRC 클라이언트
-GenericName[pl]=Klient IRC
-GenericName[sq]=Klient IRC
-GenericName[zh_CN]=IRC 客户端
-Comment=Chat with other people online
-Comment[de]=Chatte online mit anderen Leuten
-Comment[en_GB]=Chat with other people online
-Comment[es]=Chatea con otras personas en línea
-Comment[fr]=Parlez avec d'autres personnes en ligne
-Comment[it]=Chiacchiera con altri utenti online
-Comment[ja_JP]=他の人とオンラインチャットをします
-Comment[ko]=온라인에 있는 사람들과 대화합니다
-Comment[pl]=Rozmawiaj z innymi ludźmi przez internet
-Comment[sq]=Bisedoni në linjë me persona të tjerë
-Comment[zh_CN]=与其他人在线聊天
-Keywords=IM;Chat;
-Keywords[de]=IM;Chat;
-Keywords[en_GB]=IM;Chat;
-Keywords[es]=IM;Chat;
-Keywords[fr]=IM;Chat;
-Keywords[it]=IM;Chat;Messaggistica Istantanea;IRC;
-Keywords[ko]=IM;인스턴트 메신저;Chat;대화;
-Keywords[pl]=IM;Chat;
-Keywords[sq]=IM;Fjalosje;
-Keywords[zh_CN]=IM;聊天;
 Exec=hexchat %U
 Icon=hexchat
 Terminal=false
@@ -1056,21 +897,11 @@ Actions=SafeMode;
 
 [Desktop Action SafeMode]
 Name=Open Safe Mode
-Name[de]=Im sicheren Modus öffnen
 Name[en_GB]=Open Safe Mode
-Name[es]=Abrir en modo seguro
-Name[fr]=Ouvrir le mode sans échec
-Name[it]=Apri modalità sicura
-Name[ja_JP]=セーフモードで開く
-Name[ko]=공개 안전 모드
-Name[pl]=Otwórz tryb bezpieczny
-Name[sq]=Hap Mënyrën e Sigurt
-Name[zh_CN]=打开安全模式
-Exec=hexchat --no-auto --no-plugins
-" > Hexchat.desktop
+Exec=hexchat --no-auto --no-plugins" > hexchat.desktop
 
-echo "
-[Desktop Entry]
+# Keepass
+echo "[Desktop Entry]
 Name=KeePass2
 GenericName=Password manager
 Exec=keepass2
@@ -1079,477 +910,58 @@ Terminal=false
 Type=Application
 StartupNotify=false
 Categories=Utility;
-MimeType=application/x-keepass2;
-" > KeePass2.desktop
+MimeType=application/x-keepass2;" > Keepass.desktop
 
+#Iceweasel
 echo "
 [Desktop Entry]
+Encoding=UTF-8
+Name=Iceweasel
+Comment=Browse the World Wide Web
+GenericName=Web Browser
+X-GNOME-FullName=Iceweasel Web Browser
+Exec=iceweasel %u
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=iceweasel
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=Iceweasel
+StartupNotify=true" > Iceweasel.desktop
+
+#VLC
+echo "[Desktop Entry]
 Version=1.0
 Name=VLC media player
 GenericName=Media player
 Comment=Read, capture, broadcast your multimedia streams
-Name[bn]=VLC মিডিয়া প্লেয়ার
-Comment[bn]=আপনার মাল্টিমিডিয়া স্ট্রীম পড়ুন, ধরে রাখুন এবং ছড়িয়ে দিন
-Name[br]=VLC lenner mediaoù
-GenericName[br]=Lenner mediaoù
-Comment[br]=Lenn, enrollañ, skignañ ho lanvioù liesvedia
-Name[ca]=Reproductor multimèdia VLC
-GenericName[ca]=Reproductor multimèdia
-Comment[ca]=Reproduïu, captureu i difoneu fluxos multimèdia
-Name[de]=VLC Media Player
-GenericName[de]=Medienwiedergabe
-Comment[de]=Wiedergabe, Aufnahme und Verbreitung Ihrer Multimedia-Streams
-Name[es]=Reproductor multimedia VLC
-GenericName[es]=Reproductor multimedia
-Comment[es]=Lea, capture y emita sus contenidos multimedia
-Name[et]=VLC meediaesitaja
-GenericName[et]=Meediaesitaja
-Comment[et]=Multimeediafailide taasesitamine, lindistamine ja edastamine
-Name[eu]=VLC multimedia irakurgailua
-GenericName[eu]=Multimedia irakurgailua
-Comment[eu]=Irakurri, hartu, igorri zure multimedia jarioak
-Name[fi]=VLC-mediasoitin
-GenericName[fi]=Mediasoitin
-Comment[fi]=Toista, tallenna ja lähetä multimediaa
-Name[fr]=Lecteur multimédia VLC
-GenericName[fr]=Lecteur multimédia
-Comment[fr]=Lire, capturer, diffuser vos flux multimedia
-Name[gl]=Reprodutor multimedia VLC
-GenericName[gl]=Reprodutor multimedia
-Comment[gl]=Lea, capture e emita os seus fluxos multimedia
-Name[he]=נגן המדיה VLC
-GenericName[he]=נגן מדיה
-Comment[he]=קריאה, לכידה ושידור של תזרימי מולטימדיה
-Name[hu]=VLC médialejátszó
-GenericName[hu]=Médialejátszó
-Comment[hu]=Multimédiás adatfolyamok olvasása, mentése, szórása
-Name[is]=VLC margmiðlunarspilarinn
-GenericName[is]=Margmiðlunarspilari
-Comment[is]=Spilar margmiðlunarefni ásamt því að taka upp og útvarpa straumum
-Name[it]=Lettore multimediale VLC
-GenericName[it]=Lettore multimediale
-Comment[it]=Legge, acquisisce e trasmette i tuoi flussi multimediali
-Name[ja]=VLCメディアプレイヤー
-Comment[ja]=マルチメディアストリームの読み込み、キャプチャー、ブロードキャスト
-Name[km]=កម្មវិធី​ចាក់​មេឌៀ VLC
-Comment[km]=អាន ចាប់យក ប្រកាស​ស្ទ្រីម​ពហុមេឌៀ​របស់​អ្នក
-Name[lt]=VLC leistuvė 
-GenericName[lt]=Leistuvė
-Comment[lt]=Groti, įrašyti, siųsti įvairialypės terpės kūrinius
-Name[nl]=VLC Media Player
-GenericName[nl]=Mediaspeler
-Comment[nl]=Uw multimediastreams afspelen, opnemen en uitzenden
-Name[nn]=VLC mediespelar
-GenericName[nn]=Mediespelar
-Comment[nn]=Spel av, ta opp og send ut multimedia
-Name[pa]=VLC ਮੀਡਿਆ ਪਲੇਅਰ
-Comment[pa]=ਆਪਣੀ ਮਲਟੀਮੀਡਿਆ ਸਟਰੀਮ ਪੜ੍ਹੋ, ਕੈਪਚਰ ਤੇ ਬਰਾਡਕਾਸਟ ਕਰੋ 
-Name[pl]=VLC media player
-GenericName[pl]=Odtwarzacz multimedialny
-Comment[pl]=Odczytywanie, przechwytywanie i nadawanie strumieni multimedialnych
-Name[pt_BR]=Reprodutor de Mídias VLC
-GenericName[pt_BR]=Reprodutor de Mídias
-Comment[pt_BR]=Reproduza, capture e transmita os seus fluxos multimídia
-Name[ru]=Медиаплеер VLC
-GenericName[ru]=Медиаплеер
-Comment[ru]=Универсальный проигрыватель видео и аудио
-Name[sk]=VLC media player
-Comment[sk]=Naèítavajte, zaznamenávajte, vysielajte svoje multimediálne streamy
-Name[sv]=Mediaspelaren VLC
-GenericName[sv]=Mediaspelaren
-Comment[sv]=Allmän uppspelare av film och musik
-Name[te]=VLC మాధ్యమ ప్రదర్శకం
-GenericName[te]=మాధ్యమ ప్రదర్శకం
-Comment[te]=మీ బహుళమాధ్యమ ప్రవాహాలను చదువు, బంధించు మరియు ప్రసారం చేయి
-Name[wa]=Djouweu d' media VLC
-GenericName[wa]=Djouweu d' media
-Comment[wa]=Lét, egaloye, evoye vos floûs multimedia
-Name[zh_CN]=VLC media player
-GenericName[zh_CN]=媒体播放器
-Comment[zh_CN]=为您读取、捕获或发送多媒体流
 Exec=/usr/bin/vlc --started-from-file %U
 TryExec=/usr/bin/vlc
 Icon=vlc
 Terminal=false
-Type=Application
-Categories=AudioVideo;Player;Recorder;
-MimeType=video/dv;video/mpeg;video/x-mpeg;video/msvideo;video/quicktime;video/x-anim;video/x-avi;video/x-ms-asf;video/x-ms-wmv;video/x-msvideo;video/x-nsv;video/x-flc;video/x-fli;video/x-flv;video/vnd.rn-realvideo;video/mp4;video/mp4v-es;video/mp2t;application/ogg;application/x-ogg;video/x-ogm+ogg;audio/x-vorbis+ogg;audio/ogg;video/ogg;application/x-matroska;audio/x-matroska;video/x-matroska;video/webm;audio/webm;audio/x-mp3;audio/x-mpeg;audio/mpeg;audio/x-wav;audio/x-mpegurl;audio/x-scpls;audio/x-m4a;audio/x-ms-asf;audio/x-ms-asx;audio/x-ms-wax;application/vnd.rn-realmedia;audio/x-real-audio;audio/x-pn-realaudio;application/x-flac;audio/x-flac;application/x-shockwave-flash;misc/ultravox;audio/vnd.rn-realaudio;audio/x-pn-aiff;audio/x-pn-au;audio/x-pn-wav;audio/x-pn-windows-acm;image/vnd.rn-realpix;audio/x-pn-realaudio-plugin;application/x-extension-mp4;audio/mp4;audio/amr;audio/amr-wb;x-content/video-vcd;x-content/video-svcd;x-content/video-dvd;x-content/audio-cdda;x-content/audio-player;application/xspf+xml;x-scheme-handler/mms;x-scheme-handler/rtmp;x-scheme-handler/rtsp;
-X-KDE-Protocols=ftp,http,https,mms,rtmp,rtsp,sftp,smb
-Keywords=Player;Capture;DVD;Audio;Video;Server;Broadcast;
-" > VLC.desktop
+Type=Application" > vlc.desktop
 
-echo "
-[Desktop Entry]
+#qtox
+echo "[Desktop Entry]
 Name=qTox
 GenericName=Tox
 Exec=qtox
 Icon=qtox
 Terminal=false
 Type=Application
-StartupNotify=false
-Categories=Internet;
-MimeType=application/qtox;
-" > qTox.desktop
+StartupNotify=false" > qtox.desktop
 
-echo "
-[Desktop Entry]
-Name=Evolution
-Name[af]=Evolution
-Name[an]=Evolution
-Name[ar]=افلوشن
-Name[as]=Evolution
-Name[ast]=Evolution
-Name[az]=Evolution
-Name[be]=Evolution
-Name[be@latin]=Evolution
-Name[bg]=Evolution
-Name[bn]=Evolution
-Name[bn_IN]=Evolution
-Name[br]=Evolution
-Name[ca]=Evolution
-Name[ca@valencia]=Evolution
-Name[cs]=Evolution
-Name[cy]=Evolution
-Name[da]=Evolution
-Name[de]=Evolution
-Name[dz]=ཨི་བོ་ལུ་ཤཱན།
-Name[el]=Evolution
-Name[en@shaw]=·𐑧𐑝𐑩𐑤𐑵𐑖𐑩𐑯
-Name[en_CA]=Evolution
-Name[en_GB]=Evolution
-Name[eo]=Evolucio
-Name[es]=Evolution
-Name[et]=Evolution
-Name[eu]=Evolution
-Name[fa]=اوولوشن
-Name[fi]=Evolution
-Name[fr]=Evolution
-Name[ga]=Evolution
-Name[gl]=Evolution
-Name[gu]=Evolution
-Name[he]=Evolution
-Name[hi]=एवोल्यूशन
-Name[hr]=Evolution
-Name[hu]=Evolution
-Name[id]=Evolution
-Name[it]=Evolution
-Name[ja]=Evolution
-Name[ka]=ევოლუშენი
-Name[kn]=Evolution
-Name[ko]=에볼루션
-Name[lt]=Evolution
-Name[lv]=Evolution
-Name[mai]=Evolution
-Name[mk]=Evolution
-Name[ml]=Evolution
-Name[mn]=Эволюшин
-Name[mr]=एव्हल्युशन
-Name[ms]=Evolution
-Name[nb]=Evolution
-Name[nds]=Evolution
-Name[ne]=इभोल्युसन
-Name[nl]=Evolution
-Name[nn]=Evolution
-Name[oc]=Evolution
-Name[or]=କ୍ରମବିକାଶ 
-Name[pa]=ਈਵੇਲੂਸ਼ਨ
-Name[pl]=Evolution
-Name[pt]=Evolution
-Name[pt_BR]=Evolution
-Name[ro]=Evolution
-Name[ru]=Evolution
-Name[rw]=Impinduka
-Name[si]=ඉවෝලුශන්
-Name[sk]=Evolution
-Name[sl]=Evolution
-Name[sq]=Evolution
-Name[sr]=Еволуција
-Name[sr@latin]=Evolucija
-Name[sv]=Evolution
-Name[ta]=எவல்யூஷன்
-Name[te]=ఎవాల్యూషన్
-Name[th]=Evolution
-Name[tr]=Evolution
-Name[ug]=Evolution
-Name[uk]=Evolution
-Name[vi]=Evolution
-Name[wa]=Evolution
-Name[xh]=I-Evolution
-Name[zh_CN]=Evolution
-Name[zh_HK]=Evolution
-Name[zh_TW]=Evolution
-GenericName=Groupware Suite
-GenericName[an]=Suite de treballo en grupo
-GenericName[ar]=حِزمة Groupware
-GenericName[as]=Groupware চুইট
-GenericName[ast]=Suite de trabayu en grupu
-GenericName[be]=Пакет для групавой працы
-GenericName[be@latin]=Pakiet dla kalektyŭnaj pracy
-GenericName[bg]=Програма за работа в група
-GenericName[bn]=Groupware Suite
-GenericName[bn_IN]=Groupware Suite
-GenericName[ca]=Aplicacions de treball en grup
-GenericName[ca@valencia]=Aplicacions de treball en grup
-GenericName[cs]=Sada groupware
-GenericName[cy]=Cyfres Meddalwedd Grŵp
-GenericName[da]=Samarbejdsprogramsuite
-GenericName[de]=Groupware-Suite
-GenericName[dz]=གུ་རུབ་ཝེར་ སུཊི།
-GenericName[el]=Σουίτα Groupware
-GenericName[en@shaw]=𐑜𐑮𐑵𐑐𐑢𐑧𐑮 𐑕𐑢𐑰𐑑
-GenericName[en_CA]=Groupware Suite
-GenericName[en_GB]=Groupware Suite
-GenericName[eo]=Grupprogramaro
-GenericName[es]=Suite de trabajo en grupo
-GenericName[et]=Grupitöövahend
-GenericName[eu]=Talde-lanerako suitea
-GenericName[fa]=مجموعه‌ی Groupware
-GenericName[fi]=Ryhmätyöohjelmisto
-GenericName[fr]=Suite de travail collaboratif
-GenericName[ga]=Sraith Feidhmchlár Grúpa-Earraí
-GenericName[gl]=Suite de Groupware
-GenericName[gu]=ગ્રુપવેર સ્યુટ
-GenericName[hi]=ग्रूपवेयर सूट
-GenericName[hr]=Groupware Suite
-GenericName[hu]=Csoportmunka-szoftver
-GenericName[id]=Groupware Suite
-GenericName[it]=Suite groupware
-GenericName[ja]=グループウェアスイートです。
-GenericName[kn]=ಗ್ರೂಪ್‌ವೇರ್ ಸೂಟ್
-GenericName[ko]=그룹웨어 모음
-GenericName[lt]=Grupinio darbo įrankis
-GenericName[lv]=Groupware Suite
-GenericName[mk]=Groupware Suite
-GenericName[ml]=Groupware Suite
-GenericName[mr]=ग्रुपवेअर संच
-GenericName[ms]=Sut Groupware
-GenericName[nb]=Gruppevareløsning
-GenericName[ne]=ग्रूपवेयर सुट
-GenericName[nl]=Groupware suite
-GenericName[nn]=Gruppevarepakke
-GenericName[or]=Groupware ସମୂହ
-GenericName[pa]=ਗਰੁੱਪਵੇਅਰ ਸੂਟ
-GenericName[pl]=Pakiet do pracy grupowej
-GenericName[pt]=Groupwise Suite
-GenericName[pt_BR]=Suíte de Groupware
-GenericName[ro]=Suită Groupware
-GenericName[ru]=Пакет для групповой работы
-GenericName[sk]=Program na podporu spolupráce
-GenericName[sl]=Zbirka za skupinsko delo
-GenericName[sq]=Suite Groupware
-GenericName[sr]=Пакет групе
-GenericName[sr@latin]=Paket grupe
-GenericName[sv]=Grupprogramvarusvit
-GenericName[ta]=குழுக்களுக்கான மென்பொருள்
-GenericName[te]=సమూహతరహా సమసమితి
-GenericName[th]=ชุดกรุ๊ปแวร์
-GenericName[tr]=Groupwise Takımı
-GenericName[ug]=Groupware يۈرۈشلۈكى
-GenericName[uk]=Пакет для групової роботи
-GenericName[vi]=Bộ phần mềm nhóm (Groupware)
-GenericName[xh]=I-Groupware Suite
-GenericName[zh_CN]=Groupwise 套件
-GenericName[zh_HK]=Groupware 套裝軟件
-GenericName[zh_TW]=Groupware 套裝軟體
-X-GNOME-FullName=Evolution Mail and Calendar
-X-GNOME-FullName[af]=Evolution pos en kalender
-X-GNOME-FullName[an]=Correu y calandario d'Evolution
-X-GNOME-FullName[ar]=بريد وتقويم إفلوشن
-X-GNOME-FullName[as]=Evolution মেইল কেলেন্ডাৰ
-X-GNOME-FullName[ast]=Corréu y calendariu d'Evolution
-X-GNOME-FullName[be]=Пошта і каляндар Evolution
-X-GNOME-FullName[be@latin]=Pošta j kalandar Evolution
-X-GNOME-FullName[bg]=E-поща и календар (Evolution)
-X-GNOME-FullName[bn]=Evolution মেইল ও ক্যালেন্ডার
-X-GNOME-FullName[bn_IN]=Evolution মেইল ও বর্ষপঞ্জি
-X-GNOME-FullName[ca]=Correu i calendari de l'Evolution
-X-GNOME-FullName[ca@valencia]=Correu i calendari de l'Evolution
-X-GNOME-FullName[cs]=Pošta a kalendář Evolution
-X-GNOME-FullName[cy]=Ebost a Chalendr Evolution
-X-GNOME-FullName[da]=Evolutions E-post og Kalender
-X-GNOME-FullName[de]=Evolution-E-Mail und -Kalender
-X-GNOME-FullName[dz]=ཨི་བོ་ལུ་ཤཱན་ ཡིག་འཕྲིན་དང་ ཟླ་ཐོ་ 
-X-GNOME-FullName[el]=Αλληλογραφία και Ημερολόγιο του Evolution
-X-GNOME-FullName[en@shaw]=·𐑧𐑝𐑩𐑤𐑵𐑖𐑩𐑯 𐑥𐑱𐑤 𐑯 𐑒𐑨𐑤𐑩𐑯𐑛𐑼
-X-GNOME-FullName[en_GB]=Evolution Mail and Calendar
-X-GNOME-FullName[eo]=Evolucio - Retpoŝto kaj Kalendaro
-X-GNOME-FullName[es]=Correo y calendario de Evolution
-X-GNOME-FullName[et]=Evolutioni E-post ja kalender
-X-GNOME-FullName[eu]=Evolution-en posta eta egutegia
-X-GNOME-FullName[fa]=نامه و تقویم اوولوشن
-X-GNOME-FullName[fi]=Evolution-sähköposti ja -kalenteri
-X-GNOME-FullName[fr]=Messagerie et agenda d'Evolution
-X-GNOME-FullName[ga]=Post agus Féilire Evolution
-X-GNOME-FullName[gl]=Correo e calendario do Evolution
-X-GNOME-FullName[gu]=ઈવોલ્યુશન મેઈલ અને કેલેન્ડર
-X-GNOME-FullName[he]=דואר ויומן Evolution
-X-GNOME-FullName[hi]=एवोल्यूशन डाक और पंचांग
-X-GNOME-FullName[hu]=Evolution levelező és naptár
-X-GNOME-FullName[id]=Surat dan Kalender Evolution
-X-GNOME-FullName[it]=Email e calendario Evolution
-X-GNOME-FullName[ja]=Evolution のメールとカレンダー
-X-GNOME-FullName[kn]=Evolution ಅಂಚೆ ಹಾಗು ಕ್ಯಾಲೆಂಡರ್
-X-GNOME-FullName[ko]=에볼루션 메일 및 달력
-X-GNOME-FullName[lt]=Evolution paštas ir kalendorius
-X-GNOME-FullName[lv]=Evolution pasts un kalendārs
-X-GNOME-FullName[mk]=Evolution пошта и календар
-X-GNOME-FullName[ml]=Evolution മെയിലും കാലെണ്ടറും
-X-GNOME-FullName[mr]=एव्हल्युशन मेल आणि दिनदर्शिका
-X-GNOME-FullName[nb]=Evolution e-post og kalender
-X-GNOME-FullName[nl]=Evolution e-mail en agenda
-X-GNOME-FullName[nn]=Evolution e-post og kalender
-X-GNOME-FullName[oc]=Corrièls e calendièr Evolution
-X-GNOME-FullName[or]=Evolution କ୍ଯାଲେଣ୍ଡର ବସ୍ତୁ
-X-GNOME-FullName[pa]=ਈਵੇਲੂਸ਼ਨ ਮੇਲ ਅਤੇ ਕੈਲੰਡਰ
-X-GNOME-FullName[pl]=Poczta i kalendarz Evolution
-X-GNOME-FullName[ps]=اېوليوشن ليک او کليز
-X-GNOME-FullName[pt]=Correio eletrónico e calendário Evolution
-X-GNOME-FullName[pt_BR]=Correio e agenda do Evolution
-X-GNOME-FullName[ro]=Calendar și Email Evolution
-X-GNOME-FullName[ru]=Электронная почта и календарь Evolution
-X-GNOME-FullName[sk]=Evolution - pošta a kalendár
-X-GNOME-FullName[sl]=Evolution koledar in pošta
-X-GNOME-FullName[sq]=Evolution - Posta dhe kalendari
-X-GNOME-FullName[sr]=Еволуција — пошта и календар
-X-GNOME-FullName[sr@latin]=Evolucija — pošta i kalendar
-X-GNOME-FullName[sv]=Evolutions e-post och kalender
-X-GNOME-FullName[ta]=எவல்யூஷன் மின்னஞ்சல் மற்றும் நாள்காட்டி
-X-GNOME-FullName[te]=ఎవల్యూషన్ కాలెండర్ మరియు మెయిల్
-X-GNOME-FullName[th]=เมลและปฏิทินของ Evolution
-X-GNOME-FullName[tr]=Evolution Posta ve Takvimi
-X-GNOME-FullName[ug]=Evolution خەت ۋە يىلنامە
-X-GNOME-FullName[uk]=Електронна пошта та календар Evolutuion
-X-GNOME-FullName[vi]=Thư tín và Lịch Evolution
-X-GNOME-FullName[zh_CN]=Evolution 邮件及日历
-X-GNOME-FullName[zh_HK]=Evolution 郵件與行事曆
-X-GNOME-FullName[zh_TW]=Evolution 郵件與行事曆
-Comment=Manage your email, contacts and schedule
-Comment[af]=Bestuur pos, kontakte en skedule
-Comment[an]=Chestiona lo tuyo correu electronico, contactos y calandario
-Comment[ar]=أدِر بريدك الإلكتروني ومتراسليك وجدولك
-Comment[as]=আপোনাৰ ই-মেইল একাওণ্টসমূহকে ইয়াত বিন্যাস কৰক
-Comment[ast]=Xestiona'l corréu-e, contautos y calendariu
-Comment[be]=Кіраванне поштай, кантактамі і раскладам
-Comment[be@latin]=Pracuj z poštaj, kantaktami j pracoŭnym raskładam
-Comment[bg]=Управление на поща, контакти и разписания
-Comment[bn]=ই-মেইল, পরিচিতি ও কর্মতালিকা এখানে কনফিগার করুন
-Comment[bn_IN]=ই-মেইল, পরিচিতি ও কর্মতালিকা এখানে কনফিগার করুন
-Comment[ca]=Gestioneu els correus electrònics, contactes i horaris
-Comment[ca@valencia]=Gestioneu els correus electrònics, contactes i horaris
-Comment[cs]=Spravujte svůj e-mail, kontakty a rozvrh
-Comment[da]=Håndter din e-post, dine kontaktpersoner og din tidsplan
-Comment[de]=Ihre E-Mails, Kontakte und Kalender verwalten
-Comment[dz]=ཁྱོད་རའི་གློག་འཕྲིན་དང་ འབྲེལ་ས་ དེ་ལས་ འཆར་རིམ་ཚུ་ འཛིན་སྐྱོང་འབད་ 
-Comment[el]=Διαχείριση της ηλ. αλληλογραφίας, των επαφών και του χρόνου σας
-Comment[en@shaw]=𐑥𐑨𐑯𐑦𐑡 𐑿𐑼 𐑰𐑥𐑱𐑤, 𐑒𐑪𐑯𐑑𐑨𐑒𐑑𐑕 𐑯 𐑖𐑧𐑛𐑿𐑤
-Comment[en_GB]=Manage your e-mail, contacts and schedule
-Comment[eo]=Administri viajn retpoŝton, kontaktojn kaj planojn
-Comment[es]=Gestione su correo-e, contactos y calendario
-Comment[et]=Oma e-posti, kontaktide ja kalendri haldamine
-Comment[eu]=Kudeatu zure posta-kontuak, kontaktuak eta antolaketa
-Comment[fa]=رایانامه، آشنایان و برنامه‌ریزی‌تان را مدیریت کنید
-Comment[fi]=Hallitse sähköposteja, yhteystietoja ja ajan käyttöä
-Comment[fr]=Gérer vos courriels, contacts et agendas
-Comment[ga]=Bainstigh do chuid ríomhphoist, do chuid teagmhálacha agus do sceideal
-Comment[gl]=Xestione o seu correo, contactos e programación
-Comment[gu]=તમારું ઈમેઈલ, સંપર્કો અને સમયક્રમની વ્યવસ્થા કરો
-Comment[he]=נהל את הדוא"ל, אנשי הקשר ולוח הזמנים שלך
-Comment[hi]=अपना ईमेल संपर्क व योजना प्रबंधित करें
-Comment[hu]=E-mailek, névjegyek és határidők kezelése
-Comment[id]=Mengelola surel, kontak, dan jadwal Anda
-Comment[it]=Gestisce le proprie email, i contatti e progetti
-Comment[ja]=メールや連絡先、予定などを管理します
-Comment[kn]=ನಿಮ್ಮ ವಿಅಂಚೆ, ಸಂಪರ್ಕ ವಿಳಾಸಗಳನ್ನು ಹಾಗು ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನಿರ್ವಹಿಸು
-Comment[ko]=전자메일, 연락처, 일정을 관리합니다
-Comment[lt]=Tvarkykite savo el. paštą, kontaktus ir kalendorių
-Comment[lv]=Pārvaldiet savu e-pastu, kontaktus un grafiku
-Comment[mk]=Менаџирајте со Вашата е-пошта, контакти и распоред
-Comment[ml]=നിങ്ങളുടെ ഈ മെയില്‍ , കോണ്ടാക്റ്റുകള്‍, ഷെഡ്യൂള്‍ ഇവിടെ ക്രമീകരിക്കുക
-Comment[mr]=तुमचे ईमेल, संपर्क व वेळपत्रकाचे निरीक्षण करा
-Comment[nb]=Håndter e-post, kontakter og kalender
-Comment[nl]=Uw e-mail, adresboek en agenda beheren
-Comment[nn]=Handsama epost, kontaktar og timeplan
-Comment[or]=ଆପଣଙ୍କ ମେଲକୁ ପରିଚାଳନା କରନ୍ତୁ, ଯୋଗାଯୋଗ ଏବଂ କାର୍ଯ୍ୟସୂଚୀ
-Comment[pa]=ਆਪਣਾ ਈ-ਮੇਲ ਅਕਾਊਂਟ, ਸੰਪਰਕ ਅਤੇ ਸ਼ੈਡਿਊਲ ਦਾ ਪਰਬੰਧ ਕਰੋ
-Comment[pl]=Zarządzanie wiadomościami, kontaktami i planami
-Comment[ps]=خپل برېښليکونه، اړيکلوري او مهالوېش سمبال کړﺉ
-Comment[pt]=Para gerir o seu email, contactos e compromissos
-Comment[pt_BR]=Gerencie seus e-mails, contatos e agenda
-Comment[ro]=Administrează email-urile, contactele și întâlnirile
-Comment[ru]=Ваша электронная почта, контакты и расписание
-Comment[sk]=Spravujte váš email, kontakty a časový plán
-Comment[sl]=Upravljajte s pošto, stiki in razporedi
-Comment[sq]=Menazhon postën personale, kontakte dhe projekte
-Comment[sr]=Управљајте вашом поштом, контактима и обавезама
-Comment[sr@latin]=Upravljajte vašom poštom, kontaktima i obavezama
-Comment[sv]=Hantera din e-post, kontakter och schema
-Comment[ta]=உங்கள் மின்னஞ்சல் தொடர்புகள் மற்றும் கால ஒதுக்கீடுகள் ஆகியவற்றை மேலாளவும்
-Comment[te]=మీ ఈమెయిల్ ను నిర్వహించుము, పరిచయాలు మరియు ప్రణాళిక
-Comment[th]=จัดการอีเมล ผู้ติดต่อ และนัดหมายของคุณ
-Comment[tr]=E-postalarını, bağlantılarınızı ve randevularınızı yönetin
-Comment[ug]=ئېلخەت، ئالاقەداشلار ۋە پىلانىڭىزنى باشقۇرىدۇ
-Comment[uk]=Ваша електронна пошта та розклад
-Comment[vi]=Quản lý thư tín, lịch biểu và các liên lạc
-Comment[zh_CN]=配置您的电子邮件，联系人和日程表
-Comment[zh_HK]=管理你的郵件、聯絡人和行程
-Comment[zh_TW]=管理您的郵件、連絡人和行程
-Keywords=email;calendar;contact;addressbook;task;
-Keywords[as]=email;calendar;contact;addressbook;task;
-Keywords[bg]=поща;е-поща;календар;контакт;адресник;задача;mail;email;calendar;contact;addressbook;task;
-Keywords[ca]=correu;calendari;contactes;llibreta d'adreces;tasca;
-Keywords[ca@valencia]=correu;calendari;contactes;llibreta d'adreces;tasca;
-Keywords[cs]=pošta;e-mail;kalendář;kontakt;adresář;úkol;
-Keywords[da]=epost;e-post;kalender;kontakt;kontaktperson;adressebog;opgave;
-Keywords[de]=Mail;E-Mail;Nachricht;Kalender;Kontakt;Adressbuch;Aufgabe;
-Keywords[el]=ηλεκτρονική αλληλογραφία;ημερολόγιο;επαφή;βιβλίο διευθύνσεων;εργασία;email;calendar;contact;addressbook;task;
-Keywords[es]=correo-e;calendario;contacto;libreta;direcciones;tarea;
-Keywords[eu]=posta;egutegia;kontaktua;helbide-liburua;zeregina;
-Keywords[fi]=email;calendar;contact;addressbook;task;sähköposti;kalenteri;yhteystiedot;osoitekirja;tehtävä;
-Keywords[fr]=courriel;agenda;calendrier;contact;carnet d'adresses;tâches;
-Keywords[gl]=correo;calendario;contacto;caderno de enderezos;tarefas;
-Keywords[gu]=ઇમેઇલ;કૅલેન્ડર;સંપર્ક;સરનામાંપુસ્તિકા;કાર્ય;
-Keywords[hi]=ईमेल;कैलेंडर;संपर्क;पता पुस्तिका;कार्य;
-Keywords[hu]=levél;naptár;névjegy;címjegyzék;feladat;
-Keywords[id]=surel;kalender;kontak;buku alamat;tugas;
-Keywords[it]=email;calendario;contatti;rubrica;attività;
-Keywords[ja]=email;calendar;contact;addressbook;task;メール;電子メール;カレンダー;連絡先;アドレス帳;タスク;作業;予定;
-Keywords[kn]=ಅಂಚೆ;ಕ್ಯಾಲೆಂಡರ್;ಸಂಪರ್ಕ;ವಿಳಾಸಪುಸ್ತಕ;ಕಾರ್ಯ;
-Keywords[ko]=email;메일;전자메일;편지;calendar;달력;캘린더;일정;contact;연락처;addressbook;주소록;task;작업;할일;
-Keywords[lt]=paštas;kalendorius;kontaktai;adresų knyga;užduotis;
-Keywords[lv]=e-pasts;pasts;kalendārs;kontakti;adrešu grāmata;uzdevums;vēstule;
-Keywords[mr]=ईमेल;दिनदर्शिका;संपर्क;पत्तापुस्तिका;कार्य;
-Keywords[nb]=e-post;kalender;kontakt;adressebok;oppgave;
-Keywords[nl]=email;e-mail;calendar;agenda;contact;addressbook;adresboek;task;taak;
-Keywords[or]=ଇମେଲ;କ୍ୟାଲେଣ୍ଡର;ସମ୍ପର୍କ;ଠିକଣାପୁସ୍ତକ;କାର୍ଯ୍ୟ;
-Keywords[pl]=email;mail;poczta;kalendarz;kontakt;książka adresowa;zadanie;
-Keywords[pt]=correio;email;mensagem;calendário;contacto;contato;livro;endereços;tarefa;
-Keywords[pt_BR]=correio;email;calendário;agenda;contato;catálogo de endereços;tarefa;
-Keywords[ru]=почта;календарь;контакт;адресная;книга;задача;задание;
-Keywords[sk]=pošta;email;kalendár;kontakt;adresár kontaktov;úloha;
-Keywords[sl]=elektronska pošta;koledar;stik;stiki;imenik;opravila;naloge;
-Keywords[sr]=ел.пошта;пошта;календар;контакт;адресар;задатак;
-Keywords[sr@latin]=el.pošta;pošta;kalendar;kontakt;adresar;zadatak;
-Keywords[sv]=epost;e-post;kalender;kontakt;adressbok;uppgifter;mail;email;todo;
-Keywords[ta]=email;calendar;contact;addressbook;task;
-Keywords[te]=ఈమెయిల్;కాలెండర్;పరిచయం;చిరునామాపుస్తకం;కర్తవ్యం;
-Keywords[uk]=пошта;календар;контакт;адресна;книга;завдання;
-Keywords[zh_CN]=mail;calendar;contact;addressbook;task;邮件;日历;联系人;地址簿;任务;
-Keywords[zh_HK]=email;calendar;contact;addressbook;task;電子郵件;行事曆;聯絡人;通訊錄;工作;
-Keywords[zh_TW]=email;calendar;contact;addressbook;task;電子郵件;行事曆;連絡人;通訊錄;工作;
-Exec=evolution %U
-Icon=evolution
+#Tor
+echo "[Desktop Entry]
+Name=Tor
+GenericName=Tor, the Onion Browser
+Exec=/opt/tor/tor-browser_en-US/start-tor-browser.desktop
+Icon=/opt/tor/tor-browser_en-US/Browser/browser/icons/mozicon128.png
 Terminal=false
 Type=Application
-Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
-StartupNotify=true
-X-GNOME-Bugzilla-Bugzilla=GNOME
-X-GNOME-Bugzilla-Product=Evolution
-X-GNOME-Bugzilla-Component=BugBuddyBugs
-X-GNOME-Bugzilla-Version=3.12.x
-X-GNOME-Bugzilla-OtherBinaries=evolution-addressbook-factory;evolution-calendar-factory;evolution-source-registry;evolution-user-prompter;
-X-GNOME-UsesNotifications=true
-MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;
-" > Evolution.desktop
+StartupNotify=false" > tor.desktop
+
 
 # Final steps
 apt-get update
@@ -1566,6 +978,8 @@ chmod 777 README
 chmod 777 tor.desktop
 chmod 777 ../.config/*
 chmod 777 *.desktop
+# Keep this in please!
+# Sometimes when LightDM is installed, that file becomes corrupted. 
 mv ../.Xauthority ../.Xauthority.old
 clear
 
@@ -1573,7 +987,7 @@ clear
 echo " "
 echo "The script has finished"
 echo " "
-echo "Please check the new desktop folders for aditional information"
+echo "Please check the new desktop folders for additional information"
 echo " "
 echo "Do yourself a favor:"
 echo " "
@@ -1591,4 +1005,35 @@ echo "Support the FSF by saying Free/Libre instead of Open Source!"
 echo "And always say GNU/Linux when referring to the OS and not the Linux kernel!"
 echo " "
 echo "You may now safely restart your computer"
+echo " "
+echo " "
+echo " 
+_________          _______ _________     
+\__   __/|\     /|(  ___  )\__   __/     
+   ) (   | )   ( || (   ) |   ) (        
+   | |   | (___) || (___) |   | |        
+   | |   |  ___  ||  ___  |   | |        
+   | |   | (   ) || (   ) |   | |        
+   | |   | )   ( || )   ( |   | |        
+   )_(   |/     \||/     \|   )_(        
+                                         
+ _______ __________________ _______      
+(  ___  )\__   __/\__   __/(  ___  )     
+| (   ) |   ) (      ) (   | (   ) |     
+| |   | |   | |      | |   | (___) |     
+| |   | |   | |      | |   |  ___  |     
+| |   | |   | |      | |   | (   ) |     
+| (___) |   | |      | |   | )   ( |     
+(_______)   )_(      )_(   |/     \|     
+                                         
+ ______   _______   __________________ _ 
+(  __  \ (  ___  )  \__   __/\__   __/( )
+| (  \  )| (   ) |     ) (      ) (   | |
+| |   ) || |   | |     | |      | |   | |
+| |   | || |   | |     | |      | |   | |
+| |   ) || |   | |     | |      | |   (_)
+| (__/  )| (___) |  ___) (___   | |    _ 
+(______/ (_______)  \_______/   )_(   (_)
+                                         
+"
 exit
