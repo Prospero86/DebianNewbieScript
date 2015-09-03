@@ -276,6 +276,7 @@ fi
 if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
     echo " "
     echo "Exiting..."
+    sleep 1
     clear
     exit 1
 fi
