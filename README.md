@@ -1,6 +1,7 @@
 # Debian Newbie Script
 
-**RE-READ THIS AS IT HAS CHANGED**
+##REREAD THIS AS IT HAS CHANGED... AGAIN
+
 
 This is a script designed for the users of 4Chan's daily Friendly Linux Thread (https://boards.4chan.org/g/flt)
 This script is designed to slightly rice a new Debian install, add some privacy features, add some good GNU/Linux programs, remove all desktop enviorments, and add a light-weight one called LXDE. LXDE looks like the classic Windows' interface, so it is better for newbies who are most likley switching to GNU/Linux from Windows.
@@ -19,7 +20,7 @@ Get the script from this link (https://raw.githubusercontent.com/Chocolate-Chip-
 (you can download it through your currently installed web browser. Just make sure it downloads to the desktop)
 then run the script as
 
-<code>su -c ./newbie.sh</code>
+<code>su -m -p -c ./newbie.sh</code>
 
 Enter the root password you chose at the time of install.
 
