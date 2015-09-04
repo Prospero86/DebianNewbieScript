@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.2 beta
+# Debian Newbie Script v0.2.3 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -37,22 +37,6 @@
 # https://choco.neocities.org/pgp
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
-
-# Debian Newbie Script v0.2.2 beta
-# Copyright (C) 2015  Chocolate Chip Computing
-
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # Start echo(s)
 clear
@@ -167,14 +151,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.2 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.3 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v0.2.2 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.3 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type d for details, or c to continue.
@@ -183,7 +167,7 @@ read ans
 
 if [ $ans = d -o $ans = D -o $ans = details -o $ans = Details -o $ans = DETAILS ]; then
 echo "
-    Debian Newbie Script v0.2.2 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.3 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -240,9 +224,7 @@ fi
 echo " "
 echo "The script is starting."
 echo " "
-
-# Check if root. If not root, program will exit
-echo "Now checking if running as root..."
+su -m -p root -c echo " "
 if [ "`whoami`" != "root" ]; then
     echo " "
     echo "Uh oh!"
@@ -333,6 +315,7 @@ apt-get install -y aptitude
 apt-get install -y build-essential
 apt-get install -y sudo
 apt-get install -y wget
+apt-get install -y ntp
 
 # Change ftp to Http now that apt-transport-http(s) is installed
 echo "
@@ -1011,6 +994,20 @@ Terminal=false
 Type=Application
 StartupNotify=false" > tor.desktop
 
+#Evolution
+echo "[Desktop Entry]
+Name=Evolution
+GenericName=Groupware Suite
+X-GNOME-FullName=Evolution Mail and Calendar
+Comment=Manage your email, contacts and schedule
+Exec=evolution %U
+Icon=evolution
+Terminal=false
+Type=Application
+Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
+StartupNotify=true
+MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;" > evolution.desktop
+
 
 # Final steps
 apt-get update
@@ -1019,15 +1016,8 @@ apt-get dist-upgrade -y
 apt-get -f install -y
 apt-get autoremove --purge -y
 apt-get autoclean
+dpkg-reconfigure ntp
 update-menus
-chmod 777 startup/*
-chmod 777 iceweasel-plugins/*
-chmod 777 anon/*
-chmod 777 tools/*
-chmod 777 README
-chmod 777 tor.desktop
-chmod 777 ../.config/*
-chmod 777 *.desktop
 # Keep this in please!
 # Sometimes when LightDM is installed, that file becomes corrupted. 
 mv ../.Xauthority ../.Xauthority.old
@@ -1083,12 +1073,12 @@ echo "
                                      | |   ) || |   | |     | |      | |   (_)   
                                      | (__/  )| (___) |  ___) (___   | |    _ 
                                      (______/ (_______)  \_______/   )_(   (_)"
-echo "Press r to restart"
+echo "Press r to restart, or press q if you wish to exit"
+echo "this script and preform more commands."
 read ans
 
 if [ $ans = r -o $ans = R -o $ans = restart -o $ans = Restart -o $ans = RESTART ]; then
 sleep 1
-clear
 clear
 echo "
           ]Pf767676[1;37m▄]Pf9e9e9e[1;37m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄]P7808080[47m]Pfffffff[1;37m▄▄]P7949494[47m▄]P7a8a8a8[47m▄▄▄]Pfdadada[1;37m▄]P7949494[47m]Pfe4e4e4[1;37m▄]P76c6c6c[47m]Pfffffff[1;37m▄]P7767676[47m▄]P7c6c6c6[47m]Pfdadada[1;37m▄[49m]Pf4e4e4e[1;37m▄]Pfe4e4e4[1;37m▄[39m                        ]Pfc6c6c6[1;37m▄]Pf808080[1;37m▄]P7d7d7d7[47m ]P7a8a8a8[47m]Pfffffff[1;37m▄]P7949494[47m▄▄▄▄]P79e9e9e[47m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄[49m]Pfbcbcbc[1;37m▄]Pf8a8a8a[1;37m▄]Pfbcbcbc[1;37m▄[39m        ]P7aaaaaa]Pfffffff[0m
@@ -1132,5 +1122,20 @@ echo "
 echo "restarting..."
 sleep 8
 reboot
+fi
+exit
+
+if [ $ans = q -o $ans = Q -o $ans = quit -o $ans = Quit -o $ans = QUIT ]; then
+clear
+echo "Ok then. Just remember you njeed to restart your computer as soon as you are done with"
+echo "whatever it is you need to do. Your comuter is not usable in its current state, except for"
+echo "this terminal. Preform your commands, then preform the command"
+echo "restart"
+sleep 3
+clear
+echo "Now re-entering BASH"
+sleep 2
+clear
+exit 1
 fi
 exit
