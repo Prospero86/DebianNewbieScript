@@ -612,8 +612,8 @@ I suggest putting all backgrounds in this folder. To remove more wallpapers, do
 
 sudo rm -f $HOME/Pictures/.wallpaper/[wallpaper name here]
 
-I do not know who to credit for the wallpaper except for the LAIN one. Credit goes to 
-http://fauux.neocities.org/
+I do not know who to credit for the wallpaper except for the LAIN, and the clip-clop one. Credit goes to 
+http://fauux.neocities.org/ and Pokehidden.
 
 Soon, I will be writing more documentation for all the packages I installed, made for the point of view of n00bs.
 
@@ -1216,7 +1216,7 @@ clear
 echo "Ok then. Just remember you need to restart your computer as soon as you are done with"
 echo "whatever it is you need to do. Your comuter is not usable in its current state, except for"
 echo "this terminal. Preform your commands, then preform the command"
-echo "restart"
+echo "sudo reboot"
 sleep 3
 clear
 echo "Now re-entering BASH"
