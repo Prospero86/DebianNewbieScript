@@ -145,6 +145,8 @@ clear
 exit 1
 fi
 
+echo "Continuing..."
+sleep 2
 clear
 echo " "
 echo "Thank you for choosing this script for your new GNU/Linux experience!"
@@ -592,15 +594,22 @@ and it is just good for beginners, imho. You can pick another one once you know 
 
 To configure your network, use the command nmtui. This is network-manager's terminal interface.
 
-To remove the wallpaper this script downloaded, do
+I have included a large number of wallpapers for you to choose from. Unfotuniatly I can not figure out
+how to make a default one. That is why I suggest you right click the desktop, and go to the directory
 
-sudo rm ~/Pictures/.wallpaper/4Chin2.jpg and change the desktop settings like you normally would.
+/home/[you]/Pictures 
+
+right click again, and select "show hidden". Then go to .wallpapers 
+
+choose from there.
 
 I suggest putting all backgrounds in this folder. I have included a large number of wallpapers for you
-to choose from.
+to choose from. To remove these wallpapers, do
+
+sudo rm -f ~/Pictures/.wallpaper/[wallpaper name here]
 
 I do not know who to credit for the wallpaper except for the LAIN one. Credit goes to 
-http://fauux.neocitie.org/
+http://fauux.neocities.org/
 
 Soon, I will be writing more documentation for all the packages I installed, made for the point of view of n00bs.
 
@@ -712,7 +721,9 @@ apt-get install -y xul-ext-https-everywhere
 mkdir startup
 mkdir ../Music/.startup
 wget http://www.windows93.net/c/sys/boot/boot.ogg -O ../Music/.startup/startup.ogg
-echo "@play -t ogg -v 0.40 ~/Music/.startup/startup.ogg
+echo "
+@amixer sset Master unmute
+@play -t ogg -v 0.40 ~/Music/.startup/startup.ogg
 @redshift-gtk
 @qtox
 @lxpanel --profile LXDE
@@ -1061,7 +1072,7 @@ echo "
 [*]
 wallpaper_mode=stretch
 wallpaper_common=1
-wallpaper=~/Pictures/.wallpaper/4Chin2.jpg
+wallpaper=../../../Pictures/.wallpaper/4Chin2.jpg
 desktop_bg=#000000
 desktop_fg=#ffffff
 desktop_shadow=#000000
