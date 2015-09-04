@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.5 beta
+# Debian Newbie Script v0.2.6 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -26,17 +26,18 @@
 # This script adds a number of privacy features. It also removes all other Desktop Enviorments, and installs a 
 # light-weight one called LXDE, which is much like the older Windows' Interface, so is good for newbies.
 
-# YOU MUST RUN THIS SCRIPT FROM YOUR DESKTOP. IT IS IMPERATIVE THAT YOU DO. IF YOU DO NOT, YOU MAY CREATE
-# FILES THAT BLOAT YOUR SYSTEM, AND HAVE NO ACCESS TO THEM. DO NOT RUN THIS SCRIPT OUTSIDE THE DESKTOP!
-# (yes, it would be easy to find and access the files that have been created, maybe move them all, but
-# this script is designed for n00bs. That'd be too hard for a beginer. To make it easier, just trust me
-# and run from the desktop.)
+# YOU MUST RUN THIS SCRIPT BY DOING 
+# su -m -p -c ./newbie.sh
+# OTHERWISE, THE SCRIPT WILL FAIL, AND QUITE POSSIBLY BREAK YOUR COMPUTER
 
 # I have tried my very best to only include Free/Libre software. If you see any package in here that is not,
 # CONTACT ME IMEDIETLY. chocolatechip@derpymail.org is my email, and my PGP key is avalible at 
 # https://choco.neocities.org/pgp
 # Please email all bug reports to the same address.
 # You can also contact me on #Chocolate_Chip on the network irc.canternet.org (please use the SSL Port 6697.)
+
+# The ASCII Art was tested on a computer with a resolution of 1440*900. I do not know how it looks on other computers, 
+# but I tried my best.
 
 # Start echo(s)
 clear
@@ -136,7 +137,9 @@ echo "                                          .....
                          ...'''''.      .      .,.......................'.                          
                                         .  .   .,'......................''                          
                                         . ...  .,'.......................'.                         
-                                            .  .'..........................                         
+                                            .  .'..........................      
+
+                   
 "
 echo " "
 echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
@@ -153,14 +156,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.5 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.6 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v0.2.5 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.6 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type d for details, or c to continue. [C/d]
@@ -169,7 +172,7 @@ read ans
 
 if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.2.5 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.6 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -212,33 +215,15 @@ echo "Now Continuing..."
 # Confirm Script 1
 clear
 echo " "
-echo " "
-echo "Please note it is EXTREMELY IMPORTANT to have this script running from your"
-echo "desktop. Abort the script if you are running it outside your desktop."
-echo " "
-echo "Would you like to continue? [Y/n]?"
-read ans
-
-if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
-echo " "
-echo "Now continuing"
-clear
-fi
-
-if [ "${ans:0:1}" = "N" -o "${ans:0:1}" = "n" ]; then
-    echo " "
-    echo "Exiting..."
-    clear
-    exit 1
-fi
-echo " "
 echo "The script is starting."
 echo " "
 if [ "`whoami`" != "root" ]; then
     echo " "
     echo "Uh oh!"
     echo " "
-    echo "Please run as root by doing su -c ./newbie.sh and entering your root password" 
+    echo "You ether did the command wrong, or did not do it at all."
+    echo " "
+    echo "Please run as root by doing su -m -p -c ./newbie.sh and entering your root password" 
     echo "you chose at install."
     exit 1
 fi
@@ -363,6 +348,8 @@ apt-get install -y pavumeter
 apt-get install -y pavucontrol
 apt-get install -y paprefs
 apt-get install -y paman
+apt-get install -y telnet
+apt-get install -y ssh
 
 # install LXDE, remove some bloat, personalization
 apt-get install -y --no-install-recommends lxde-core
@@ -418,6 +405,9 @@ apt-get install -y --no-install-recommends xarchiver
 apt-get install -y --no-install-recommends aspell
 apt-get install -y aspell-en
 apt-get install -y gimp
+apt-get install -y --no-install-recommends openjdk-7-jdk
+apt-get install -y --no-install-recommends openjdk-7-jre
+apt-get install -y icedtea-plugin
 apt-get install -y leafpad
 apt-get install -y libreoffice
 apt-get install -y libreoffice-gtk
@@ -491,7 +481,7 @@ Please review and adjust the bandwidth settings on the configuration page, as th
 If you want to reach eepsites via your browser, have a look on the browser proxy setup page for an easy howto.
 
 For more information, see: https://geti2p.net/en/download/debian#Post-install_work
-" > anon/i2p
+" > $HOME/Desktop/anon/i2p
 
 # Communication tools
 apt-get install -y evolution
@@ -528,7 +518,7 @@ wget https://wiki.tox.chat/lib/tpl/vector/user/logo.png -O /usr/share/icons/qTox
 
 # Shutter Docs
 echo "Shutter is a tool much like Snipping Tool for Windows Vista and later.
-Simpily open it, click selection, select, and press enter. You have now taken a screenshot." > tools/Shutter
+Simpily open it, click selection, select, and press enter. You have now taken a screenshot." > $HOME/Dekstop/tools/Shutter
 
 # Redshift script
 echo "Find an example config file at the Redshift website. 
@@ -594,7 +584,7 @@ lon=[omited]
 screen=1
 
 
-You don't need to use this exactly as it is here, though." > tools/Redshift
+You don't need to use this exactly as it is here, though." > $HOME/Desktop/tools/Redshift
 
 
 # Master Readme
@@ -616,7 +606,7 @@ To configure your network, use the command nmtui. This is network-manager's term
 I have included a large number of wallpapers for you to choose from. Unfotuniatly I can not figure out
 how to make a default one. That is why I suggest you right click the desktop, and go to the directory
 
-/home/[you]/Pictures 
+$HOME/Pictures 
 
 right click again, and select "show hidden". Then go to .wallpapers 
 
@@ -655,7 +645,7 @@ https://stallman.org/facebook.html
 
 And always refer to your OS as GNU/Linux unless refering to the kernel itself!
 
-Thanks again for using my script!" > README
+Thanks again for using my script!" > $HOME/Desktop/README
 
 # GPG Docs
 echo "This is the documentation for GPG. GPG (full name GNPGP) is a free/Libre version of the PGP encryption
@@ -728,18 +718,23 @@ mkdir iceweasel-plugins
 echo "These are for your Iceweasel installtion. Please add them using the add-on's menu.
 Please. 
 Also, add this: 
-https://github.com/CrisBRM/user.js" > iceweasel-plugins/README
-wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O iceweasel-plugins/shumway.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O iceweasel-plugins/privacy.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O iceweasel-plugins/uBlock-Origin.xpi
-wget https://mega.nz/meganz.xpi -O iceweasel-plugins/mega.xpi
+https://github.com/CrisBRM/user.js" > $HOME/Desktop/iceweasel-plugins/README
+wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O $HOME/Desktop/iceweasel-plugins/shumway.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O $HOME/Desktop/iceweasel-plugins/privacy.xpi
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O $HOME/Desktop/iceweasel-plugins/uBlock-Origin.xpi
+wget https://mega.nz/meganz.xpi -O $HOME/Desktop/iceweasel-plugins/mega.xpi
 apt-get install -y xul-ext-https-finder
 apt-get install -y xul-ext-https-everywhere
 
 # LXDE startup modifier
 mkdir startup
-mkdir ../Music/.startup
-wget http://www.windows93.net/c/sys/boot/boot.ogg -O ../Music/.startup/startup.ogg
+mkdir $HOME/Music/.startup
+wget http://www.windows93.net/c/sys/boot/boot.ogg -O $HOME/Music/.startup/startup.ogg
+
+# The reason that an amixer command is in this file is because an odd error occured where when
+# I started my computer, sound would be muted. Feel free to remove it if you wish. I do not know if 
+# it is just due to my hardware, or something else. This command fixes it for me though.
+
 echo "
 @amixer sset Master unmute
 @play -t ogg -v 0.40 ~/Music/.startup/startup.ogg
@@ -747,13 +742,13 @@ echo "
 @qtox
 @lxpanel --profile LXDE
 @pcmanfm --desktop --profile LXDE
-@xscreensaver -no-splash" > ../.config/lxsession/LXDE/autostart
+@xscreensaver -no-splash" > $HOME/.config/lxsession/LXDE/autostart
 # Startup Readme
 echo "If you don't like the startup sound I added, delete it using
 sudo rm -r -f ~/Music/.startup
 and remove it from your ~/.config/lxsession/LXDE/auotstart file
 
-NOTE: I AM NOT AFFILIATED WITH THE WINDOWS 93 JOKE SITE" > startup/README
+NOTE: I AM NOT AFFILIATED WITH THE WINDOWS 93 JOKE SITE" > $HOME/Desktop/startup/README
 
 
 # Make desktop defaults, design, background
@@ -821,12 +816,12 @@ guess_default=true
 lxde=true
 
 [Environment]
-menu_prefix=lxde-" > ../.config/lxsession/LXDE/desktop.conf
+menu_prefix=lxde-" > $HOME/.config/lxsession/LXDE/desktop.conf
 
 echo "[special_cases]
 synaptic=synaptic-pkexec
 soffice.bin=libreoffice
-x-terminal-emulator=lxterminal" > ../.config/lxpanel/launchtaskbar.cfg
+x-terminal-emulator=lxterminal" > $HOME/.config/lxpanel/launchtaskbar.cfg
 
 echo "
 # lxpanel <profile> config file. Manually editing is not recommended.
@@ -978,7 +973,7 @@ Plugin {
     }
   }
 }
- " > ../.config/lxpanel/LXDE/panels/panel
+ " > $HOME/.config/lxpanel/LXDE/panels/panel
 
 # Desktop Icons
 #Hexchat
@@ -1000,7 +995,7 @@ Actions=SafeMode;
 [Desktop Action SafeMode]
 Name=Open Safe Mode
 Name[en_GB]=Open Safe Mode
-Exec=hexchat --no-auto --no-plugins" > hexchat.desktop
+Exec=hexchat --no-auto --no-plugins" > $HOME/Desktop/hexchat.desktop
 
 # Keepass
 echo "[Desktop Entry]
@@ -1012,7 +1007,7 @@ Terminal=false
 Type=Application
 StartupNotify=false
 Categories=Utility;
-MimeType=application/x-keepass2;" > Keepass.desktop
+MimeType=application/x-keepass2;" > $HOME/Desktop/Keepass.desktop
 
 #Iceweasel
 echo "
@@ -1030,7 +1025,7 @@ Icon=iceweasel
 Categories=Network;WebBrowser;
 MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
 StartupWMClass=Iceweasel
-StartupNotify=true" > Iceweasel.desktop
+StartupNotify=true" > $HOME/Desktop/Iceweasel.desktop
 
 #VLC
 echo "[Desktop Entry]
@@ -1042,7 +1037,7 @@ Exec=/usr/bin/vlc --started-from-file %U
 TryExec=/usr/bin/vlc
 Icon=vlc
 Terminal=false
-Type=Application" > vlc.desktop
+Type=Application" > $HOME/Desktop/vlc.desktop
 
 #qtox
 echo "[Desktop Entry]
@@ -1052,17 +1047,17 @@ Exec=qtox
 Icon=/usr/share/icons/qTox/qTox.png
 Terminal=false
 Type=Application
-StartupNotify=false" > qtox.desktop
+StartupNotify=false" > $HOME/Desktop/qTox.desktop
 
 #Tor
 echo "[Desktop Entry]
 Name=Tor
 GenericName=Tor, the Onion Browser
-Exec=/opt/tor/tor-browser_en-US/start-tor-browser.desktop
+Exec=/opt/tor/tor-browser_en-US/Browser/start-tor-browser.desktop
 Icon=/opt/tor/tor-browser_en-US/Browser/browser/icons/mozicon128.png
 Terminal=false
 Type=Application
-StartupNotify=false" > tor.desktop
+StartupNotify=false" > $HOME/Desktop/tor.desktop
 
 #Evolution
 echo "[Desktop Entry]
@@ -1076,23 +1071,25 @@ Terminal=false
 Type=Application
 Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
 StartupNotify=true
-MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;" > evolution.desktop
-#desktop background
-mkdir ../Pictures/.wallpaper
-wget http://choco.neocities.org/Pics/background1.jpg -O ../Pictures/.wallpaper/Blue-Ripple.jpg
-wget http://choco.neocities.org/Pics/background2.jpg -O ../Pictures/.wallpaper/4Chin1.jpg
-wget http://choco.neocities.org/Pics/background3.jpg -O ../Pictures/.wallpaper/4Chin2.jpg
-wget http://choco.neocities.org/Pics/background4.jpg -O ../Pictures/.wallpaper/Vinyl.jpg
-wget http://choco.neocities.org/Pics/background5.png -O ../Pictures/.wallpaper/LAIN.png
-wget http://choco.neocities.org/Pics/background6.jpeg -O ../Pictures/.wallpaper/Oh-Noes.jpeg
-wget http://choco.neocities.org/Pics/background7.jpg -O ../Pictures/.wallpaper/Dino.jpg
-wget http://www.pokehidden.net/banned_from_equestria_daily/wallpaper.jpg -O ../Pictures/.wallpaper/Clip-Clop.jpg
+MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;
+" > $HOME/Desktop/evolution.desktop
+
+# Desktop background
+mkdir $HOME/Pictures/.wallpaper
+wget http://choco.neocities.org/Pics/background1.jpg -O $HOME/Pictures/.wallpaper/Blue-Ripple.jpg
+wget http://choco.neocities.org/Pics/background2.jpg -O $HOME/Pictures/.wallpaper/4Chin1.jpg
+wget http://choco.neocities.org/Pics/background3.jpg -O $HOME/Pictures/.wallpaper/4Chin2.jpg
+wget http://choco.neocities.org/Pics/background4.jpg -O $HOME/Pictures/.wallpaper/Vinyl.jpg
+wget http://choco.neocities.org/Pics/background5.png -O $HOME/Pictures/.wallpaper/LAIN.png
+wget http://choco.neocities.org/Pics/background6.jpeg -O $HOME/Pictures/.wallpaper/Oh-Noes.jpeg
+wget http://choco.neocities.org/Pics/background7.jpg -O $HOME/Pictures/.wallpaper/Dino.jpg
+wget http://www.pokehidden.net/banned_from_equestria_daily/wallpaper.jpg -O $HOME/Pictures/.wallpaper/Clip-Clop.jpg
 
 echo "
 [*]
 wallpaper_mode=stretch
 wallpaper_common=1
-wallpaper=../../../Pictures/.wallpaper/4Chin2.jpg
+wallpaper=$HOME/Pictures/.wallpaper/4Chin2.jpg
 desktop_bg=#000000
 desktop_fg=#ffffff
 desktop_shadow=#000000
@@ -1105,7 +1102,7 @@ show_mounts=0
 
 [trash:///]
 x=1349
-y=791" > ../.config/pcmanfm/LXDE/desktop-items-0.conf
+y=791" > $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
 
 # Final steps
 apt-get update
@@ -1120,7 +1117,7 @@ alsactl store
 update-menus
 # Keep this in please!
 # Sometimes when LightDM is installed, that file becomes corrupted. 
-mv ../.Xauthority ../.Xauthority.old
+mv $HOME/.Xauthority $HOME/.Xauthority.old
 
 # End
 clear
@@ -1173,8 +1170,8 @@ echo "
                                      | |   ) || |   | |     | |      | |   (_)   
                                      | (__/  )| (___) |  ___) (___   | |    _ 
                                      (______/ (_______)  \_______/   )_(   (_)"
-echo "Press r to restart, or press q if you wish to exit [R/q]"
-echo "this script and preform more commands."
+echo "Press r to restart, or press q if you wish to exit"
+echo "this script and preform more commands. [R/q]"
 read ans
 
 if [ "${ans:0:1}" = "R" -o "${ans:0:1}" = "r" ]; then
