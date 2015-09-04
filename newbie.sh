@@ -86,14 +86,14 @@ echo "
 echo "To continue, type c. To quit, type q [C/q]"
 read ans
 
-if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
+if [ "${ans:0:1}" = "C" -o "${ans:0:1}" = "c" ]; then
 echo " "
 echo "Continuing..."
 sleep 2
 clear
 fi
 
-if [ "${ans:0:1}" = "N" -o "${ans:0:1}" = "n" ]; then
+if [ "${ans:0:1}" = "Q" -o "${ans:0:1}" = "q" ]; then
 clear
 echo "Ok then..."
 echo "                                          .....                                                
@@ -475,7 +475,23 @@ apt-get install -y --force-yes i2p-keyring
 echo "The I2P Network is much like tor, only it's a different network and runs on Java.
 Use this as an alternative to tor if you wish. If you want to remove, preform:
 rm /etc/apt/sources.list.d/i2p.list
-apt-get remove --purge ip2 ip2-keyring" > anon/i2p
+apt-get remove --purge ip2 ip2-keyring
+
+Instructions taken straight from the i2p website:
+Using these I2P packages the I2P router can be started in the following three ways:
+
+on demand using the i2prouter script. Simply run i2prouter start from a command prompt. (Note: Do not use sudo or run it as root!)
+    on demand without the java service wrapper (needed on non-Linux/non-x86 systems) by running i2prouter-nowrapper. (Note: Do not use sudo or run it as root!)
+    as a service that automatically runs when your system boots, even before logging in. The service can be enabled with dpkg-reconfigure i2p as root or using sudo. This is the recommended means of operation.
+
+When installing for the first time, please remember to adjust your NAT/firewall if you can. The ports to forward can be found on the network configuration page in the router console. If guidance with respect to forwarding ports is needed, you may find portforward.com to be helpful.
+
+Please review and adjust the bandwidth settings on the configuration page, as the default settings of 96 KB/s down / 40 KB/s up are fairly conservative.
+
+If you want to reach eepsites via your browser, have a look on the browser proxy setup page for an easy howto.
+
+For more information, see: https://geti2p.net/en/download/debian#Post-install_work
+" > anon/i2p
 
 # Communication tools
 apt-get install -y evolution
@@ -1063,13 +1079,14 @@ StartupNotify=true
 MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;" > evolution.desktop
 #desktop background
 mkdir ../Pictures/.wallpaper
-wget http://choco.neocities.org/Pics/background1.jpg -O ../Pictures/.wallpaper/Blue_Ripple.jpg
+wget http://choco.neocities.org/Pics/background1.jpg -O ../Pictures/.wallpaper/Blue-Ripple.jpg
 wget http://choco.neocities.org/Pics/background2.jpg -O ../Pictures/.wallpaper/4Chin1.jpg
 wget http://choco.neocities.org/Pics/background3.jpg -O ../Pictures/.wallpaper/4Chin2.jpg
 wget http://choco.neocities.org/Pics/background4.jpg -O ../Pictures/.wallpaper/Vinyl.jpg
 wget http://choco.neocities.org/Pics/background5.png -O ../Pictures/.wallpaper/LAIN.png
-wget http://choco.neocities.org/Pics/background6.jpeg -O ../Pictures/.wallpaper/Oh_Noes.jpeg
+wget http://choco.neocities.org/Pics/background6.jpeg -O ../Pictures/.wallpaper/Oh-Noes.jpeg
 wget http://choco.neocities.org/Pics/background7.jpg -O ../Pictures/.wallpaper/Dino.jpg
+wget http://www.pokehidden.net/banned_from_equestria_daily/wallpaper.jpg -O ../Pictures/.wallpaper/Clip-Clop.jpg
 
 echo "
 [*]
