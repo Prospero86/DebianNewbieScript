@@ -7,18 +7,25 @@ This is a script designed for the users of 4Chan's daily Friendly Linux Thread (
 This script is designed to slightly rice a new Debian install, add some privacy features, add some good GNU/Linux programs, remove all desktop enviorments, and add a light-weight one called LXDE. LXDE looks like the classic Windows' interface, so it is better for newbies who are most likley switching to GNU/Linux from Windows.
 
 ##How to install!
-**you must run it in a virtual console by pressing <code>ctrl</code> + <code>alt</code> + <code>F1</code>.** You need to do this as the DEs are being moved around and what not, you will lose the output. At the end there is stuff you need to see. When in the virtual terminal, Login as yourself.
-
-Go to the folder by opening up the virtual terminal and preforming 
-
-<code>cd ~/Desktop</code>.
-
 Get the script from this link (https://raw.githubusercontent.com/Chocolate-Chip-Computing/DebianNewbieScript/master/newbie.sh) 
 
-(you can download it through your currently installed web browser. Just make sure it downloads to the desktop)
+You should be able to wget it. Try going to your folder of choice (I reccomend the desktop), and do
+
+<code>wget --no-check-certificate https://raw.githubusercontent.com/Chocolate-Chip-Computing/DebianNewbieScript/master/newbie.sh</code>
+
+If wget isn't installed (which it should be) then you should be able to just download it though a pre-installed web browser on your DE. If neither of these options work, then you are screwed.
+
+**you must run it in a virtual console by pressing <code>ctrl</code> + <code>alt</code> + <code>F1</code>.** You need to do this as the DEs are being moved around and what not, you will lose the output. At the end there is stuff you need to see. When in the virtual terminal, Login as yourself.
+
+Go to the folder by opening up the virtual terminal, then change to the directory the script is in. For example,
+
+<code>cd ~/Desktop</code>
+
 then run the script as
 
 <code>su -m -p -c ./newbie.sh</code>
+
+(YOU MUST RUN THE SCRIPT WITH THESE VARIABLES!)
 
 Enter the root password you chose at the time of install.
 
