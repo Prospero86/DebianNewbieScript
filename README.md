@@ -25,7 +25,10 @@ Enter the root password you chose at the time of install.
 
 If you recieve any errors, such as "Permission Denied", preform 
 
-<code>su -c chmod 777 newbie.sh</code>
+<code>su</code>
+
+then preform
+<code>chmod 665 newbie.sh</code>
 
 This will change the permissions and you should be able to run it
 
