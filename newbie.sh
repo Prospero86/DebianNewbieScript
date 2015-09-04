@@ -83,17 +83,17 @@ echo "
 (____)(____)(_)\_)(______)(_/\_)
 (and that is the RIGHT WAY of saying it!)
 "
-echo "To continue, type c. To quit, type q"
+echo "To continue, type c. To quit, type q [C/q]"
 read ans
 
-if [ $ans = c -o $ans = C -o $ans = continue -o $ans = Continue -o $ans = CONTINUE ]; then
+if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
 echo " "
 echo "Continuing..."
 sleep 2
 clear
 fi
 
-if [ $ans = q -o $ans = Q -o $ans = quit -o $ans = Quit -o $ans = QUIT ]; then
+if [ "${ans:0:1}" = "N" -o "${ans:0:1}" = "n" ]; then
 clear
 echo "Ok then..."
 echo "                                          .....                                                
@@ -161,11 +161,11 @@ echo "
 Debian Newbie Script v0.2.3 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
-under certain conditions; type d for details, or c to continue.
+under certain conditions; type d for details, or c to continue. [C/d]
 "
 read ans
 
-if [ $ans = d -o $ans = D -o $ans = details -o $ans = Details -o $ans = DETAILS ]; then
+if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
 echo "
     Debian Newbie Script v0.2.3 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
@@ -191,7 +191,7 @@ echo " "
 echo "Now continuing..."
 fi
 
-if [ $ans = c -o $ans = C -o $ans = continue -o $ans = Continue -o $ans = CONTINUE ]; then
+if [ "${ans:0:1}" = "C" -o "${ans:0:1}" = "c" ]; then
 clear
     echo "
 Very well. The licence terms can be viewed at
@@ -199,8 +199,14 @@ https://gnu.org/licences
 "
     echo "Now Continuing..."
 fi
-
+clear
+echo "
+Very well. The licence terms can be viewed at
+https://gnu.org/licences
+"
+echo "Now Continuing..."
 # Confirm Script 1
+clear
 echo " "
 echo " "
 echo "Please note it is EXTREMELY IMPORTANT to have this script running from your"
@@ -209,13 +215,13 @@ echo " "
 echo "Would you like to continue? [Y/n]?"
 read ans
 
-if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
 echo " "
 echo "Now continuing"
 clear
 fi
 
-if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+if [ "${ans:0:1}" = "N" -o "${ans:0:1}" = "n" ]; then
     echo " "
     echo "Exiting..."
     clear
@@ -224,7 +230,6 @@ fi
 echo " "
 echo "The script is starting."
 echo " "
-su -m -p root -c echo " "
 if [ "`whoami`" != "root" ]; then
     echo " "
     echo "Uh oh!"
@@ -252,13 +257,13 @@ echo "AND PRESS CTRL + ALT + F1 TO SWITCH TO A VIRTUAL CONSOLE!"
 echo "Continue? [Y/n]?"
 read ans
 
-if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]; then
+if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
 echo " "
 echo "Now continuing"
 clear
 fi
 
-if [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]; then
+if [ "${ans:0:1}" = "N" -o "${ans:0:1}" = "n" ]; then
     echo " "
     echo "Exiting..."
     sleep 1
@@ -1073,11 +1078,11 @@ echo "
                                      | |   ) || |   | |     | |      | |   (_)   
                                      | (__/  )| (___) |  ___) (___   | |    _ 
                                      (______/ (_______)  \_______/   )_(   (_)"
-echo "Press r to restart, or press q if you wish to exit"
+echo "Press r to restart, or press q if you wish to exit [R/q]"
 echo "this script and preform more commands."
 read ans
 
-if [ $ans = r -o $ans = R -o $ans = restart -o $ans = Restart -o $ans = RESTART ]; then
+if [ "${ans:0:1}" = "R" -o "${ans:0:1}" = "r" ]; then
 sleep 1
 clear
 echo "
@@ -1125,9 +1130,9 @@ reboot
 fi
 exit
 
-if [ $ans = q -o $ans = Q -o $ans = quit -o $ans = Quit -o $ans = QUIT ]; then
+if [ "${ans:0:1}" = "Q" -o "${ans:0:1}" = "q" ]; then
 clear
-echo "Ok then. Just remember you njeed to restart your computer as soon as you are done with"
+echo "Ok then. Just remember you need to restart your computer as soon as you are done with"
 echo "whatever it is you need to do. Your comuter is not usable in its current state, except for"
 echo "this terminal. Preform your commands, then preform the command"
 echo "restart"
