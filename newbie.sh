@@ -432,9 +432,12 @@ apt-get install -y synaptic
 # Gnash is wget due to it not being in the repo for jessie. Adding the 
 # backported repo would cause too many problems for a n00b
 wget http://http.us.debian.org/debian/pool/main/g/gnash/gnash_0.8.11~git20150419-1~bpo8+1_i386.deb -O /tmp/gnash.deb
+wget http://http.us.debian.org/debian/pool/main/g/gnash/gnash-common_0.8.11~git20150419-1~bpo8+1_i386.deb -O /tmp/gnash-common.deb
 dpkg -i /tmp/gnash.deb
+dpkg -i /tmp/gnash-common.deb
 apt-get -f -y install
 rm /tmp/gnash.deb
+rm /tmp/gnash-common.deb
 
 # Cursor Packages 
 # THESE ARE A DEPENDENCY FURTHER IN THE SCRIPT
