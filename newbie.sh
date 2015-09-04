@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.3 beta
+# Debian Newbie Script v0.2.4 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -151,14 +151,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.3 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.4 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v0.2.3 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.4 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type d for details, or c to continue. [C/d]
@@ -167,7 +167,7 @@ read ans
 
 if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.2.3 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.4 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -319,6 +319,16 @@ apt-get install -y git
 apt-get install -y apt-transport-http
 apt-get install -y apt-transport-https
 apt-get install -y aptitude
+apt-get install -y alsa-base
+apt-get install -y alsa-base-udeb
+apt-get install -y alsa-tools
+apt-get install -y alsa-utils
+apt-get install -y alsa-utils-udeb
+apt-get install -y pulseaudio
+apt-get install -y pavumeter
+apt-get install -y pavucontrol
+apt-get install -y paprefs
+apt-get install -y paman
 apt-get install -y build-essential
 apt-get install -y sudo
 apt-get install -y wget
@@ -412,6 +422,7 @@ apt-get install -y screenfetch
 apt-get install -y shutter
 apt-get install -y qbittorrent
 apt-get install -y synaptic
+apt-get install -y gnash
 
 # Cursor Packages 
 # THESE ARE A DEPENDENCY FURTHER IN THE SCRIPT
@@ -481,6 +492,8 @@ apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get install -y qtox
+mkdir /usr/share/icons/qTox
+wget https://wiki.tox.chat/lib/tpl/vector/user/logo.png -O /usr/share/icons/qTox/qTox.png
 
 # Shutter Docs
 echo "Shutter is a tool much like Snipping Tool for Windows Vista and later.
@@ -568,6 +581,16 @@ I have added LXDE to this script as I use it myself, it is much like the old Win
 and it is just good for beginners, imho. You can pick another one once you know what you're doing, I guess.
 
 To configure your network, use the command nmtui. This is network-manager's terminal interface.
+
+To remove the wallpaper this script downloaded, do
+
+sudo rm ~/Pictures/.wallpaper/4Chin2.jpg and change the desktop settings like you normally would.
+
+I suggest putting all backgrounds in this folder. I have included a large number of wallpapers for you
+to choose from.
+
+I do not know who to credit for the wallpaper except for the LAIN one. Credit goes to 
+http://fauux.neocitie.org/
 
 Soon, I will be writing more documentation for all the packages I installed, made for the point of view of n00bs.
 
@@ -908,7 +931,7 @@ Plugin {
   type=launchbar
   Config {
     Button {
-      id=lxde-screenlock.desktop
+      id=lxde-screenlock.deskto
     }
     Button {
       id=lxde-logout.desktop
@@ -986,7 +1009,7 @@ echo "[Desktop Entry]
 Name=qTox
 GenericName=Tox
 Exec=qtox
-Icon=qtox
+Icon=/usr/share/icons/qTox/qTox.png
 Terminal=false
 Type=Application
 StartupNotify=false" > qtox.desktop
@@ -1014,7 +1037,34 @@ Type=Application
 Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
 StartupNotify=true
 MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;" > evolution.desktop
+#desktop background
+mkdir ../Pictures/.wallpaper
+wget http://choco.neocities.org/Pics/background1.jpg -O ../Pictures/.wallpaper/Blue_Ripple.jpg
+wget http://choco.neocities.org/Pics/background2.jpg -O ../Pictures/.wallpaper/4Chin1.jpg
+wget http://choco.neocities.org/Pics/background3.jpg -O ../Pictures/.wallpaper/4Chin2.jpg
+wget http://choco.neocities.org/Pics/background4.jpg -O ../Pictures/.wallpaper/Vinyl.jpg
+wget http://choco.neocities.org/Pics/background5.png -O ../Pictures/.wallpaper/LAIN.png
+wget http://choco.neocities.org/Pics/background6.jpeg -O ../Pictures/.wallpaper/Oh_Noes.jpeg
+wget http://choco.neocities.org/Pics/background7.jpg -O ../Pictures/.wallpaper/Dino.jpg
 
+echo "
+[*]
+wallpaper_mode=stretch
+wallpaper_common=1
+wallpaper=~/Pictures/.wallpaper/4Chin2.jpg
+desktop_bg=#000000
+desktop_fg=#ffffff
+desktop_shadow=#000000
+desktop_font=Sans 12
+show_wm_menu=0
+sort=mtime;ascending;
+show_documents=1
+show_trash=1
+show_mounts=0
+
+[trash:///]
+x=1349
+y=791" > ../.config/pcmanfm/LXDE/desktop-items-0.conf
 
 # Final steps
 apt-get update
