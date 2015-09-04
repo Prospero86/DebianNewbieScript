@@ -444,12 +444,12 @@ apt-get install -y tor
 wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O /tmp/tor.tar.xz
 tar xvf /tmp/tor.tar.xz -C /opt/tor
 rm /tmp/tor.tar.xz
-mkdir anon
+mkdir $HOME/Desktop/anon
 echo "This is the Tor Browser.
 To configure it, simpily double click the tor icon, wait a few moments, and it will open.
 If you wish to remove tor, preform the commands:
 apt-get remove --purge tor
-rm -r -f /opt/tor" > anon/tor
+rm -r -f /opt/tor" > $HOME/Desktop/anon
 
 # I2P Script
 echo "deb http://deb.i2p2.no/ jessie main
@@ -612,8 +612,12 @@ I suggest putting all backgrounds in this folder. To remove more wallpapers, do
 
 sudo rm -f $HOME/Pictures/.wallpaper/[wallpaper name here]
 
-I do not know who to credit for the wallpaper except for the LAIN, and the clip-clop one. Credit goes to 
-http://fauux.neocities.org/ and Pokehidden.
+I do not know who to credit for the wallpaper except for the LAIN, clip-clop, and the 2 GNU ones. 
+Credit goes to 
+http://fauux.neocities.org/, Pokehidden and https://gnu.org/graphics
+
+http://gnu.org/graphics is also where a large number of ASCII art in the script came from. The rest
+came from an ASCII Art generator. I do not remember where Mario came from.
 
 Soon, I will be writing more documentation for all the packages I installed, made for the point of view of n00bs.
 
@@ -709,7 +713,7 @@ and also post your keys to a site your friends can trust.
 Thank you for reading this tutorial." > anon/GPG
 
 # Iceweasel downloads
-mkdir iceweasel-plugins
+mkdir $HOME/Desktop/iceweasel-plugins
 echo "These are for your Iceweasel installtion. Please add them using the add-on's menu.
 Please. 
 Also, add this: 
@@ -722,7 +726,7 @@ apt-get install -y xul-ext-https-finder
 apt-get install -y xul-ext-https-everywhere
 
 # LXDE startup modifier
-mkdir startup
+mkdir $HOME/Desktop/startup
 mkdir $HOME/Music/.startup
 wget http://www.windows93.net/c/sys/boot/boot.ogg -O $HOME/Music/.startup/startup.ogg
 
@@ -1079,6 +1083,8 @@ wget http://choco.neocities.org/Pics/background5.png -O $HOME/Pictures/.wallpape
 wget http://choco.neocities.org/Pics/background6.jpeg -O $HOME/Pictures/.wallpaper/Oh-Noes.jpeg
 wget http://choco.neocities.org/Pics/background7.jpg -O $HOME/Pictures/.wallpaper/Dino.jpg
 wget http://www.pokehidden.net/banned_from_equestria_daily/wallpaper.jpg -O $HOME/Pictures/.wallpaper/Clip-Clop.jpg
+wget https://gnu.org/graphics/gnu-linux-color-wallpaper.png -O $HOME/Pictures/.wallpaper/GNU+Linux.png
+wget https://gnu.org/graphics/gnuemacsref.png -O $HOME/Pictures/.wallpaper/Emacs.png
 
 echo "
 [*]
@@ -1217,6 +1223,7 @@ echo "Ok then. Just remember you need to restart your computer as soon as you ar
 echo "whatever it is you need to do. Your comuter is not usable in its current state, except for"
 echo "this terminal. Preform your commands, then preform the command"
 echo "sudo reboot"
+echo "then enter your own password."
 sleep 3
 clear
 echo "Now re-entering BASH"
