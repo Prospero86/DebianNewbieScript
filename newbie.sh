@@ -1106,6 +1106,7 @@ apt-get dist-upgrade -y
 apt-get -f -y install
 apt-get autoremove --purge -y
 apt-get autoclean
+usermod -aG sudo $USER
 dpkg-reconfigure ntp
 amixer sset Master unmute
 alsactl store
@@ -1120,12 +1121,6 @@ echo " "
 echo "The script has finished"
 echo " "
 echo "Please check the new desktop folders for additional information"
-echo " "
-echo "Do yourself a favor:"
-echo " "
-echo "After this ends, copy the following into another terminal"
-echo 'su -c usermod -aG sudo `whoami`'
-echo "Copy it exactly! Make sure to enter the root password, and not your own!"
 echo " "
 echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
 echo " "
