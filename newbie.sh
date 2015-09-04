@@ -931,7 +931,7 @@ Plugin {
   type=launchbar
   Config {
     Button {
-      id=lxde-screenlock.deskto
+      id=lxde-screenlock.desktop
     }
     Button {
       id=lxde-logout.desktop
