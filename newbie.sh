@@ -710,7 +710,7 @@ Don't automatically trust something just because it has been PGP Signed/Encrypte
 make fradulent keys using your email address. That is why it is important to make your keys expire in a short amount of time, 
 and also post your keys to a site your friends can trust.
 
-Thank you for reading this tutorial." > anon/GPG
+Thank you for reading this tutorial." > $HOME/Desktop/anon/GPG
 
 # Iceweasel downloads
 mkdir $HOME/Desktop/iceweasel-plugins
