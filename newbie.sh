@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.4 beta
+# Debian Newbie Script v0.2.5 beta
 # This script is designed to paritally rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -151,14 +151,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.4 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.5 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # Licence Script
 echo "
-Debian Newbie Script v0.2.4 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.5 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type d for details, or c to continue. [C/d]
@@ -167,7 +167,7 @@ read ans
 
 if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.2.4 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.5 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -319,16 +319,6 @@ apt-get install -y git
 apt-get install -y apt-transport-http
 apt-get install -y apt-transport-https
 apt-get install -y aptitude
-apt-get install -y alsa-base
-apt-get install -y alsa-base-udeb
-apt-get install -y alsa-tools
-apt-get install -y alsa-utils
-apt-get install -y alsa-utils-udeb
-apt-get install -y pulseaudio
-apt-get install -y pavumeter
-apt-get install -y pavucontrol
-apt-get install -y paprefs
-apt-get install -y paman
 apt-get install -y build-essential
 apt-get install -y sudo
 apt-get install -y wget
@@ -357,6 +347,20 @@ deb-src http://http.us.debian.org/debian/ jessie-updates main
 
  " > /etc/apt/sources.list
 apt-get update
+
+# more esential packages
+apt-get install -y alsa-base
+apt-get install -y alsa-base-udeb
+apt-get install -y alsa-tools
+apt-get install -y alsa-utils
+apt-get install -y alsa-utils-udeb
+apt-get install -y alsa-tools-gui
+apt-get install -y alsamixergui
+apt-get install -y pulseaudio
+apt-get install -y pavumeter
+apt-get install -y pavucontrol
+apt-get install -y paprefs
+apt-get install -y paman
 
 # install LXDE, remove some bloat, personalization
 apt-get install -y --no-install-recommends lxde-core
@@ -422,7 +426,13 @@ apt-get install -y screenfetch
 apt-get install -y shutter
 apt-get install -y qbittorrent
 apt-get install -y synaptic
-apt-get install -y gnash
+
+# Gnash is wget due to it not being in the repo for jessie. Adding the 
+# backported repo would cause too many problems for a n00b
+wget http://http.us.debian.org/debian/pool/main/g/gnash/gnash_0.8.11~git20150419-1~bpo8+1_i386.deb -O /tmp/gnash.deb
+dpkg -i /tmp/gnash.deb
+apt-get -f -y install
+rm /tmp/gnash.deb
 
 # Cursor Packages 
 # THESE ARE A DEPENDENCY FURTHER IN THE SCRIPT
@@ -1070,10 +1080,12 @@ y=791" > ../.config/pcmanfm/LXDE/desktop-items-0.conf
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get -f install -y
+apt-get -f -y install
 apt-get autoremove --purge -y
 apt-get autoclean
 dpkg-reconfigure ntp
+amixer sset Master unmute
+alsactl store
 update-menus
 # Keep this in please!
 # Sometimes when LightDM is installed, that file becomes corrupted. 
