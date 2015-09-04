@@ -603,19 +603,14 @@ and it is just good for beginners, imho. You can pick another one once you know 
 
 To configure your network, use the command nmtui. This is network-manager's terminal interface.
 
-I have included a large number of wallpapers for you to choose from. Unfotuniatly I can not figure out
-how to make a default one. That is why I suggest you right click the desktop, and go to the directory
+I have included a large number of wallpapers for you to choose from. If you want to remove the current 
+wallpaper, then do:
 
-$HOME/Pictures 
+sudo rm $HOME/Pictures/.wallpapers/4Chin.png
 
-right click again, and select "show hidden". Then go to .wallpapers 
+I suggest putting all backgrounds in this folder. To remove more wallpapers, do
 
-choose from there.
-
-I suggest putting all backgrounds in this folder. I have included a large number of wallpapers for you
-to choose from. To remove these wallpapers, do
-
-sudo rm -f ~/Pictures/.wallpaper/[wallpaper name here]
+sudo rm -f $HOME/Pictures/.wallpaper/[wallpaper name here]
 
 I do not know who to credit for the wallpaper except for the LAIN one. Credit goes to 
 http://fauux.neocities.org/
