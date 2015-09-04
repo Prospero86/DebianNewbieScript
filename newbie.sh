@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.6 beta
+# Debian Newbie Script v0.2.7 beta
 # This script is designed to partially rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -90,7 +90,7 @@ read ans
 if [ "${ans:0:1}" = "C" -o "${ans:0:1}" = "c" ]; then
 echo " "
 echo "Continuing..."
-sleep 2
+sleep 1
 clear
 fi
 
@@ -143,27 +143,27 @@ echo "                                          .....
 "
 echo " "
 echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
-sleep 4
+sleep 3
 clear
 exit 1
 fi
 
 echo "Continuing..."
-sleep 2
+sleep 1
 clear
 echo " "
 echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.6 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.7 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # License Script
 echo "
-Debian Newbie Script v0.2.6 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.7 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type d for details, or c to continue. [C/d]
@@ -172,7 +172,7 @@ read ans
 
 if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.2.6 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.7 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -194,7 +194,7 @@ echo "
 "
 echo " "
 echo "Now continuing..."
-sleep 2
+sleep 1
 fi
 
 if [ "${ans:0:1}" = "C" -o "${ans:0:1}" = "c" ]; then
@@ -280,8 +280,16 @@ echo "
 # the sake of users who wish to use them. Please don't.
 
 # The MAIN Debian Repo
-deb ftp://ftp.us.debian.org/Debian/ jessie main
-deb-src ftp://ftp.us.debian.org/Debian/ jessie main
+deb ftp://ftp.debian.org/debian/ jessie main
+deb-src ftp://ftp.debian.org/debian/ jessie main
+
+# Debian security updates
+deb http://security.debian.org/ jessie/updates main
+deb-src http://security.debian.org/ jessie/updates main
+
+# Debian updates (previously known as Volatile)
+deb http://http.debian.org/debian/ jessie-updates main
+deb-src ftp://ftp.debian.org/debian/ jessie-updates main
 
 " > /etc/apt/sources.list
 
@@ -313,6 +321,11 @@ apt-get install -y ntp
 
 # Change ftp to http now that apt-transport-http(s) is installed
 echo "
+I highly reccomend you put these into your sources.list folder. Do this by doing
+sudo nano /etc/apt/sources.list
+
+Change the "US" to your own country's country code. HTTP is faster than ftp.
+
 # These are your Debian source files. Whenever changing them, preform apt-get update
 # or aptitude update. To use non-free packages, add the words contrib non-free to the
 # ends of these lines. It is highly recommended that you DO NOT USE NON-FREE PACKAGES.
@@ -332,7 +345,7 @@ deb http://http.us.debian.org/Debian/ jessie-updates main
 deb-src http://http.us.debian.org/Debian/ jessie-updates main
 
 
- " > /etc/apt/sources.list
+ " > $HOME/Desktop/SOURCES.LIST
 apt-get update
 
 # more essential packages
