@@ -346,7 +346,6 @@ deb-src http://http.us.debian.org/Debian/ jessie-updates main
 
 
  " > $HOME/Desktop/SOURCES.LIST
-apt-get update
 
 # more essential packages
 apt-get install -y alsa-base
