@@ -340,7 +340,7 @@ deb http://http.us.debian.org/Debian/ jessie-updates main
 deb-src http://http.us.debian.org/Debian/ jessie-updates main
 
 
- " > $HOME/Desktop/SOURCES.LIST
+ " > "$HOME/Desktop/SOURCES.LIST"
 
 # more essential packages
 apt-get install -y alsa-base
@@ -452,12 +452,12 @@ apt-get install -y tor
 wget https://www.torproject.org/dist/torbrowser/5.0.2/tor-browser-linux32-5.0.2_en-US.tar.xz -O /tmp/tor.tar.xz
 tar xvf /tmp/tor.tar.xz -C /opt/tor
 rm /tmp/tor.tar.xz
-mkdir $HOME/Desktop/anon
+mkdir "$HOME/Desktop/anon"
 echo "This is the Tor Browser.
 To configure it, simply double click the tor icon, wait a few moments, and it will open.
 If you wish to remove tor, preform the commands:
 apt-get remove --purge tor
-rm -r -f /opt/tor" > $HOME/Desktop/anon
+rm -r -f /opt/tor" > "$HOME/Desktop/anon"
 
 # I2P Script
 echo "deb http://deb.i2p2.no/ jessie main
@@ -493,7 +493,7 @@ conservative.
 If you want to reach eepsites via your browser, have a look on the browser proxy setup page for an easy howto.
 
 For more information, see: https://geti2p.net/en/download/Debian#Post-install_work
-" > $HOME/Desktop/anon/i2p
+" > "$HOME/Desktop/anon/i2p"
 
 # Communication tools
 apt-get install -y evolution
@@ -530,7 +530,7 @@ wget https://wiki.tox.chat/lib/tpl/vector/user/logo.png -O /usr/share/icons/qTox
 
 # Shutter Docs
 echo "Shutter is a tool much like Snipping Tool for Windows Vista and later.
-Simply open it, click selection, select, and press enter. You have now taken a screenshot." > $HOME/Dekstop/tools/Shutter
+Simply open it, click selection, select, and press enter. You have now taken a screenshot." > "$HOME/Dekstop/tools/Shutter"
 
 # Redshift script
 echo "Find an example config file at the Redshift website. 
@@ -596,7 +596,7 @@ lon=[omited]
 screen=1
 
 
-You don't need to use this exactly as it is here, though." > $HOME/Desktop/tools/Redshift
+You don't need to use this exactly as it is here, though." > "$HOME/Desktop/tools/Redshift"
 
 
 # Master Readme
@@ -656,7 +656,7 @@ https://stallman.org/facebook.html
 
 And always refer to your OS as GNU/Linux unless referring to the kernel itself!
 
-Thanks again for using my script!" > $HOME/Desktop/README
+Thanks again for using my script!" > "$HOME/Desktop/README"
 
 # GPG Docs
 echo "This is the documentation for GPG. GPG (full name GNPGP) is a free/Libre version of the PGP encryption
@@ -724,25 +724,25 @@ and also post your keys to a site your friends can trust.
 
 Thank you for reading this tutorial. 
 
-Don't be a Hillary. Use PGP." > $HOME/Desktop/anon/GPG
+Don't be a Hillary. Use PGP." > "$HOME/Desktop/anon/GPG"
 
 # Iceweasel downloads
-mkdir $HOME/Desktop/iceweasel-plugins
+mkdir "$HOME/Desktop/iceweasel-plugins"
 echo "These are for your Iceweasel installation. Please add them using the add-on's menu.
 Please. 
 Also, add this: 
-https://github.com/CrisBRM/user.js" > $HOME/Desktop/iceweasel-plugins/README
-wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O $HOME/Desktop/iceweasel-plugins/shumway.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O $HOME/Desktop/iceweasel-plugins/privacy.xpi
-wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O $HOME/Desktop/iceweasel-plugins/uBlock-Origin.xpi
-wget https://mega.nz/meganz.xpi -O $HOME/Desktop/iceweasel-plugins/mega.xpi
+https://github.com/CrisBRM/user.js" > "$HOME/Desktop/iceweasel-plugins/README"
+wget https://mozilla.github.io/shumway/extension/firefox/shumway.xpi -O "$HOME/Desktop/iceweasel-plugins/shumway.xpi"
+wget https://addons.mozilla.org/firefox/downloads/latest/6623/addon-6623-latest.xpi -O "$HOME/Desktop/iceweasel-plugins/privacy.xpi"
+wget https://addons.mozilla.org/firefox/downloads/latest/607454/addon-607454-latest.xpi -O "$HOME/Desktop/iceweasel-plugins/uBlock-Origin.xpi"
+wget https://mega.nz/meganz.xpi -O "$HOME/Desktop/iceweasel-plugins/mega.xpi"
 apt-get install -y xul-ext-https-finder
 apt-get install -y xul-ext-https-everywhere
 
 # LXDE startup modifier
-mkdir $HOME/Desktop/startup
-mkdir $HOME/Music/.startup
-wget http://www.windows93.net/c/sys/boot/boot.ogg -O $HOME/Music/.startup/startup.ogg
+mkdir "$HOME/Desktop/startup"
+mkdir "$HOME/Music/.startup"
+wget http://www.windows93.net/c/sys/boot/boot.ogg -O "$HOME/Music/.startup/startup.ogg"
 
 # The reason that an amixer command is in this file is because an odd error occurred where when
 # I started my computer, sound would be muted. Feel free to remove it if you wish. I do not know if 
@@ -755,13 +755,13 @@ echo "
 @qtox
 @lxpanel --profile LXDE
 @pcmanfm --desktop --profile LXDE
-@xscreensaver -no-splash" > $HOME/.config/lxsession/LXDE/autostart
+@xscreensaver -no-splash" > "$HOME/.config/lxsession/LXDE/autostart"
 # Startup Readme
 echo "If you don't like the startup sound I added, delete it using
 sudo rm -r -f ~/Music/.startup
 and remove it from your ~/.config/lxsession/LXDE/auotstart file
 
-NOTE: I AM NOT AFFILIATED WITH THE WINDOWS 93 JOKE SITE" > $HOME/Desktop/startup/README
+NOTE: I AM NOT AFFILIATED WITH THE WINDOWS 93 JOKE SITE" > "$HOME/Desktop/startup/README"
 
 
 # Make desktop defaults, design, background
@@ -829,12 +829,12 @@ guess_default=true
 lxde=true
 
 [Environment]
-menu_prefix=lxde-' > $HOME/.config/lxsession/LXDE/desktop.conf
+menu_prefix=lxde-' > "$HOME/.config/lxsession/LXDE/desktop.conf"
 
 echo '[special_cases]
 synaptic=synaptic-pkexec
 soffice.bin=libreoffice
-x-terminal-emulator=lxterminal' > $HOME/.config/lxpanel/launchtaskbar.cfg
+x-terminal-emulator=lxterminal' > "$HOME/.config/lxpanel/launchtaskbar.cfg"
 
 echo '
 # lxpanel <profile> config file. Manually editing is not recommended.
@@ -986,7 +986,7 @@ Plugin {
     }
   }
 }
- ' > $HOME/.config/lxpanel/LXDE/panels/panel
+ ' > "$HOME/.config/lxpanel/LXDE/panels/panel"
 
 # Desktop Icons
 #Hexchat
@@ -1008,7 +1008,7 @@ Actions=SafeMode;
 [Desktop Action SafeMode]
 Name=Open Safe Mode
 Name[en_GB]=Open Safe Mode
-Exec=hexchat --no-auto --no-plugins' > $HOME/Desktop/hexchat.desktop
+Exec=hexchat --no-auto --no-plugins' > "$HOME/Desktop/hexchat.desktop"
 
 # Keepass
 echo '[Desktop Entry]
@@ -1020,7 +1020,7 @@ Terminal=false
 Type=Application
 StartupNotify=false
 Categories=Utility;
-MimeType=application/x-keepass2;' > $HOME/Desktop/Keepass.desktop
+MimeType=application/x-keepass2;' > "$HOME/Desktop/Keepass.desktop"
 
 #Iceweasel
 echo '
@@ -1038,7 +1038,7 @@ Icon=iceweasel
 Categories=Network;WebBrowser;
 MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
 StartupWMClass=Iceweasel
-StartupNotify=true' > $HOME/Desktop/Iceweasel.desktop
+StartupNotify=true' > "$HOME/Desktop/Iceweasel.desktop"
 
 #VLC
 echo '[Desktop Entry]
@@ -1050,7 +1050,7 @@ Exec=/usr/bin/vlc --started-from-file %U
 TryExec=/usr/bin/vlc
 Icon=vlc
 Terminal=false
-Type=Application' > $HOME/Desktop/vlc.desktop
+Type=Application' > "$HOME/Desktop/vlc.desktop"
 
 #qtox
 echo '[Desktop Entry]
@@ -1060,7 +1060,7 @@ Exec=qtox
 Icon=/usr/share/icons/qTox/qTox.png
 Terminal=false
 Type=Application
-StartupNotify=false' > $HOME/Desktop/qTox.desktop
+StartupNotify=false' > "$HOME/Desktop/qTox.desktop"
 
 #Tor
 echo '[Desktop Entry]
@@ -1070,7 +1070,7 @@ Exec=/opt/tor/tor-browser_en-US/Browser/start-tor-browser.desktop
 Icon=/opt/tor/tor-browser_en-US/Browser/browser/icons/mozicon128.png
 Terminal=false
 Type=Application
-StartupNotify=false' > $HOME/Desktop/tor.desktop
+StartupNotify=false' > "$HOME/Desktop/tor.desktop"
 
 #Evolution
 echo '[Desktop Entry]
@@ -1085,22 +1085,22 @@ Type=Application
 Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
 StartupNotify=true
 MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;
-' > $HOME/Desktop/evolution.desktop
+' > "$HOME/Desktop/evolution.desktop"
 
 # Desktop background
-mkdir $HOME/Pictures/.wallpaper
-wget http://choco.neocities.org/Pics/background1.jpg -O $HOME/Pictures/.wallpaper/Blue-Ripple.jpg
-wget http://choco.neocities.org/Pics/background2.jpg -O $HOME/Pictures/.wallpaper/4Chin1.jpg
-wget http://choco.neocities.org/Pics/background3.jpg -O $HOME/Pictures/.wallpaper/4Chin2.jpg
-wget http://choco.neocities.org/Pics/background4.jpg -O $HOME/Pictures/.wallpaper/Vinyl.jpg
-wget http://choco.neocities.org/Pics/background5.png -O $HOME/Pictures/.wallpaper/LAIN.png
-wget http://choco.neocities.org/Pics/background6.jpeg -O $HOME/Pictures/.wallpaper/Oh-Noes.jpeg
-wget http://choco.neocities.org/Pics/background7.jpg -O $HOME/Pictures/.wallpaper/Dino.jpg
-wget http://www.pokehidden.net/banned_from_equestria_daily/wallpaper.jpg -O $HOME/Pictures/.wallpaper/Clip-Clop.jpg
-wget https://gnu.org/graphics/gnu-linux-color-wallpaper.png -O $HOME/Pictures/.wallpaper/GNU+Linux.png
-wget https://gnu.org/graphics/gnuemacsref.png -O $HOME/Pictures/.wallpaper/Emacs.png
+mkdir "$HOME/Pictures/.wallpaper"
+wget http://choco.neocities.org/Pics/background1.jpg -O "$HOME/Pictures/.wallpaper/Blue-Ripple.jpg"
+wget http://choco.neocities.org/Pics/background2.jpg -O "$HOME/Pictures/.wallpaper/4Chin1.jpg"
+wget http://choco.neocities.org/Pics/background3.jpg -O "$HOME/Pictures/.wallpaper/4Chin2.jpg"
+wget http://choco.neocities.org/Pics/background4.jpg -O "$HOME/Pictures/.wallpaper/Vinyl.jpg"
+wget http://choco.neocities.org/Pics/background5.png -O "$HOME/Pictures/.wallpaper/LAIN.png"
+wget http://choco.neocities.org/Pics/background6.jpeg -O "$HOME/Pictures/.wallpaper/Oh-Noes.jpeg"
+wget http://choco.neocities.org/Pics/background7.jpg -O "$HOME/Pictures/.wallpaper/Dino.jpg"
+wget http://www.pokehidden.net/banned_from_equestria_daily/wallpaper.jpg -O "$HOME/Pictures/.wallpaper/Clip-Clop.jpg"
+wget https://gnu.org/graphics/gnu-linux-color-wallpaper.png -O "$HOME/Pictures/.wallpaper/GNU+Linux.png"
+wget https://gnu.org/graphics/gnuemacsref.png -O "$HOME/Pictures/.wallpaper/Emacs.png"
 
-echo '
+echo "
 [*]
 wallpaper_mode=stretch
 wallpaper_common=1
@@ -1117,7 +1117,7 @@ show_mounts=0
 
 [trash:///]
 x=1349
-y=791' > $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
+y=791" > "$HOME/.config/pcmanfm/LXDE/desktop-items-0.conf"
 
 # Final steps
 apt-get update
@@ -1126,14 +1126,14 @@ apt-get dist-upgrade -y
 apt-get -f -y install
 apt-get autoremove --purge -y
 apt-get autoclean
-usermod -aG sudo $USER
+usermod -aG sudo "$USER"
 dpkg-reconfigure ntp
 amixer sset Master unmute
 alsactl store
 update-menus
 # Keep this in please!
 # Sometimes when LightDM is installed, that file becomes corrupted. 
-mv $HOME/.Xauthority $HOME/.Xauthority.old
+mv "$HOME/.Xauthority $HOME/.Xauthority.old"
 
 # End
 clear
