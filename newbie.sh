@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.8 beta
+# Debian Newbie Script v0.2.9 beta
 # This script is designed to partially rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes i386 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -156,14 +156,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.8 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.9 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # License Script
 echo "
-Debian Newbie Script v0.2.8 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.9 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type c to continue, or d for details, [C/d]
@@ -172,7 +172,7 @@ read ans
 
 if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.2.8 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.9 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -434,8 +434,9 @@ apt-get install -y gtk-redshift
 apt-get install -y redshift
 apt-get install -y screenfetch
 apt-get install -y shutter
-apt-get install -y qbittorrent
+apt-get install -y deluge
 apt-get install -y synaptic
+
 
 # Gnash is wget due to it not being in the repo for jessie. Adding the 
 # backported repo would cause too many problems for a n00b
@@ -791,7 +792,7 @@ webbrowser/command=iceweasel
 video_player/command=/usr/bin/vlc
 audio_player/command=/usr/bin/vlc
 image_display/command=gpicview
-bittorent/command=qbittorrent
+bittorent/command=deluge
 tasks/command=lxtask
 document/command=libreoffice
 text_editor/command=leafpad
