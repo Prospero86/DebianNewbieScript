@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.3.1 beta
+# Debian Newbie Script v0.3.2 beta
 # This script is designed to partially rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes i386 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -151,7 +151,7 @@ fi
 
 # License Script
 echo "
-Debian Newbie Script v0.3.1 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.3.2 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type c to continue, or d for details, [C/d]
@@ -160,7 +160,7 @@ read -rn1 ans
 
 if [ "${ans:0:1}" = "D" ] || [ "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.3.1 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.3.2 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
