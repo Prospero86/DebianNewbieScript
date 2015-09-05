@@ -166,7 +166,7 @@ echo "
 Debian Newbie Script v0.2.7 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
-under certain conditions; type d for details, or c to continue. [C/d]
+under certain conditions; type c to continue, or d for details, [C/d]
 "
 read ans
 
@@ -243,7 +243,7 @@ echo " "
 echo "YOU MUST ALSO HAVE THIS RUNNING IN A VIRTUAL CONSOLE. IF YOU DON'T"
 echo "YOU WILL BE UNABLE TO RUN THIS SCRIPT PROPERLY. ABORT THIS SCRIPT NOW"
 echo "AND PRESS CTRL + ALT + F1 TO SWITCH TO A VIRTUAL CONSOLE!"
-echo "Continue? [Y/n]?"
+echo "Continue? [N/y]?"
 read ans
 
 if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
@@ -253,14 +253,27 @@ clear
 fi
 
 if [ "${ans:0:1}" = "N" -o "${ans:0:1}" = "n" ]; then
-    echo " "
-    echo "Exiting..."
-    sleep 1
-    clear
-    exit 1
+clear
+echo " "
+echo "Exiting..."
+sleep 1
+clear
+echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
+sleep 1
+clear
+exit 1
 fi
-
+clear
+echo " "
+echo "Exiting..."
+sleep 1
+clear
+echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
+sleep 1
+clear
+exit 1
 # Last begin echo(s)
+clear
 echo "This begins the automated portion of this script. If you wish to quit, preform:"
 echo "su -c killall newbie.sh"
 echo "In a separate terminal. You will have to manually undo anything past this point."
@@ -288,7 +301,7 @@ deb http://security.debian.org/ jessie/updates main
 deb-src http://security.debian.org/ jessie/updates main
 
 # Debian updates (previously known as Volatile)
-deb http://http.debian.org/debian/ jessie-updates main
+deb ftp://ftp.debian.org/debian/ jessie-updates main
 deb-src ftp://ftp.debian.org/debian/ jessie-updates main
 
 " > /etc/apt/sources.list
@@ -304,6 +317,7 @@ apt-get remove --purge -y gnome.
 apt-get remove --purge -y kde.
 apt-get remove --purge -y xfce.
 apt-get remove --purge -y cinnamon.
+apt-get remove --purge -y mate.
 
 # install needed packages
 apt-get install -y firmware-linux-free
