@@ -26,7 +26,7 @@
 # This script adds a number of privacy features. It also removes all other Desktop Environments, and installs a 
 # light-weight one called LXDE, which is much like the older Windows' Interface, so is good for newbies.
 
-# YOU MUST RUN THIS SCRIPT BY DOING 
+# YOU MUST, I repeat, MUST RUN THIS SCRIPT BY DOING 
 # su -m -p -c ./newbie.sh
 # OTHERWISE, THE SCRIPT WILL FAIL, AND QUITE POSSIBLY BREAK YOUR COMPUTER
 
@@ -1117,7 +1117,7 @@ show_mounts=0
 
 [trash:///]
 x=1349
-y=791" > "$HOME/.config/pcmanfm/LXDE/desktop-items-0.conf"
+y=791" > '$HOME/.config/pcmanfm/LXDE/desktop-items-0.conf"
 
 # Final steps
 apt-get update
