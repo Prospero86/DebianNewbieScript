@@ -330,7 +330,7 @@ echo "
 I highly reccomend you put these into your sources.list folder. Do this by doing
 sudo nano /etc/apt/sources.list
 
-Change the "US" to your own country's country code. HTTP is faster than ftp.
+Change the US to your own country's country code. HTTP is faster than ftp.
 
 # These are your Debian source files. Whenever changing them, preform apt-get update
 # or aptitude update. To use non-free packages, add the words contrib non-free to the
