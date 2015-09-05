@@ -13,9 +13,9 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.7 beta
+# Debian Newbie Script v0.2.8 beta
 # This script is designed to partially rice a Debian install, and install new, better components on first run. 
-# This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes 32 bit 
+# This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes i386 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
 # to the system. I am currently trying to figure out how to make an auto-update script to insure that the user is
 # using the latest version.
@@ -156,14 +156,14 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.7 beta. Please confirm you are using the latest version."
+echo "You are using version 0.2.8 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # License Script
 echo "
-Debian Newbie Script v0.2.7 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.2.8 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type c to continue, or d for details, [C/d]
@@ -172,7 +172,7 @@ read ans
 
 if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.2.7 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.2.8 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -382,6 +382,20 @@ apt-get install -y alsamixergui
 apt-get install -y evince-gtk
 apt-get install -y evolution
 apt-get install -y gpicview
+apt-get install -y iceweasel
+apt-get install -y lxpolkit
+apt-get install -y menu-xdg
+apt-get install -y lxsession
+apt-get install -y lxtask
+apt-get install -y lxterminal
+apt-get install -y lxpanel
+apt-get install -y lxappearance
+apt-get install -y pcmanfm
+apt-get install -y usermode
+apt-get install -y xserver-xorg
+apt-get install -y xscreensaver
+apt-get install -y network-manager
+apt-get install -y --no-install-recommends xarchiver
 apt-get install -y gtk-chtheme
 apt-get install -y gtk-qt-engine
 apt-get install -y gtk-smooth-themes
@@ -404,20 +418,6 @@ apt-get install -y gtk3-engines-oxygen
 apt-get install -y clearlooks-phenix-theme
 apt-get install -y hunspell-en-us
 apt-get install -y hyphen-en-us
-apt-get install -y iceweasel
-apt-get install -y lxpolkit
-apt-get install -y menu-xdg
-apt-get install -y lxsession
-apt-get install -y lxtask
-apt-get install -y lxterminal
-apt-get install -y lxpanel
-apt-get install -y lxappearance
-apt-get install -y pcmanfm
-apt-get install -y usermode
-apt-get install -y xserver-xorg
-apt-get install -y xscreensaver
-apt-get install -y network-manager
-apt-get install -y --no-install-recommends xarchiver
 
 # Add some good, everyday programs
 apt-get install -y --no-install-recommends aspell
@@ -530,7 +530,7 @@ rm /tmp/pkg.gpg.key
 apt-get update
 apt-get upgrade -y
 apt-get dist-upgrade -y
-apt-get install -y qtox
+apt-get install -y --force-yes qtox
 mkdir /usr/share/icons/qTox
 wget https://wiki.tox.chat/lib/tpl/vector/user/logo.png -O /usr/share/icons/qTox/qTox.png
 
@@ -1127,6 +1127,7 @@ y=791" > $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
 
 # Final steps
 apt-get update
+dpkg --get-selections > $HOME/Desktop/bleh
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get -f -y install
