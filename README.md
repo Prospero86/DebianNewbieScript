@@ -13,6 +13,7 @@ You should be able to wget it. Try going to your folder of choice (I reccomend t
 
 <code>wget --no-check-certificate https://raw.githubusercontent.com/Chocolate-Chip-Computing/DebianNewbieScript/master/newbie.sh</code>
 
+
 If wget isn't installed (which it should be) then you should be able to just download it though a pre-installed web browser on your DE. If neither of these options work, then you are screwed.
 
 **you must run it in a virtual console by pressing <code>ctrl</code> + <code>alt</code> + <code>F1</code>.** You need to do this as the DEs are being moved around and what not, you will lose the output. At the end there is stuff you need to see. When in the virtual terminal, Login as yourself.
@@ -35,6 +36,8 @@ If you recieve any errors, such as "Permission Denied", preform
 
 then preform
 <code>chmod 665 newbie.sh</code>
+
+then exit, and run the script. If you run the script in the current terminal, it will fail. It must be run with the arguments as listed above.
 
 This will change the permissions and you should be able to run it
 
