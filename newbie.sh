@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.3.0 beta
+# Debian Newbie Script v0.3.1 beta
 # This script is designed to partially rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes i386 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -85,16 +85,16 @@ echo "
 (and that is the RIGHT WAY of saying it!)
 "
 echo "To continue, type c. To quit, type q [C/q]"
-read -r ans
+read -rn1 ans
 
-if [ "${ans:0:1}" = "C" ] && [ "${ans:0:1}" = "c" ]; then
+if [ "${ans:0:1}" = "C" ] || [ "${ans:0:1}" = "c" ]; then
 echo " "
 echo "Continuing..."
 sleep 1
 clear
 fi
 
-if [ "${ans:0:1}" = "Q" ] && [ "${ans:0:1}" = "q" ]; then
+if [ "${ans:0:1}" = "Q" ] || [ "${ans:0:1}" = "q" ]; then
 clear
 echo "Ok then..."
 echo "                                          .....                                                
@@ -148,31 +148,19 @@ clear
 exit 1
 fi
 
-echo "Continuing..."
-sleep 1
-clear
-echo " "
-echo "Thank you for choosing this script for your new GNU/Linux experience!"
-echo " "
-echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
-echo " "
-echo "You are using version 0.3.0 beta. Please confirm you are using the latest version."
-echo "You will find the latest version at"
-echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
-echo " "
 
 # License Script
 echo "
-Debian Newbie Script v0.3.0 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.3.1 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type c to continue, or d for details, [C/d]
 "
-read -r ans
+read -rn1 ans
 
-if [ "${ans:0:1}" = "D" ] && [ "${ans:0:1}" = "d" ]; then
+if [ "${ans:0:1}" = "D" ] || [ "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.3.0 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.3.1 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -197,7 +185,7 @@ echo "Now continuing..."
 sleep 1
 fi
 
-if [ "${ans:0:1}" = "C" ] && [ "${ans:0:1}" = "c" ]; then
+if [ "${ans:0:1}" = "C" ] || [ "${ans:0:1}" = "c" ]; then
 clear
 echo "
 Very well. The license terms can be viewed at
@@ -244,15 +232,15 @@ echo "YOU MUST ALSO HAVE THIS RUNNING IN A VIRTUAL CONSOLE. IF YOU DON'T"
 echo "YOU WILL BE UNABLE TO RUN THIS SCRIPT PROPERLY. ABORT THIS SCRIPT NOW"
 echo "AND PRESS CTRL + ALT + F1 TO SWITCH TO A VIRTUAL CONSOLE!"
 echo "Continue? [Y/n]?"
-read -r ans
+read -rn1 ans
 
-if [ "${ans:0:1}" = "Y" ] && [ "${ans:0:1}" = "y" ]; then
+if [ "${ans:0:1}" = "Y" ] || [ "${ans:0:1}" = "y" ]; then
 echo " "
 echo "Now continuing"
 clear
 fi
 
-if [ "${ans:0:1}" = "N" ] && [ "${ans:0:1}" = "n" ]; then
+if [ "${ans:0:1}" = "N" ] || [ "${ans:0:1}" = "n" ]; then
 clear
 echo " "
 echo "Exiting..."
@@ -324,6 +312,7 @@ apt-get install -y build-essential
 apt-get install -y sudo
 apt-get install -y wget
 apt-get install -y ntp
+apt-get install -y htop
 
 # Change ftp to http now that apt-transport-http(s) is installed
 echo "
@@ -528,7 +517,7 @@ apt-get remove --purge -y konsole
 apt-get remove --purge -y deluge
 
 # qTox, the skype replacement's script
-echo "deb https://pkg.tox.chat/Debian nightly release" > /etc/apt/sources.list.d/tox.list
+echo "deb https://pkg.tox.chat/debian nightly release" > /etc/apt/sources.list.d/tox.list
 wget https://pkg.tox.chat/Debian/pkg.gpg.key -O /tmp/pkg.gpg.key
 apt-key add /tmp/pkg.gpg.key
 rm /tmp/pkg.gpg.key
@@ -611,7 +600,7 @@ You don't need to use this exactly as it is here, though." > $HOME/Desktop/tools
 
 
 # Master Readme
-echo 'Make sure to delete these extra files and folders after you are finished with them. 
+echo "Make sure to delete these extra files and folders after you are finished with them. 
 You will need to find documentation for all the things this has installed. 
 If you do not want a package that this script has installed, preform the command 
 
@@ -667,7 +656,7 @@ https://stallman.org/facebook.html
 
 And always refer to your OS as GNU/Linux unless referring to the kernel itself!
 
-Thanks again for using my script!' > $HOME/Desktop/README
+Thanks again for using my script!" > $HOME/Desktop/README
 
 # GPG Docs
 echo "This is the documentation for GPG. GPG (full name GNPGP) is a free/Libre version of the PGP encryption
@@ -1193,12 +1182,12 @@ echo "
                                      (______/ (_______)  \_______/   )_(   (_)"
 echo "Press r to restart, or press q if you wish to exit"
 echo "this script and preform more commands. [R/q]"
-read -r ans
+read -rn1 ans
 
-if [ "${ans:0:1}" = "R" ]] && [ "${ans:0:1}" = "r" ]; then
+if [ "${ans:0:1}" = "R" ] || [ "${ans:0:1}" = "r" ]; then
 sleep 1
 clear
-echo "
+
 echo "          ]Pf767676[1;37m▄]Pf9e9e9e[1;37m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄]P7808080[47m]Pfffffff[1;37m▄▄]P7949494[47m▄]P7a8a8a8[47m▄▄▄]Pfdadada[1;37m▄]P7949494[47m]Pfe4e4e4[1;37m▄]P76c6c6c[47m]Pfffffff[1;37m▄]P7767676[47m▄]P7c6c6c6[47m]Pfdadada[1;37m▄[49m]Pf4e4e4e[1;37m▄]Pfe4e4e4[1;37m▄[39m                        ]Pfc6c6c6[1;37m▄]Pf808080[1;37m▄]P7d7d7d7[47m ]P7a8a8a8[47m]Pfffffff[1;37m▄]P7949494[47m▄▄▄▄]P79e9e9e[47m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄[49m]Pfbcbcbc[1;37m▄]Pf8a8a8a[1;37m▄]Pfbcbcbc[1;37m▄[39m        ]P7aaaaaa]Pfffffff[0m
        ]Pf262626[1;37m▄]P7767676[47m]Pfeeeeee[1;37m▄]P79e9e9e[47m]Pfffffff[1;37m▄]P7ffffff[47m ]P7b2b2b2[47m▀]P7e4e4e4[47m]Pf262626[1;37m▄]P7eeeeee[47m▄]P7bcbcbc[47m]Pf4e4e4e[1;37m▄]P7000000[47m]Pf878787[1;37m▄]Pfbcbcbc[1;37m▄]P7767676[47m▄]P7000000[47m]Pfc6c6c6[1;37m▄]P71c1c1c[47m]Pfffffff[1;37m▄]P7000000[47m]Pfe4e4e4[1;37m▄]Pfd7d7d7[1;37m▄]P7080808[47m]Pfffffff[1;37m▄]P7767676[47m]Pfeeeeee[1;37m▄]P7ffffff[47m]Pfa8a8a8[1;37m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄]P7808080[47m]Pfffffff[1;37m▄]P7eeeeee[47m]Pfbcbcbc[1;37m▄[49m]Pfb2b2b2[1;37m▄]Pf4e4e4e[1;37m▄[39m                ]Pf808080[1;37m▄]Pf949494[1;37m▄]Pfa8a8a8[1;37m▄]P7767676[47m]Pfffffff[1;37m▄]P7eeeeee[47m]Pfb2b2b2[1;37m▄]Pf949494[1;37m▄]P7bcbcbc[47m]Pfdadada[1;37m▄]P7a8a8a8[47m]Pf585858[1;37m▄]P7262626[47m]Pfd0d0d0[1;37m▄]P7949494[47m]Pfa8a8a8[1;37m▄]P7d0d0d0[47m]Pf444444[1;37m▄]P7b2b2b2[47m]Pf3a3a3a[1;37m▄]P79e9e9e[47m]Pf4e4e4e[1;37m▄]P7ffffff[47m]Pf3a3a3a[1;37m▄]Pf767676[1;37m▄]Pf5f5f5f[1;37m▄]Pfeeeeee[1;37m▀]Pf767676[1;37m▀]P7d7d7d7[47m]Pfbcbcbc[1;37m▄[49m]Pf949494[1;37m▄[39m     ]P7aaaaaa]Pfffffff[0m
      ]Pf626262[1;37m▄]P76c6c6c[47m]Pfffffff[1;37m▄]P7ffffff[47m ]P7afafaf[47m▀]Pf4e4e4e[1;37m▄]P7a8a8a8[47m]Pf585858[1;37m▄]P73a3a3a[47m]Pf303030[1;37m▄]P75f5f5f[47m]Pfe4e4e4[1;37m▄]P7949494[47m]Pfffffff[1;37m▄]P7878787[47m▄]P7949494[47m▀]P7626262[47m▀]P7eeeeee[47m]Pfb2b2b2[1;37m▄[49m]Pfbcbcbc[1;37m▀]Pf9e9e9e[1;37m▀]Pf949494[1;37m▀]Pfafafaf[1;37m▀]P7d0d0d0[47m]Pfc6c6c6[1;37m▄]P7eeeeee[47m]Pf9e9e9e[1;37m▄]P7ffffff[47m]Pf808080[1;37m▄▄]Pf949494[1;37m▄]P7eeeeee[47m]Pfb2b2b2[1;37m▄[49m]Pf8a8a8a[1;37m▀[39m                 ]Pf8a8a8a[1;37m▀]P7ffffff[47m]Pf949494[1;37m▄]Pfa8a8a8[1;37m▄▄]Pf9e9e9e[1;37m▄▄]Pf949494[1;37m▄]Pfafafaf[1;37m▄]P7e4e4e4[47m]Pfd7d7d7[1;37m▄▄]P7ffffff[47m]Pfb2b2b2[1;37m▄]Pf767676[1;37m▄]Pfb2b2b2[1;37m▄]Pf000000[1;37m▀▀]P74e4e4e[47m]Pf8a8a8a[1;37m▄]Pfafafaf[1;37m▀]P7e4e4e4[47m]Pf303030[1;37m▄]P7ffffff[47m]Pf9e9e9e[1;37m▄]Pfd7d7d7[1;37m▀]P7808080[47m▄[49m]Pf9e9e9e[1;37m▄[39m   ]P7aaaaaa]Pfffffff[0m
@@ -1234,7 +1223,7 @@ echo "          ]Pf767676[1;37m▄]Pf9e9e9e[1;37m▄]P7bcbcbc[47m]Pfeeeee
                                    ]Pf000000[1;37m▀[39m ]P7000000[47m]Pfbcbcbc[1;37m▄]P75f5f5f[47m]Pf444444[1;37m▄]P74e4e4e[47m]Pf585858[1;37m▄]Pf6c6c6c[1;37m▀]P7585858[47m ]Pf626262[1;37m▄]Pf262626[1;37m▄  ]Pf5f5f5f[1;37m▄]Pf000000[1;37m▄[49m]Pfa8a8a8[1;37m▀[39m                      ]P7aaaaaa]Pfffffff[0m
                                       ]Pfa8a8a8[1;37m▀]Pf000000[1;37m▀]P7afafaf[47m]Pf949494[1;37m▄[49m]Pf000000[1;37m▀]P7262626[47m]Pfc6c6c6[1;37m▄[49m]Pfa8a8a8[1;37m▄]Pf585858[1;37m▀]Pf303030[1;37m▀]Pf3a3a3a[1;37m▀[39m                        ]P7aaaaaa]Pfffffff[0m
 
-"                                               Join the GNU Freedom Movement
+                                                    Join the GNU Freedom Movement
                                                       http://gnu.org/philosophy
 "
 echo "restarting..."
@@ -1242,7 +1231,7 @@ sleep 8
 reboot
 fi
 
-if [ "${ans:0:1}" = "Q" ] && [ "${ans:0:1}" = "q" ]; then
+if [ "${ans:0:1}" = "Q" ] || [ "${ans:0:1}" = "q" ]; then
 clear
 echo "Ok then. Just remember you need to restart your computer as soon as you are done with"
 echo "whatever it is you need to do. Your computer is not usable in its current state, except for"
@@ -1258,7 +1247,6 @@ exit 1
 fi
 sleep 1
 clear
-echo "
 echo "          ]Pf767676[1;37m▄]Pf9e9e9e[1;37m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄]P7808080[47m]Pfffffff[1;37m▄▄]P7949494[47m▄]P7a8a8a8[47m▄▄▄]Pfdadada[1;37m▄]P7949494[47m]Pfe4e4e4[1;37m▄]P76c6c6c[47m]Pfffffff[1;37m▄]P7767676[47m▄]P7c6c6c6[47m]Pfdadada[1;37m▄[49m]Pf4e4e4e[1;37m▄]Pfe4e4e4[1;37m▄[39m                        ]Pfc6c6c6[1;37m▄]Pf808080[1;37m▄]P7d7d7d7[47m ]P7a8a8a8[47m]Pfffffff[1;37m▄]P7949494[47m▄▄▄▄]P79e9e9e[47m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄[49m]Pfbcbcbc[1;37m▄]Pf8a8a8a[1;37m▄]Pfbcbcbc[1;37m▄[39m        ]P7aaaaaa]Pfffffff[0m
        ]Pf262626[1;37m▄]P7767676[47m]Pfeeeeee[1;37m▄]P79e9e9e[47m]Pfffffff[1;37m▄]P7ffffff[47m ]P7b2b2b2[47m▀]P7e4e4e4[47m]Pf262626[1;37m▄]P7eeeeee[47m▄]P7bcbcbc[47m]Pf4e4e4e[1;37m▄]P7000000[47m]Pf878787[1;37m▄]Pfbcbcbc[1;37m▄]P7767676[47m▄]P7000000[47m]Pfc6c6c6[1;37m▄]P71c1c1c[47m]Pfffffff[1;37m▄]P7000000[47m]Pfe4e4e4[1;37m▄]Pfd7d7d7[1;37m▄]P7080808[47m]Pfffffff[1;37m▄]P7767676[47m]Pfeeeeee[1;37m▄]P7ffffff[47m]Pfa8a8a8[1;37m▄]P7bcbcbc[47m]Pfeeeeee[1;37m▄]P7808080[47m]Pfffffff[1;37m▄]P7eeeeee[47m]Pfbcbcbc[1;37m▄[49m]Pfb2b2b2[1;37m▄]Pf4e4e4e[1;37m▄[39m                ]Pf808080[1;37m▄]Pf949494[1;37m▄]Pfa8a8a8[1;37m▄]P7767676[47m]Pfffffff[1;37m▄]P7eeeeee[47m]Pfb2b2b2[1;37m▄]Pf949494[1;37m▄]P7bcbcbc[47m]Pfdadada[1;37m▄]P7a8a8a8[47m]Pf585858[1;37m▄]P7262626[47m]Pfd0d0d0[1;37m▄]P7949494[47m]Pfa8a8a8[1;37m▄]P7d0d0d0[47m]Pf444444[1;37m▄]P7b2b2b2[47m]Pf3a3a3a[1;37m▄]P79e9e9e[47m]Pf4e4e4e[1;37m▄]P7ffffff[47m]Pf3a3a3a[1;37m▄]Pf767676[1;37m▄]Pf5f5f5f[1;37m▄]Pfeeeeee[1;37m▀]Pf767676[1;37m▀]P7d7d7d7[47m]Pfbcbcbc[1;37m▄[49m]Pf949494[1;37m▄[39m     ]P7aaaaaa]Pfffffff[0m
      ]Pf626262[1;37m▄]P76c6c6c[47m]Pfffffff[1;37m▄]P7ffffff[47m ]P7afafaf[47m▀]Pf4e4e4e[1;37m▄]P7a8a8a8[47m]Pf585858[1;37m▄]P73a3a3a[47m]Pf303030[1;37m▄]P75f5f5f[47m]Pfe4e4e4[1;37m▄]P7949494[47m]Pfffffff[1;37m▄]P7878787[47m▄]P7949494[47m▀]P7626262[47m▀]P7eeeeee[47m]Pfb2b2b2[1;37m▄[49m]Pfbcbcbc[1;37m▀]Pf9e9e9e[1;37m▀]Pf949494[1;37m▀]Pfafafaf[1;37m▀]P7d0d0d0[47m]Pfc6c6c6[1;37m▄]P7eeeeee[47m]Pf9e9e9e[1;37m▄]P7ffffff[47m]Pf808080[1;37m▄▄]Pf949494[1;37m▄]P7eeeeee[47m]Pfb2b2b2[1;37m▄[49m]Pf8a8a8a[1;37m▀[39m                 ]Pf8a8a8a[1;37m▀]P7ffffff[47m]Pf949494[1;37m▄]Pfa8a8a8[1;37m▄▄]Pf9e9e9e[1;37m▄▄]Pf949494[1;37m▄]Pfafafaf[1;37m▄]P7e4e4e4[47m]Pfd7d7d7[1;37m▄▄]P7ffffff[47m]Pfb2b2b2[1;37m▄]Pf767676[1;37m▄]Pfb2b2b2[1;37m▄]Pf000000[1;37m▀▀]P74e4e4e[47m]Pf8a8a8a[1;37m▄]Pfafafaf[1;37m▀]P7e4e4e4[47m]Pf303030[1;37m▄]P7ffffff[47m]Pf9e9e9e[1;37m▄]Pfd7d7d7[1;37m▀]P7808080[47m▄[49m]Pf9e9e9e[1;37m▄[39m   ]P7aaaaaa]Pfffffff[0m
@@ -1294,7 +1282,7 @@ echo "          ]Pf767676[1;37m▄]Pf9e9e9e[1;37m▄]P7bcbcbc[47m]Pfeeeee
                                    ]Pf000000[1;37m▀[39m ]P7000000[47m]Pfbcbcbc[1;37m▄]P75f5f5f[47m]Pf444444[1;37m▄]P74e4e4e[47m]Pf585858[1;37m▄]Pf6c6c6c[1;37m▀]P7585858[47m ]Pf626262[1;37m▄]Pf262626[1;37m▄  ]Pf5f5f5f[1;37m▄]Pf000000[1;37m▄[49m]Pfa8a8a8[1;37m▀[39m                      ]P7aaaaaa]Pfffffff[0m
                                       ]Pfa8a8a8[1;37m▀]Pf000000[1;37m▀]P7afafaf[47m]Pf949494[1;37m▄[49m]Pf000000[1;37m▀]P7262626[47m]Pfc6c6c6[1;37m▄[49m]Pfa8a8a8[1;37m▄]Pf585858[1;37m▀]Pf303030[1;37m▀]Pf3a3a3a[1;37m▀[39m                        ]P7aaaaaa]Pfffffff[0m
 
-"
+
                                                      Join the GNU Freedom Movement
                                                       http://gnu.org/philosophy
 "
