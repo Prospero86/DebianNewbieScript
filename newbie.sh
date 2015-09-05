@@ -243,7 +243,7 @@ echo " "
 echo "YOU MUST ALSO HAVE THIS RUNNING IN A VIRTUAL CONSOLE. IF YOU DON'T"
 echo "YOU WILL BE UNABLE TO RUN THIS SCRIPT PROPERLY. ABORT THIS SCRIPT NOW"
 echo "AND PRESS CTRL + ALT + F1 TO SWITCH TO A VIRTUAL CONSOLE!"
-echo "Continue? [N/y]?"
+echo "Continue? [Y/n]?"
 read ans
 
 if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
@@ -263,15 +263,7 @@ sleep 1
 clear
 exit 1
 fi
-clear
-echo " "
-echo "Exiting..."
-sleep 1
-clear
-echo "Thank you for choosing Chocolate Chip Computing for your new GNU/Linux Experience!"
-sleep 1
-clear
-exit 1
+
 # Last begin echo(s)
 clear
 echo "This begins the automated portion of this script. If you wish to quit, preform:"
