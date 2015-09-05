@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 #     ________                     __      __          ________    _          
 #    / ____/ /_  ____  _________  / /___ _/ /____     / ____/ /_  (_)___      
@@ -1127,7 +1127,6 @@ y=791" > $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
 
 # Final steps
 apt-get update
-dpkg --get-selections > $HOME/Desktop/bleh
 apt-get upgrade -y
 apt-get dist-upgrade -y
 apt-get -f -y install
