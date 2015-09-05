@@ -13,7 +13,7 @@
 #                      /_/                      /____/  
 
 
-# Debian Newbie Script v0.2.9 beta
+# Debian Newbie Script v0.3.0 beta
 # This script is designed to partially rice a Debian install, and install new, better components on first run. 
 # This script is designed for the latest stable release, Debian GNU/Linux 8.1 Jessie. This includes i386 bit 
 # packages, to ensure it works on both 32 and 64 bit systems. All apt packages will obviously be tailored
@@ -85,16 +85,16 @@ echo "
 (and that is the RIGHT WAY of saying it!)
 "
 echo "To continue, type c. To quit, type q [C/q]"
-read ans
+read -r ans
 
-if [ "${ans:0:1}" = "C" -o "${ans:0:1}" = "c" ]; then
+if [ "${ans:0:1}" = "C" ] && [ "${ans:0:1}" = "c" ]; then
 echo " "
 echo "Continuing..."
 sleep 1
 clear
 fi
 
-if [ "${ans:0:1}" = "Q" -o "${ans:0:1}" = "q" ]; then
+if [ "${ans:0:1}" = "Q" ] && [ "${ans:0:1}" = "q" ]; then
 clear
 echo "Ok then..."
 echo "                                          .....                                                
@@ -156,23 +156,23 @@ echo "Thank you for choosing this script for your new GNU/Linux experience!"
 echo " "
 echo "This script is designed for Debian GNU/Linux 8.1 Jessie"
 echo " "
-echo "You are using version 0.2.9 beta. Please confirm you are using the latest version."
+echo "You are using version 0.3.0 beta. Please confirm you are using the latest version."
 echo "You will find the latest version at"
 echo "https://github.com/Chocolate-Chip-Computing/DebianNewbieScript"
 echo " "
 
 # License Script
 echo "
-Debian Newbie Script v0.2.9 beta  Copyright (C) 2015  Chocolate Chip Computing
+Debian Newbie Script v0.3.0 beta  Copyright (C) 2015  Chocolate Chip Computing
 This program comes with ABSOLUTELY NO WARRANTY; for details type d.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type c to continue, or d for details, [C/d]
 "
-read ans
+read -r ans
 
-if [ "${ans:0:1}" = "D" -o "${ans:0:1}" = "d" ]; then
+if [ "${ans:0:1}" = "D" ] && [ "${ans:0:1}" = "d" ]; then
 echo "
-    Debian Newbie Script v0.2.9 beta: A script to optimize a fresh install for Debian Newbies
+    Debian Newbie Script v0.3.0 beta: A script to optimize a fresh install for Debian Newbies
     Copyright (C) 2015 Chocolate Chip Computing
 
     This program is free software: you can redistribute it and/or modify
@@ -197,7 +197,7 @@ echo "Now continuing..."
 sleep 1
 fi
 
-if [ "${ans:0:1}" = "C" -o "${ans:0:1}" = "c" ]; then
+if [ "${ans:0:1}" = "C" ] && [ "${ans:0:1}" = "c" ]; then
 clear
 echo "
 Very well. The license terms can be viewed at
@@ -217,7 +217,7 @@ clear
 echo " "
 echo "The script is starting."
 echo " "
-if [ "`whoami`" != "root" ]; then
+if [ "$(whoami)" != "root" ]; then
     echo " "
     echo "Uh oh!"
     echo " "
@@ -244,15 +244,15 @@ echo "YOU MUST ALSO HAVE THIS RUNNING IN A VIRTUAL CONSOLE. IF YOU DON'T"
 echo "YOU WILL BE UNABLE TO RUN THIS SCRIPT PROPERLY. ABORT THIS SCRIPT NOW"
 echo "AND PRESS CTRL + ALT + F1 TO SWITCH TO A VIRTUAL CONSOLE!"
 echo "Continue? [Y/n]?"
-read ans
+read -r ans
 
-if [ "${ans:0:1}" = "Y" -o "${ans:0:1}" = "y" ]; then
+if [ "${ans:0:1}" = "Y" ] && [ "${ans:0:1}" = "y" ]; then
 echo " "
 echo "Now continuing"
 clear
 fi
 
-if [ "${ans:0:1}" = "N" -o "${ans:0:1}" = "n" ]; then
+if [ "${ans:0:1}" = "N" ] && [ "${ans:0:1}" = "n" ]; then
 clear
 echo " "
 echo "Exiting..."
@@ -490,12 +490,16 @@ Instructions taken straight from the i2p website:
 Using these I2P packages the I2P router can be started in the following three ways:
 
 on demand using the i2prouter script. Simply run i2prouter start from a command prompt. (Note: Do not use sudo or run it as root!)
-    on demand without the Java service wrapper (needed on non-Linux/non-x86 systems) by running i2prouter-nowrapper. (Note: Do not use sudo or run it as root!)
-    as a service that automatically runs when your system boots, even before logging in. The service can be enabled with dpkg-reconfigure i2p as root or using sudo. This is the recommended means of operation.
+on demand without the Java service wrapper (needed on non-Linux/non-x86 systems) by running i2prouter-nowrapper. 
+(Note: Do not use sudo or run it as root!) as a service that automatically runs when your system boots, even before logging in. 
+The service can be enabled with dpkg-reconfigure i2p as root or using sudo. This is the recommended means of operation.
 
-When installing for the first time, please remember to adjust your NAT/firewall if you can. The ports to forward can be found on the network configuration page in the router console. If guidance with respect to forwarding ports is needed, you may find portforward.com to be helpful.
+When installing for the first time, please remember to adjust your NAT/firewall if you can. The ports to forward can be found on the network 
+configuration page in the router console. If guidance with respect to forwarding ports is needed, you may find portforward.com to be helpful.
 
-Please review and adjust the bandwidth settings on the configuration page, as the default settings of 96 KB/s down / 40 KB/s up are fairly conservative.
+
+Please review and adjust the bandwidth settings on the configuration page, as the default settings of 96 KB/s down / 40 KB/s up are fairly 
+conservative.
 
 If you want to reach eepsites via your browser, have a look on the browser proxy setup page for an easy howto.
 
@@ -607,7 +611,7 @@ You don't need to use this exactly as it is here, though." > $HOME/Desktop/tools
 
 
 # Master Readme
-echo "Make sure to delete these extra files and folders after you are finished with them. 
+echo 'Make sure to delete these extra files and folders after you are finished with them. 
 You will need to find documentation for all the things this has installed. 
 If you do not want a package that this script has installed, preform the command 
 
@@ -617,10 +621,10 @@ Periodically preform the commands
 
 sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade
 
-I have added LXDE to this script as I use it myself, it is much like the old Windows' interface, 
-and it is just good for beginners, imho. You can pick another one once you know what you're doing, I guess.
+I have added LXDE to this script as I use it myself, it is much like the old Windows interface, 
+and it is just good for beginners, imho. You can pick another one once you know what youre doing, I guess.
 
-To configure your network, use the command nmtui. This is network-manager's terminal interface.
+To configure your network, use the command nmtui. This is the network-manager terminal interface.
 
 I have included a large number of wallpapers for you to choose from. If you want to remove the current 
 wallpaper, then do:
@@ -663,7 +667,7 @@ https://stallman.org/facebook.html
 
 And always refer to your OS as GNU/Linux unless referring to the kernel itself!
 
-Thanks again for using my script!" > $HOME/Desktop/README
+Thanks again for using my script!' > $HOME/Desktop/README
 
 # GPG Docs
 echo "This is the documentation for GPG. GPG (full name GNPGP) is a free/Libre version of the PGP encryption
@@ -772,7 +776,7 @@ NOTE: I AM NOT AFFILIATED WITH THE WINDOWS 93 JOKE SITE" > $HOME/Desktop/startup
 
 
 # Make desktop defaults, design, background
-echo "[Session]
+echo '[Session]
 window_manager=openbox-lxde
 windows_manager/command=openbox
 windows_manager/session=LXDE
@@ -836,14 +840,14 @@ guess_default=true
 lxde=true
 
 [Environment]
-menu_prefix=lxde-" > $HOME/.config/lxsession/LXDE/desktop.conf
+menu_prefix=lxde-' > $HOME/.config/lxsession/LXDE/desktop.conf
 
-echo "[special_cases]
+echo '[special_cases]
 synaptic=synaptic-pkexec
 soffice.bin=libreoffice
-x-terminal-emulator=lxterminal" > $HOME/.config/lxpanel/launchtaskbar.cfg
+x-terminal-emulator=lxterminal' > $HOME/.config/lxpanel/launchtaskbar.cfg
 
-echo "
+echo '
 # lxpanel <profile> config file. Manually editing is not recommended.
 # Use preference dialog in lxpanel to adjust config when you can.
 
@@ -993,11 +997,11 @@ Plugin {
     }
   }
 }
- " > $HOME/.config/lxpanel/LXDE/panels/panel
+ ' > $HOME/.config/lxpanel/LXDE/panels/panel
 
 # Desktop Icons
 #Hexchat
-echo "[Desktop Entry]
+echo '[Desktop Entry]
 Name=HexChat
 Name[en_GB]=HexChat
 GenericName=IRC Client
@@ -1015,10 +1019,10 @@ Actions=SafeMode;
 [Desktop Action SafeMode]
 Name=Open Safe Mode
 Name[en_GB]=Open Safe Mode
-Exec=hexchat --no-auto --no-plugins" > $HOME/Desktop/hexchat.desktop
+Exec=hexchat --no-auto --no-plugins' > $HOME/Desktop/hexchat.desktop
 
 # Keepass
-echo "[Desktop Entry]
+echo '[Desktop Entry]
 Name=KeePass2
 GenericName=Password manager
 Exec=keepass2
@@ -1027,10 +1031,10 @@ Terminal=false
 Type=Application
 StartupNotify=false
 Categories=Utility;
-MimeType=application/x-keepass2;" > $HOME/Desktop/Keepass.desktop
+MimeType=application/x-keepass2;' > $HOME/Desktop/Keepass.desktop
 
 #Iceweasel
-echo "
+echo '
 [Desktop Entry]
 Encoding=UTF-8
 Name=Iceweasel
@@ -1045,10 +1049,10 @@ Icon=iceweasel
 Categories=Network;WebBrowser;
 MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;
 StartupWMClass=Iceweasel
-StartupNotify=true" > $HOME/Desktop/Iceweasel.desktop
+StartupNotify=true' > $HOME/Desktop/Iceweasel.desktop
 
 #VLC
-echo "[Desktop Entry]
+echo '[Desktop Entry]
 Version=1.0
 Name=VLC media player
 GenericName=Media player
@@ -1057,30 +1061,30 @@ Exec=/usr/bin/vlc --started-from-file %U
 TryExec=/usr/bin/vlc
 Icon=vlc
 Terminal=false
-Type=Application" > $HOME/Desktop/vlc.desktop
+Type=Application' > $HOME/Desktop/vlc.desktop
 
 #qtox
-echo "[Desktop Entry]
+echo '[Desktop Entry]
 Name=qTox
 GenericName=Tox
 Exec=qtox
 Icon=/usr/share/icons/qTox/qTox.png
 Terminal=false
 Type=Application
-StartupNotify=false" > $HOME/Desktop/qTox.desktop
+StartupNotify=false' > $HOME/Desktop/qTox.desktop
 
 #Tor
-echo "[Desktop Entry]
+echo '[Desktop Entry]
 Name=Tor
 GenericName=Tor, the Onion Browser
 Exec=/opt/tor/tor-browser_en-US/Browser/start-tor-browser.desktop
 Icon=/opt/tor/tor-browser_en-US/Browser/browser/icons/mozicon128.png
 Terminal=false
 Type=Application
-StartupNotify=false" > $HOME/Desktop/tor.desktop
+StartupNotify=false' > $HOME/Desktop/tor.desktop
 
 #Evolution
-echo "[Desktop Entry]
+echo '[Desktop Entry]
 Name=Evolution
 GenericName=Groupware Suite
 X-GNOME-FullName=Evolution Mail and Calendar
@@ -1092,7 +1096,7 @@ Type=Application
 Categories=GNOME;GTK;Office;Email;Calendar;ContactManagement;X-Red-Hat-Base;
 StartupNotify=true
 MimeType=text/calendar;text/x-vcard;text/directory;application/mbox;message/rfc822;x-scheme-handler/mailto;
-" > $HOME/Desktop/evolution.desktop
+' > $HOME/Desktop/evolution.desktop
 
 # Desktop background
 mkdir $HOME/Pictures/.wallpaper
@@ -1107,7 +1111,7 @@ wget http://www.pokehidden.net/banned_from_equestria_daily/wallpaper.jpg -O $HOM
 wget https://gnu.org/graphics/gnu-linux-color-wallpaper.png -O $HOME/Pictures/.wallpaper/GNU+Linux.png
 wget https://gnu.org/graphics/gnuemacsref.png -O $HOME/Pictures/.wallpaper/Emacs.png
 
-echo "
+echo '
 [*]
 wallpaper_mode=stretch
 wallpaper_common=1
@@ -1124,7 +1128,7 @@ show_mounts=0
 
 [trash:///]
 x=1349
-y=791" > $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
+y=791' > $HOME/.config/pcmanfm/LXDE/desktop-items-0.conf
 
 # Final steps
 apt-get update
@@ -1189,9 +1193,9 @@ echo "
                                      (______/ (_______)  \_______/   )_(   (_)"
 echo "Press r to restart, or press q if you wish to exit"
 echo "this script and preform more commands. [R/q]"
-read ans
+read -r ans
 
-if [ "${ans:0:1}" = "R" -o "${ans:0:1}" = "r" ]; then
+if [ "${ans:0:1}" = "R" ]] && [ "${ans:0:1}" = "r" ]; then
 sleep 1
 clear
 echo "
@@ -1238,7 +1242,7 @@ sleep 8
 reboot
 fi
 
-if [ "${ans:0:1}" = "Q" -o "${ans:0:1}" = "q" ]; then
+if [ "${ans:0:1}" = "Q" ] && [ "${ans:0:1}" = "q" ]; then
 clear
 echo "Ok then. Just remember you need to restart your computer as soon as you are done with"
 echo "whatever it is you need to do. Your computer is not usable in its current state, except for"
